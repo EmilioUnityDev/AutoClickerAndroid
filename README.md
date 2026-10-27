@@ -31,14 +31,37 @@ Las actualizaciones se instalan encima (misma firma); no hay que desinstalar.
 
 ## Hoja de ruta
 
-- [ ] 0. Repositorio, permisos y flujo de trabajo
-- [ ] 1. Compilación en GitHub Actions (debug en cada push, release firmada por etiqueta)
-- [ ] 2. Publicación de APK en Releases
-- [ ] 3. MVP: panel flotante ▶ ■, pasos click / arrastre / pausa, elegir punto, guardar/cargar
-- [ ] 4. Visión: captura, condiciones de color, «esperar imagen», «si / si-no»
-- [ ] 5. Compatibilidad PC ⇄ Android: origen de la secuencia + mapeo de resolución
-- [ ] 6. Freno de pagos, ▶ por paso, duplicar, complementos (p. ej. pesca)
+- [x] 0. Repositorio, permisos y flujo de trabajo
+- [x] 1. Compilación en GitHub Actions (tests + APK de desarrollo en cada push)
+- [ ] 2. Publicación de APK en Releases (firma definitiva)
+- [x] 3. MVP: panel flotante ▶ ■, toque / mantener / arrastre / pausa / Atrás, elegir punto, guardar/cargar
+- [x] 4. Visión: captura, condiciones de color (+ `also`/`unless`), «esperar imagen», «si / si-no», tomar color
+- [x] 5. Compatibilidad PC ⇄ Android: origen de la secuencia + mapeo de resolución (en Android)
+- [x] 6. Freno de pagos, ▶ por paso, duplicar, complementos (aviso y conservación)
+- [ ] 7. Mapeo y origen también en la versión de PC
+- [ ] 8. Editor de condiciones extra (`also`/`unless`) y de pantallas prohibidas en Android
+- [ ] 9. Complementos implementados (p. ej. pesca)
+
+## Probado
+
+- Tests unitarios (CI): lectura/escritura del JSON de PC, complementos desconocidos,
+  mapeo, métrica de color idéntica a la de PC, **un ciclo completo de `raid_join`**
+  sobre capturas reales (enmascaradas), resumen de raid, «sin raids = sin toques»
+  y freno de pagos.
+- En un Android 15 (MuMu, 1220×2712): permisos, panel flotante, captura de
+  pantalla, espera/condición por color + toque por accesibilidad, importar la
+  secuencia de PC, mapearla a 1220×2712, editor y selector de punto.
 
 ## Desarrollo
 
-Kotlin + Gradle. No hace falta el SDK local: GitHub Actions compila cada push.
+Kotlin + Gradle, interfaz construida por código (sin Compose). No hace falta el
+SDK local: GitHub Actions ejecuta los tests y compila una APK de desarrollo en
+cada push (pestaña *Actions → último run → Artifacts*; requiere sesión de GitHub).
+
+- `model/` — formato de secuencias, mapeo de resolución, complementos.
+- `engine/` — reproductor (misma semántica que `player.py` de PC) y visión.
+- `service/` — accesibilidad (gestos), captura + panel flotante, selector en pantalla.
+- `ui/` — pantalla principal y editor.
+- `tools/mask_test_images.py` — prepara capturas de prueba sin datos de jugadores.
+
+Las APK de desarrollo (`…autoclicker.dev`) conviven con la versión de release.

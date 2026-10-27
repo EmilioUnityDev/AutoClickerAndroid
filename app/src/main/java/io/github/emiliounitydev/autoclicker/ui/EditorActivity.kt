@@ -137,12 +137,13 @@ class EditorActivity : AppCompatActivity() {
                 tv.setOnLongClickListener(null)
                 return
             }
-            val arrow = if (s.childLists().isNotEmpty()) (if (expanded[s] == true) "▾ " else "▸ ") else ""
+            val container = s.childLists().isNotEmpty() && !(s is SubsequenceStep && s.steps.isEmpty() && s.repeats == 1)
+            val arrow = if (container) (if (expanded[s] == true) "▾ " else "▸ ") else ""
             val delay = if (s.delayBeforeMs > 0 && !(s is SubsequenceStep && s.steps.isEmpty())) "  ⏱${s.delayBeforeMs}ms" else ""
             tv.text = "${r.index + 1}. $arrow${s.label()}$delay"
             tv.setTextColor(if (s is PluginStep) Ui.WARN else Color.BLACK)
             tv.setOnClickListener {
-                if (s.childLists().isNotEmpty()) { expanded[s] = expanded[s] != true; rebuild() } else editDialog(s)
+                if (container) { expanded[s] = expanded[s] != true; rebuild() } else editDialog(s)
             }
             tv.setOnLongClickListener { actionsDialog(r); true }
         }

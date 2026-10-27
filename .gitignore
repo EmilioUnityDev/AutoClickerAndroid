@@ -1,0 +1,13 @@
+# Android / Gradle
+.gradle/
+build/
+local.properties
+*.iml
+.idea/
+captures/
+.cxx/
+.externalNativeBuild/
+# Firma (NUNCA subir la clave)
+*.jks
+*.keystore
+keystore.properties

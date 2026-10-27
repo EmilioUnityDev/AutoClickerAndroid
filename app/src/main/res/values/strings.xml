@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AutoClicker</string>
+    <string name="accessibility_description">Permite a AutoClicker hacer los toques y arrastres de tus secuencias sobre otras apps. No lee el contenido de la pantalla a través de este servicio.</string>
+</resources>

@@ -1,0 +1,4634 @@
+{
+ "version": 2,
+ "name": "raid_join",
+ "target": {
+  "exe": "MuMuNxDevice.exe",
+  "title": ".Main"
+ },
+ "method": "adb",
+ "adb_serial": "127.0.0.1:16384",
+ "steps": [
+  {
+   "type": "subsequence",
+   "name": "Ciclo: unirse a una raid",
+   "repeats": null,
+   "delay_before_ms": 0,
+   "steps": [
+    {
+     "type": "subsequence",
+     "name": "volver al chat",
+     "repeats": 6,
+     "delay_before_ms": 0,
+     "steps": [
+      {
+       "type": "if_image",
+       "name": "¿chat_head&chat_bar&!sum_inner&!inc_white?",
+       "condition": {
+        "region": [
+         170,
+         1320,
+         600,
+         1340
+        ],
+        "color": "#484878",
+        "tolerance": 16,
+        "min_fraction": 0.8
+       },
+       "delay_before_ms": 0,
+       "then_steps": [
+        {
+         "type": "wait_image",
+         "name": "¿chat_head&chat_bar&!sum_inner&!inc_white? → salir del bucle",
+         "condition": {
+          "region": [
+           0,
+           0,
+           10,
+           10
+          ],
+          "color": "#000000",
+          "tolerance": 0,
+          "min_fraction": 0.0
+         },
+         "timeout_ms": 0,
+         "poll_ms": 10,
+         "on_timeout": "break",
+         "delay_before_ms": 0,
+         "unless": [
+          {
+           "region": [
+            170,
+            80,
+            860,
+            160
+           ],
+           "color": "#484878",
+           "tolerance": 16,
+           "min_fraction": 0.8
+          }
+         ]
+        }
+       ],
+       "else_steps": []
+      },
+      {
+       "type": "if_image",
+       "name": "«Rally Attack Complete!» → Confirm",
+       "condition": {
+        "region": [
+         90,
+         1060,
+         370,
+         1220
+        ],
+        "color": "#584878,#484878,#585888",
+        "tolerance": 16,
+        "min_fraction": 0.7
+       },
+       "delay_before_ms": 0,
+       "also": [
+        {
+         "region": [
+          300,
+          1300,
+          600,
+          1370
+         ],
+         "color": "#88d828,#78c828,#185828,#f8f8f8,#98e828",
+         "tolerance": 24,
+         "min_fraction": 0.6
+        },
+        {
+         "region": [
+          65,
+          280,
+          110,
+          700
+         ],
+         "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+         "tolerance": 24,
+         "min_fraction": 0.5
+        },
+        {
+         "region": [
+          790,
+          280,
+          835,
+          660
+         ],
+         "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+         "tolerance": 24,
+         "min_fraction": 0.5
+        }
+       ],
+       "then_steps": [
+        {
+         "type": "click",
+         "x": 450,
+         "y": 1333,
+         "button": "left",
+         "delay_before_ms": 1000,
+         "duration_ms": 80,
+         "space": "device"
+        }
+       ],
+       "else_steps": [
+        {
+         "type": "if_image",
+         "name": "«Rally Incomplete» → Confirm",
+         "condition": {
+          "region": [
+           30,
+           600,
+           870,
+           680
+          ],
+          "color": "#f8f8f8,#f8f8e8",
+          "tolerance": 10,
+          "min_fraction": 0.9
+         },
+         "delay_before_ms": 0,
+         "also": [
+          {
+           "region": [
+            30,
+            820,
+            870,
+            940
+           ],
+           "color": "#f8f8f8,#f8f8e8,#080808",
+           "tolerance": 12,
+           "min_fraction": 0.85
+          },
+          {
+           "region": [
+            20,
+            490,
+            880,
+            560
+           ],
+           "color": "#584898,#6858a8,#f8f8f8,#080808",
+           "tolerance": 16,
+           "min_fraction": 0.7
+          },
+          {
+           "region": [
+            285,
+            965,
+            330,
+            1045
+           ],
+           "color": "#88d828,#78c828,#88c828,#88d838",
+           "tolerance": 20,
+           "min_fraction": 0.6
+          }
+         ],
+         "then_steps": [
+          {
+           "type": "click",
+           "x": 450,
+           "y": 1005,
+           "button": "left",
+           "delay_before_ms": 1000,
+           "duration_ms": 80,
+           "space": "device"
+          }
+         ],
+         "else_steps": [
+          {
+           "type": "if_image",
+           "name": "ya en el chat",
+           "condition": {
+            "region": [
+             170,
+             80,
+             860,
+             160
+            ],
+            "color": "#484878",
+            "tolerance": 16,
+            "min_fraction": 0.8
+           },
+           "delay_before_ms": 0,
+           "also": [
+            {
+             "region": [
+              170,
+              1320,
+              600,
+              1340
+             ],
+             "color": "#484878",
+             "tolerance": 16,
+             "min_fraction": 0.8
+            }
+           ],
+           "unless": [
+            {
+             "region": [
+              90,
+              1060,
+              370,
+              1220
+             ],
+             "color": "#584878,#484878,#585888",
+             "tolerance": 16,
+             "min_fraction": 0.7
+            },
+            {
+             "region": [
+              30,
+              600,
+              870,
+              680
+             ],
+             "color": "#f8f8f8,#f8f8e8",
+             "tolerance": 10,
+             "min_fraction": 0.9
+            }
+           ],
+           "then_steps": [],
+           "else_steps": [
+            {
+             "type": "if_image",
+             "name": "overview → flecha atrás",
+             "condition": {
+              "region": [
+               20,
+               1455,
+               125,
+               1555
+              ],
+              "color": "#484878,#586898,#f8f8f8,#585888",
+              "tolerance": 20,
+              "min_fraction": 0.45
+             },
+             "delay_before_ms": 0,
+             "also": [
+              {
+               "region": [
+                740,
+                600,
+                880,
+                740
+               ],
+               "color": "#585888,#484878,#f8f8f8,#080808",
+               "tolerance": 20,
+               "min_fraction": 0.45
+              }
+             ],
+             "unless": [
+              {
+               "region": [
+                90,
+                1060,
+                370,
+                1220
+               ],
+               "color": "#584878,#484878,#585888",
+               "tolerance": 16,
+               "min_fraction": 0.7
+              },
+              {
+               "region": [
+                30,
+                600,
+                870,
+                680
+               ],
+               "color": "#f8f8f8,#f8f8e8",
+               "tolerance": 10,
+               "min_fraction": 0.9
+              }
+             ],
+             "then_steps": [
+              {
+               "type": "click",
+               "x": 70,
+               "y": 1500,
+               "button": "left",
+               "delay_before_ms": 1000,
+               "duration_ms": 80,
+               "space": "device"
+              }
+             ],
+             "else_steps": [
+              {
+               "type": "if_image",
+               "name": "mapa → botón de chat",
+               "condition": {
+                "region": [
+                 800,
+                 1195,
+                 885,
+                 1275
+                ],
+                "color": "#f8f8f8,#181818,#586898,#484878",
+                "tolerance": 24,
+                "min_fraction": 0.5
+               },
+               "delay_before_ms": 0,
+               "also": [
+                {
+                 "region": [
+                  15,
+                  1320,
+                  160,
+                  1460
+                 ],
+                 "color": "#585888,#f8f8f8,#080808,#484878",
+                 "tolerance": 24,
+                 "min_fraction": 0.5
+                },
+                {
+                 "region": [
+                  735,
+                  1320,
+                  880,
+                  1460
+                 ],
+                 "color": "#585888,#484878,#f8f8f8,#080808,#6858a8",
+                 "tolerance": 24,
+                 "min_fraction": 0.4
+                }
+               ],
+               "unless": [
+                {
+                 "region": [
+                  170,
+                  80,
+                  860,
+                  160
+                 ],
+                 "color": "#484878",
+                 "tolerance": 16,
+                 "min_fraction": 0.8
+                },
+                {
+                 "region": [
+                  200,
+                  1470,
+                  840,
+                  1540
+                 ],
+                 "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                 "tolerance": 24,
+                 "min_fraction": 0.6
+                },
+                {
+                 "region": [
+                  200,
+                  1470,
+                  840,
+                  1540
+                 ],
+                 "color": "#888888,#989898,#a8a8a8,#787878",
+                 "tolerance": 16,
+                 "min_fraction": 0.6
+                },
+                {
+                 "region": [
+                  90,
+                  1060,
+                  370,
+                  1220
+                 ],
+                 "color": "#584878,#484878,#585888",
+                 "tolerance": 16,
+                 "min_fraction": 0.7
+                },
+                {
+                 "region": [
+                  30,
+                  600,
+                  870,
+                  680
+                 ],
+                 "color": "#f8f8f8,#f8f8e8",
+                 "tolerance": 10,
+                 "min_fraction": 0.9
+                }
+               ],
+               "then_steps": [
+                {
+                 "type": "click",
+                 "x": 840,
+                 "y": 1235,
+                 "button": "left",
+                 "delay_before_ms": 1000,
+                 "duration_ms": 80,
+                 "space": "device"
+                }
+               ],
+               "else_steps": [
+                {
+                 "type": "subsequence",
+                 "name": "pausa 1000 ms",
+                 "repeats": 1,
+                 "delay_before_ms": 1000,
+                 "steps": []
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "subsequence",
+       "name": "pausa 1200 ms",
+       "repeats": 1,
+       "delay_before_ms": 1200,
+       "steps": []
+      }
+     ]
+    },
+    {
+     "type": "wait_image",
+     "name": "pantalla de chat",
+     "condition": {
+      "region": [
+       170,
+       80,
+       860,
+       160
+      ],
+      "color": "#484878",
+      "tolerance": 16,
+      "min_fraction": 0.8
+     },
+     "timeout_ms": 5000,
+     "poll_ms": 200,
+     "on_timeout": "skip",
+     "delay_before_ms": 0,
+     "also": [
+      {
+       "region": [
+        170,
+        1320,
+        600,
+        1340
+       ],
+       "color": "#484878",
+       "tolerance": 16,
+       "min_fraction": 0.8
+      }
+     ],
+     "unless": [
+      {
+       "region": [
+        90,
+        1060,
+        370,
+        1220
+       ],
+       "color": "#584878,#484878,#585888",
+       "tolerance": 16,
+       "min_fraction": 0.7
+      },
+      {
+       "region": [
+        30,
+        600,
+        870,
+        680
+       ],
+       "color": "#f8f8f8,#f8f8e8",
+       "tolerance": 10,
+       "min_fraction": 0.9
+      }
+     ]
+    },
+    {
+     "type": "subsequence",
+     "name": "cerrar resúmenes de raid",
+     "repeats": 8,
+     "delay_before_ms": 0,
+     "steps": [
+      {
+       "type": "if_image",
+       "name": "«Rally Attack Complete!» → Confirm",
+       "condition": {
+        "region": [
+         90,
+         1060,
+         370,
+         1220
+        ],
+        "color": "#584878,#484878,#585888",
+        "tolerance": 16,
+        "min_fraction": 0.7
+       },
+       "delay_before_ms": 0,
+       "also": [
+        {
+         "region": [
+          300,
+          1300,
+          600,
+          1370
+         ],
+         "color": "#88d828,#78c828,#185828,#f8f8f8,#98e828",
+         "tolerance": 24,
+         "min_fraction": 0.6
+        },
+        {
+         "region": [
+          65,
+          280,
+          110,
+          700
+         ],
+         "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+         "tolerance": 24,
+         "min_fraction": 0.5
+        },
+        {
+         "region": [
+          790,
+          280,
+          835,
+          660
+         ],
+         "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+         "tolerance": 24,
+         "min_fraction": 0.5
+        }
+       ],
+       "then_steps": [
+        {
+         "type": "click",
+         "x": 450,
+         "y": 1333,
+         "button": "left",
+         "delay_before_ms": 1000,
+         "duration_ms": 80,
+         "space": "device"
+        },
+        {
+         "type": "subsequence",
+         "name": "pausa 1500 ms",
+         "repeats": 1,
+         "delay_before_ms": 1500,
+         "steps": []
+        }
+       ],
+       "else_steps": [
+        {
+         "type": "if_image",
+         "name": "«Rally Incomplete» → Confirm",
+         "condition": {
+          "region": [
+           30,
+           600,
+           870,
+           680
+          ],
+          "color": "#f8f8f8,#f8f8e8",
+          "tolerance": 10,
+          "min_fraction": 0.9
+         },
+         "delay_before_ms": 0,
+         "also": [
+          {
+           "region": [
+            30,
+            820,
+            870,
+            940
+           ],
+           "color": "#f8f8f8,#f8f8e8,#080808",
+           "tolerance": 12,
+           "min_fraction": 0.85
+          },
+          {
+           "region": [
+            20,
+            490,
+            880,
+            560
+           ],
+           "color": "#584898,#6858a8,#f8f8f8,#080808",
+           "tolerance": 16,
+           "min_fraction": 0.7
+          },
+          {
+           "region": [
+            285,
+            965,
+            330,
+            1045
+           ],
+           "color": "#88d828,#78c828,#88c828,#88d838",
+           "tolerance": 20,
+           "min_fraction": 0.6
+          }
+         ],
+         "then_steps": [
+          {
+           "type": "click",
+           "x": 450,
+           "y": 1005,
+           "button": "left",
+           "delay_before_ms": 1000,
+           "duration_ms": 80,
+           "space": "device"
+          },
+          {
+           "type": "subsequence",
+           "name": "pausa 1500 ms",
+           "repeats": 1,
+           "delay_before_ms": 1500,
+           "steps": []
+          }
+         ],
+         "else_steps": [
+          {
+           "type": "wait_image",
+           "name": "→ salir del bucle",
+           "condition": {
+            "region": [
+             0,
+             0,
+             1,
+             1
+            ],
+            "color": "#010203",
+            "tolerance": 0,
+            "min_fraction": 1.0
+           },
+           "timeout_ms": 0,
+           "poll_ms": 10,
+           "on_timeout": "break",
+           "delay_before_ms": 0
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "if_image",
+     "name": "«Join» en el chat (y=1265)",
+     "condition": {
+      "region": [
+       335,
+       1253,
+       470,
+       1277
+      ],
+      "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+      "tolerance": 24,
+      "min_fraction": 0.7
+     },
+     "delay_before_ms": 0,
+     "also": [
+      {
+       "region": [
+        620,
+        1253,
+        755,
+        1277
+       ],
+       "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+       "tolerance": 24,
+       "min_fraction": 0.7
+      }
+     ],
+     "unless": [
+      {
+       "region": [
+        90,
+        1060,
+        370,
+        1220
+       ],
+       "color": "#584878,#484878,#585888",
+       "tolerance": 16,
+       "min_fraction": 0.7
+      },
+      {
+       "region": [
+        30,
+        600,
+        870,
+        680
+       ],
+       "color": "#f8f8f8,#f8f8e8",
+       "tolerance": 10,
+       "min_fraction": 0.9
+      }
+     ],
+     "then_steps": [
+      {
+       "type": "click",
+       "x": 545,
+       "y": 1265,
+       "button": "left",
+       "delay_before_ms": 1000,
+       "duration_ms": 80,
+       "space": "device"
+      }
+     ],
+     "else_steps": [
+      {
+       "type": "if_image",
+       "name": "«Join» en el chat (y=1240)",
+       "condition": {
+        "region": [
+         335,
+         1228,
+         470,
+         1252
+        ],
+        "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+        "tolerance": 24,
+        "min_fraction": 0.7
+       },
+       "delay_before_ms": 0,
+       "also": [
+        {
+         "region": [
+          620,
+          1228,
+          755,
+          1252
+         ],
+         "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+         "tolerance": 24,
+         "min_fraction": 0.7
+        }
+       ],
+       "unless": [
+        {
+         "region": [
+          90,
+          1060,
+          370,
+          1220
+         ],
+         "color": "#584878,#484878,#585888",
+         "tolerance": 16,
+         "min_fraction": 0.7
+        },
+        {
+         "region": [
+          30,
+          600,
+          870,
+          680
+         ],
+         "color": "#f8f8f8,#f8f8e8",
+         "tolerance": 10,
+         "min_fraction": 0.9
+        }
+       ],
+       "then_steps": [
+        {
+         "type": "click",
+         "x": 545,
+         "y": 1240,
+         "button": "left",
+         "delay_before_ms": 1000,
+         "duration_ms": 80,
+         "space": "device"
+        }
+       ],
+       "else_steps": [
+        {
+         "type": "if_image",
+         "name": "«Join» en el chat (y=1215)",
+         "condition": {
+          "region": [
+           335,
+           1203,
+           470,
+           1227
+          ],
+          "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+          "tolerance": 24,
+          "min_fraction": 0.7
+         },
+         "delay_before_ms": 0,
+         "also": [
+          {
+           "region": [
+            620,
+            1203,
+            755,
+            1227
+           ],
+           "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+           "tolerance": 24,
+           "min_fraction": 0.7
+          }
+         ],
+         "unless": [
+          {
+           "region": [
+            90,
+            1060,
+            370,
+            1220
+           ],
+           "color": "#584878,#484878,#585888",
+           "tolerance": 16,
+           "min_fraction": 0.7
+          },
+          {
+           "region": [
+            30,
+            600,
+            870,
+            680
+           ],
+           "color": "#f8f8f8,#f8f8e8",
+           "tolerance": 10,
+           "min_fraction": 0.9
+          }
+         ],
+         "then_steps": [
+          {
+           "type": "click",
+           "x": 545,
+           "y": 1215,
+           "button": "left",
+           "delay_before_ms": 1000,
+           "duration_ms": 80,
+           "space": "device"
+          }
+         ],
+         "else_steps": [
+          {
+           "type": "if_image",
+           "name": "«Join» en el chat (y=1190)",
+           "condition": {
+            "region": [
+             335,
+             1178,
+             470,
+             1202
+            ],
+            "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+            "tolerance": 24,
+            "min_fraction": 0.7
+           },
+           "delay_before_ms": 0,
+           "also": [
+            {
+             "region": [
+              620,
+              1178,
+              755,
+              1202
+             ],
+             "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+             "tolerance": 24,
+             "min_fraction": 0.7
+            }
+           ],
+           "unless": [
+            {
+             "region": [
+              90,
+              1060,
+              370,
+              1220
+             ],
+             "color": "#584878,#484878,#585888",
+             "tolerance": 16,
+             "min_fraction": 0.7
+            },
+            {
+             "region": [
+              30,
+              600,
+              870,
+              680
+             ],
+             "color": "#f8f8f8,#f8f8e8",
+             "tolerance": 10,
+             "min_fraction": 0.9
+            }
+           ],
+           "then_steps": [
+            {
+             "type": "click",
+             "x": 545,
+             "y": 1190,
+             "button": "left",
+             "delay_before_ms": 1000,
+             "duration_ms": 80,
+             "space": "device"
+            }
+           ],
+           "else_steps": [
+            {
+             "type": "if_image",
+             "name": "«Join» en el chat (y=1165)",
+             "condition": {
+              "region": [
+               335,
+               1153,
+               470,
+               1177
+              ],
+              "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+              "tolerance": 24,
+              "min_fraction": 0.7
+             },
+             "delay_before_ms": 0,
+             "also": [
+              {
+               "region": [
+                620,
+                1153,
+                755,
+                1177
+               ],
+               "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+               "tolerance": 24,
+               "min_fraction": 0.7
+              }
+             ],
+             "unless": [
+              {
+               "region": [
+                90,
+                1060,
+                370,
+                1220
+               ],
+               "color": "#584878,#484878,#585888",
+               "tolerance": 16,
+               "min_fraction": 0.7
+              },
+              {
+               "region": [
+                30,
+                600,
+                870,
+                680
+               ],
+               "color": "#f8f8f8,#f8f8e8",
+               "tolerance": 10,
+               "min_fraction": 0.9
+              }
+             ],
+             "then_steps": [
+              {
+               "type": "click",
+               "x": 545,
+               "y": 1165,
+               "button": "left",
+               "delay_before_ms": 1000,
+               "duration_ms": 80,
+               "space": "device"
+              }
+             ],
+             "else_steps": [
+              {
+               "type": "if_image",
+               "name": "«Join» en el chat (y=1140)",
+               "condition": {
+                "region": [
+                 335,
+                 1128,
+                 470,
+                 1152
+                ],
+                "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                "tolerance": 24,
+                "min_fraction": 0.7
+               },
+               "delay_before_ms": 0,
+               "also": [
+                {
+                 "region": [
+                  620,
+                  1128,
+                  755,
+                  1152
+                 ],
+                 "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                 "tolerance": 24,
+                 "min_fraction": 0.7
+                }
+               ],
+               "unless": [
+                {
+                 "region": [
+                  90,
+                  1060,
+                  370,
+                  1220
+                 ],
+                 "color": "#584878,#484878,#585888",
+                 "tolerance": 16,
+                 "min_fraction": 0.7
+                },
+                {
+                 "region": [
+                  30,
+                  600,
+                  870,
+                  680
+                 ],
+                 "color": "#f8f8f8,#f8f8e8",
+                 "tolerance": 10,
+                 "min_fraction": 0.9
+                }
+               ],
+               "then_steps": [
+                {
+                 "type": "click",
+                 "x": 545,
+                 "y": 1140,
+                 "button": "left",
+                 "delay_before_ms": 1000,
+                 "duration_ms": 80,
+                 "space": "device"
+                }
+               ],
+               "else_steps": [
+                {
+                 "type": "if_image",
+                 "name": "«Join» en el chat (y=1115)",
+                 "condition": {
+                  "region": [
+                   335,
+                   1103,
+                   470,
+                   1127
+                  ],
+                  "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                  "tolerance": 24,
+                  "min_fraction": 0.7
+                 },
+                 "delay_before_ms": 0,
+                 "also": [
+                  {
+                   "region": [
+                    620,
+                    1103,
+                    755,
+                    1127
+                   ],
+                   "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                   "tolerance": 24,
+                   "min_fraction": 0.7
+                  }
+                 ],
+                 "unless": [
+                  {
+                   "region": [
+                    90,
+                    1060,
+                    370,
+                    1220
+                   ],
+                   "color": "#584878,#484878,#585888",
+                   "tolerance": 16,
+                   "min_fraction": 0.7
+                  },
+                  {
+                   "region": [
+                    30,
+                    600,
+                    870,
+                    680
+                   ],
+                   "color": "#f8f8f8,#f8f8e8",
+                   "tolerance": 10,
+                   "min_fraction": 0.9
+                  }
+                 ],
+                 "then_steps": [
+                  {
+                   "type": "click",
+                   "x": 545,
+                   "y": 1115,
+                   "button": "left",
+                   "delay_before_ms": 1000,
+                   "duration_ms": 80,
+                   "space": "device"
+                  }
+                 ],
+                 "else_steps": [
+                  {
+                   "type": "if_image",
+                   "name": "«Join» en el chat (y=1090)",
+                   "condition": {
+                    "region": [
+                     335,
+                     1078,
+                     470,
+                     1102
+                    ],
+                    "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                    "tolerance": 24,
+                    "min_fraction": 0.7
+                   },
+                   "delay_before_ms": 0,
+                   "also": [
+                    {
+                     "region": [
+                      620,
+                      1078,
+                      755,
+                      1102
+                     ],
+                     "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                     "tolerance": 24,
+                     "min_fraction": 0.7
+                    }
+                   ],
+                   "unless": [
+                    {
+                     "region": [
+                      90,
+                      1060,
+                      370,
+                      1220
+                     ],
+                     "color": "#584878,#484878,#585888",
+                     "tolerance": 16,
+                     "min_fraction": 0.7
+                    },
+                    {
+                     "region": [
+                      30,
+                      600,
+                      870,
+                      680
+                     ],
+                     "color": "#f8f8f8,#f8f8e8",
+                     "tolerance": 10,
+                     "min_fraction": 0.9
+                    }
+                   ],
+                   "then_steps": [
+                    {
+                     "type": "click",
+                     "x": 545,
+                     "y": 1090,
+                     "button": "left",
+                     "delay_before_ms": 1000,
+                     "duration_ms": 80,
+                     "space": "device"
+                    }
+                   ],
+                   "else_steps": [
+                    {
+                     "type": "if_image",
+                     "name": "«Join» en el chat (y=1065)",
+                     "condition": {
+                      "region": [
+                       335,
+                       1053,
+                       470,
+                       1077
+                      ],
+                      "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                      "tolerance": 24,
+                      "min_fraction": 0.7
+                     },
+                     "delay_before_ms": 0,
+                     "also": [
+                      {
+                       "region": [
+                        620,
+                        1053,
+                        755,
+                        1077
+                       ],
+                       "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                       "tolerance": 24,
+                       "min_fraction": 0.7
+                      }
+                     ],
+                     "unless": [
+                      {
+                       "region": [
+                        90,
+                        1060,
+                        370,
+                        1220
+                       ],
+                       "color": "#584878,#484878,#585888",
+                       "tolerance": 16,
+                       "min_fraction": 0.7
+                      },
+                      {
+                       "region": [
+                        30,
+                        600,
+                        870,
+                        680
+                       ],
+                       "color": "#f8f8f8,#f8f8e8",
+                       "tolerance": 10,
+                       "min_fraction": 0.9
+                      }
+                     ],
+                     "then_steps": [
+                      {
+                       "type": "click",
+                       "x": 545,
+                       "y": 1065,
+                       "button": "left",
+                       "delay_before_ms": 1000,
+                       "duration_ms": 80,
+                       "space": "device"
+                      }
+                     ],
+                     "else_steps": [
+                      {
+                       "type": "if_image",
+                       "name": "«Join» en el chat (y=1040)",
+                       "condition": {
+                        "region": [
+                         335,
+                         1028,
+                         470,
+                         1052
+                        ],
+                        "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                        "tolerance": 24,
+                        "min_fraction": 0.7
+                       },
+                       "delay_before_ms": 0,
+                       "also": [
+                        {
+                         "region": [
+                          620,
+                          1028,
+                          755,
+                          1052
+                         ],
+                         "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                         "tolerance": 24,
+                         "min_fraction": 0.7
+                        }
+                       ],
+                       "unless": [
+                        {
+                         "region": [
+                          90,
+                          1060,
+                          370,
+                          1220
+                         ],
+                         "color": "#584878,#484878,#585888",
+                         "tolerance": 16,
+                         "min_fraction": 0.7
+                        },
+                        {
+                         "region": [
+                          30,
+                          600,
+                          870,
+                          680
+                         ],
+                         "color": "#f8f8f8,#f8f8e8",
+                         "tolerance": 10,
+                         "min_fraction": 0.9
+                        }
+                       ],
+                       "then_steps": [
+                        {
+                         "type": "click",
+                         "x": 545,
+                         "y": 1040,
+                         "button": "left",
+                         "delay_before_ms": 1000,
+                         "duration_ms": 80,
+                         "space": "device"
+                        }
+                       ],
+                       "else_steps": [
+                        {
+                         "type": "if_image",
+                         "name": "«Join» en el chat (y=1015)",
+                         "condition": {
+                          "region": [
+                           335,
+                           1003,
+                           470,
+                           1027
+                          ],
+                          "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                          "tolerance": 24,
+                          "min_fraction": 0.7
+                         },
+                         "delay_before_ms": 0,
+                         "also": [
+                          {
+                           "region": [
+                            620,
+                            1003,
+                            755,
+                            1027
+                           ],
+                           "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                           "tolerance": 24,
+                           "min_fraction": 0.7
+                          }
+                         ],
+                         "unless": [
+                          {
+                           "region": [
+                            90,
+                            1060,
+                            370,
+                            1220
+                           ],
+                           "color": "#584878,#484878,#585888",
+                           "tolerance": 16,
+                           "min_fraction": 0.7
+                          },
+                          {
+                           "region": [
+                            30,
+                            600,
+                            870,
+                            680
+                           ],
+                           "color": "#f8f8f8,#f8f8e8",
+                           "tolerance": 10,
+                           "min_fraction": 0.9
+                          }
+                         ],
+                         "then_steps": [
+                          {
+                           "type": "click",
+                           "x": 545,
+                           "y": 1015,
+                           "button": "left",
+                           "delay_before_ms": 1000,
+                           "duration_ms": 80,
+                           "space": "device"
+                          }
+                         ],
+                         "else_steps": [
+                          {
+                           "type": "if_image",
+                           "name": "«Join» en el chat (y=990)",
+                           "condition": {
+                            "region": [
+                             335,
+                             978,
+                             470,
+                             1002
+                            ],
+                            "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                            "tolerance": 24,
+                            "min_fraction": 0.7
+                           },
+                           "delay_before_ms": 0,
+                           "also": [
+                            {
+                             "region": [
+                              620,
+                              978,
+                              755,
+                              1002
+                             ],
+                             "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                             "tolerance": 24,
+                             "min_fraction": 0.7
+                            }
+                           ],
+                           "unless": [
+                            {
+                             "region": [
+                              90,
+                              1060,
+                              370,
+                              1220
+                             ],
+                             "color": "#584878,#484878,#585888",
+                             "tolerance": 16,
+                             "min_fraction": 0.7
+                            },
+                            {
+                             "region": [
+                              30,
+                              600,
+                              870,
+                              680
+                             ],
+                             "color": "#f8f8f8,#f8f8e8",
+                             "tolerance": 10,
+                             "min_fraction": 0.9
+                            }
+                           ],
+                           "then_steps": [
+                            {
+                             "type": "click",
+                             "x": 545,
+                             "y": 990,
+                             "button": "left",
+                             "delay_before_ms": 1000,
+                             "duration_ms": 80,
+                             "space": "device"
+                            }
+                           ],
+                           "else_steps": [
+                            {
+                             "type": "if_image",
+                             "name": "«Join» en el chat (y=965)",
+                             "condition": {
+                              "region": [
+                               335,
+                               953,
+                               470,
+                               977
+                              ],
+                              "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                              "tolerance": 24,
+                              "min_fraction": 0.7
+                             },
+                             "delay_before_ms": 0,
+                             "also": [
+                              {
+                               "region": [
+                                620,
+                                953,
+                                755,
+                                977
+                               ],
+                               "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                               "tolerance": 24,
+                               "min_fraction": 0.7
+                              }
+                             ],
+                             "unless": [
+                              {
+                               "region": [
+                                90,
+                                1060,
+                                370,
+                                1220
+                               ],
+                               "color": "#584878,#484878,#585888",
+                               "tolerance": 16,
+                               "min_fraction": 0.7
+                              },
+                              {
+                               "region": [
+                                30,
+                                600,
+                                870,
+                                680
+                               ],
+                               "color": "#f8f8f8,#f8f8e8",
+                               "tolerance": 10,
+                               "min_fraction": 0.9
+                              }
+                             ],
+                             "then_steps": [
+                              {
+                               "type": "click",
+                               "x": 545,
+                               "y": 965,
+                               "button": "left",
+                               "delay_before_ms": 1000,
+                               "duration_ms": 80,
+                               "space": "device"
+                              }
+                             ],
+                             "else_steps": [
+                              {
+                               "type": "if_image",
+                               "name": "«Join» en el chat (y=940)",
+                               "condition": {
+                                "region": [
+                                 335,
+                                 928,
+                                 470,
+                                 952
+                                ],
+                                "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                "tolerance": 24,
+                                "min_fraction": 0.7
+                               },
+                               "delay_before_ms": 0,
+                               "also": [
+                                {
+                                 "region": [
+                                  620,
+                                  928,
+                                  755,
+                                  952
+                                 ],
+                                 "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                 "tolerance": 24,
+                                 "min_fraction": 0.7
+                                }
+                               ],
+                               "unless": [
+                                {
+                                 "region": [
+                                  90,
+                                  1060,
+                                  370,
+                                  1220
+                                 ],
+                                 "color": "#584878,#484878,#585888",
+                                 "tolerance": 16,
+                                 "min_fraction": 0.7
+                                },
+                                {
+                                 "region": [
+                                  30,
+                                  600,
+                                  870,
+                                  680
+                                 ],
+                                 "color": "#f8f8f8,#f8f8e8",
+                                 "tolerance": 10,
+                                 "min_fraction": 0.9
+                                }
+                               ],
+                               "then_steps": [
+                                {
+                                 "type": "click",
+                                 "x": 545,
+                                 "y": 940,
+                                 "button": "left",
+                                 "delay_before_ms": 1000,
+                                 "duration_ms": 80,
+                                 "space": "device"
+                                }
+                               ],
+                               "else_steps": [
+                                {
+                                 "type": "if_image",
+                                 "name": "«Join» en el chat (y=915)",
+                                 "condition": {
+                                  "region": [
+                                   335,
+                                   903,
+                                   470,
+                                   927
+                                  ],
+                                  "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                  "tolerance": 24,
+                                  "min_fraction": 0.7
+                                 },
+                                 "delay_before_ms": 0,
+                                 "also": [
+                                  {
+                                   "region": [
+                                    620,
+                                    903,
+                                    755,
+                                    927
+                                   ],
+                                   "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                   "tolerance": 24,
+                                   "min_fraction": 0.7
+                                  }
+                                 ],
+                                 "unless": [
+                                  {
+                                   "region": [
+                                    90,
+                                    1060,
+                                    370,
+                                    1220
+                                   ],
+                                   "color": "#584878,#484878,#585888",
+                                   "tolerance": 16,
+                                   "min_fraction": 0.7
+                                  },
+                                  {
+                                   "region": [
+                                    30,
+                                    600,
+                                    870,
+                                    680
+                                   ],
+                                   "color": "#f8f8f8,#f8f8e8",
+                                   "tolerance": 10,
+                                   "min_fraction": 0.9
+                                  }
+                                 ],
+                                 "then_steps": [
+                                  {
+                                   "type": "click",
+                                   "x": 545,
+                                   "y": 915,
+                                   "button": "left",
+                                   "delay_before_ms": 1000,
+                                   "duration_ms": 80,
+                                   "space": "device"
+                                  }
+                                 ],
+                                 "else_steps": [
+                                  {
+                                   "type": "if_image",
+                                   "name": "«Join» en el chat (y=890)",
+                                   "condition": {
+                                    "region": [
+                                     335,
+                                     878,
+                                     470,
+                                     902
+                                    ],
+                                    "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                    "tolerance": 24,
+                                    "min_fraction": 0.7
+                                   },
+                                   "delay_before_ms": 0,
+                                   "also": [
+                                    {
+                                     "region": [
+                                      620,
+                                      878,
+                                      755,
+                                      902
+                                     ],
+                                     "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                     "tolerance": 24,
+                                     "min_fraction": 0.7
+                                    }
+                                   ],
+                                   "unless": [
+                                    {
+                                     "region": [
+                                      90,
+                                      1060,
+                                      370,
+                                      1220
+                                     ],
+                                     "color": "#584878,#484878,#585888",
+                                     "tolerance": 16,
+                                     "min_fraction": 0.7
+                                    },
+                                    {
+                                     "region": [
+                                      30,
+                                      600,
+                                      870,
+                                      680
+                                     ],
+                                     "color": "#f8f8f8,#f8f8e8",
+                                     "tolerance": 10,
+                                     "min_fraction": 0.9
+                                    }
+                                   ],
+                                   "then_steps": [
+                                    {
+                                     "type": "click",
+                                     "x": 545,
+                                     "y": 890,
+                                     "button": "left",
+                                     "delay_before_ms": 1000,
+                                     "duration_ms": 80,
+                                     "space": "device"
+                                    }
+                                   ],
+                                   "else_steps": [
+                                    {
+                                     "type": "if_image",
+                                     "name": "«Join» en el chat (y=865)",
+                                     "condition": {
+                                      "region": [
+                                       335,
+                                       853,
+                                       470,
+                                       877
+                                      ],
+                                      "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                      "tolerance": 24,
+                                      "min_fraction": 0.7
+                                     },
+                                     "delay_before_ms": 0,
+                                     "also": [
+                                      {
+                                       "region": [
+                                        620,
+                                        853,
+                                        755,
+                                        877
+                                       ],
+                                       "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                       "tolerance": 24,
+                                       "min_fraction": 0.7
+                                      }
+                                     ],
+                                     "unless": [
+                                      {
+                                       "region": [
+                                        90,
+                                        1060,
+                                        370,
+                                        1220
+                                       ],
+                                       "color": "#584878,#484878,#585888",
+                                       "tolerance": 16,
+                                       "min_fraction": 0.7
+                                      },
+                                      {
+                                       "region": [
+                                        30,
+                                        600,
+                                        870,
+                                        680
+                                       ],
+                                       "color": "#f8f8f8,#f8f8e8",
+                                       "tolerance": 10,
+                                       "min_fraction": 0.9
+                                      }
+                                     ],
+                                     "then_steps": [
+                                      {
+                                       "type": "click",
+                                       "x": 545,
+                                       "y": 865,
+                                       "button": "left",
+                                       "delay_before_ms": 1000,
+                                       "duration_ms": 80,
+                                       "space": "device"
+                                      }
+                                     ],
+                                     "else_steps": [
+                                      {
+                                       "type": "if_image",
+                                       "name": "«Join» en el chat (y=840)",
+                                       "condition": {
+                                        "region": [
+                                         335,
+                                         828,
+                                         470,
+                                         852
+                                        ],
+                                        "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                        "tolerance": 24,
+                                        "min_fraction": 0.7
+                                       },
+                                       "delay_before_ms": 0,
+                                       "also": [
+                                        {
+                                         "region": [
+                                          620,
+                                          828,
+                                          755,
+                                          852
+                                         ],
+                                         "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                         "tolerance": 24,
+                                         "min_fraction": 0.7
+                                        }
+                                       ],
+                                       "unless": [
+                                        {
+                                         "region": [
+                                          90,
+                                          1060,
+                                          370,
+                                          1220
+                                         ],
+                                         "color": "#584878,#484878,#585888",
+                                         "tolerance": 16,
+                                         "min_fraction": 0.7
+                                        },
+                                        {
+                                         "region": [
+                                          30,
+                                          600,
+                                          870,
+                                          680
+                                         ],
+                                         "color": "#f8f8f8,#f8f8e8",
+                                         "tolerance": 10,
+                                         "min_fraction": 0.9
+                                        }
+                                       ],
+                                       "then_steps": [
+                                        {
+                                         "type": "click",
+                                         "x": 545,
+                                         "y": 840,
+                                         "button": "left",
+                                         "delay_before_ms": 1000,
+                                         "duration_ms": 80,
+                                         "space": "device"
+                                        }
+                                       ],
+                                       "else_steps": [
+                                        {
+                                         "type": "if_image",
+                                         "name": "«Join» en el chat (y=815)",
+                                         "condition": {
+                                          "region": [
+                                           335,
+                                           803,
+                                           470,
+                                           827
+                                          ],
+                                          "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                          "tolerance": 24,
+                                          "min_fraction": 0.7
+                                         },
+                                         "delay_before_ms": 0,
+                                         "also": [
+                                          {
+                                           "region": [
+                                            620,
+                                            803,
+                                            755,
+                                            827
+                                           ],
+                                           "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                           "tolerance": 24,
+                                           "min_fraction": 0.7
+                                          }
+                                         ],
+                                         "unless": [
+                                          {
+                                           "region": [
+                                            90,
+                                            1060,
+                                            370,
+                                            1220
+                                           ],
+                                           "color": "#584878,#484878,#585888",
+                                           "tolerance": 16,
+                                           "min_fraction": 0.7
+                                          },
+                                          {
+                                           "region": [
+                                            30,
+                                            600,
+                                            870,
+                                            680
+                                           ],
+                                           "color": "#f8f8f8,#f8f8e8",
+                                           "tolerance": 10,
+                                           "min_fraction": 0.9
+                                          }
+                                         ],
+                                         "then_steps": [
+                                          {
+                                           "type": "click",
+                                           "x": 545,
+                                           "y": 815,
+                                           "button": "left",
+                                           "delay_before_ms": 1000,
+                                           "duration_ms": 80,
+                                           "space": "device"
+                                          }
+                                         ],
+                                         "else_steps": [
+                                          {
+                                           "type": "if_image",
+                                           "name": "«Join» en el chat (y=790)",
+                                           "condition": {
+                                            "region": [
+                                             335,
+                                             778,
+                                             470,
+                                             802
+                                            ],
+                                            "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                            "tolerance": 24,
+                                            "min_fraction": 0.7
+                                           },
+                                           "delay_before_ms": 0,
+                                           "also": [
+                                            {
+                                             "region": [
+                                              620,
+                                              778,
+                                              755,
+                                              802
+                                             ],
+                                             "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                             "tolerance": 24,
+                                             "min_fraction": 0.7
+                                            }
+                                           ],
+                                           "unless": [
+                                            {
+                                             "region": [
+                                              90,
+                                              1060,
+                                              370,
+                                              1220
+                                             ],
+                                             "color": "#584878,#484878,#585888",
+                                             "tolerance": 16,
+                                             "min_fraction": 0.7
+                                            },
+                                            {
+                                             "region": [
+                                              30,
+                                              600,
+                                              870,
+                                              680
+                                             ],
+                                             "color": "#f8f8f8,#f8f8e8",
+                                             "tolerance": 10,
+                                             "min_fraction": 0.9
+                                            }
+                                           ],
+                                           "then_steps": [
+                                            {
+                                             "type": "click",
+                                             "x": 545,
+                                             "y": 790,
+                                             "button": "left",
+                                             "delay_before_ms": 1000,
+                                             "duration_ms": 80,
+                                             "space": "device"
+                                            }
+                                           ],
+                                           "else_steps": [
+                                            {
+                                             "type": "if_image",
+                                             "name": "«Join» en el chat (y=765)",
+                                             "condition": {
+                                              "region": [
+                                               335,
+                                               753,
+                                               470,
+                                               777
+                                              ],
+                                              "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                              "tolerance": 24,
+                                              "min_fraction": 0.7
+                                             },
+                                             "delay_before_ms": 0,
+                                             "also": [
+                                              {
+                                               "region": [
+                                                620,
+                                                753,
+                                                755,
+                                                777
+                                               ],
+                                               "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                               "tolerance": 24,
+                                               "min_fraction": 0.7
+                                              }
+                                             ],
+                                             "unless": [
+                                              {
+                                               "region": [
+                                                90,
+                                                1060,
+                                                370,
+                                                1220
+                                               ],
+                                               "color": "#584878,#484878,#585888",
+                                               "tolerance": 16,
+                                               "min_fraction": 0.7
+                                              },
+                                              {
+                                               "region": [
+                                                30,
+                                                600,
+                                                870,
+                                                680
+                                               ],
+                                               "color": "#f8f8f8,#f8f8e8",
+                                               "tolerance": 10,
+                                               "min_fraction": 0.9
+                                              }
+                                             ],
+                                             "then_steps": [
+                                              {
+                                               "type": "click",
+                                               "x": 545,
+                                               "y": 765,
+                                               "button": "left",
+                                               "delay_before_ms": 1000,
+                                               "duration_ms": 80,
+                                               "space": "device"
+                                              }
+                                             ],
+                                             "else_steps": [
+                                              {
+                                               "type": "if_image",
+                                               "name": "«Join» en el chat (y=740)",
+                                               "condition": {
+                                                "region": [
+                                                 335,
+                                                 728,
+                                                 470,
+                                                 752
+                                                ],
+                                                "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                                "tolerance": 24,
+                                                "min_fraction": 0.7
+                                               },
+                                               "delay_before_ms": 0,
+                                               "also": [
+                                                {
+                                                 "region": [
+                                                  620,
+                                                  728,
+                                                  755,
+                                                  752
+                                                 ],
+                                                 "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                                 "tolerance": 24,
+                                                 "min_fraction": 0.7
+                                                }
+                                               ],
+                                               "unless": [
+                                                {
+                                                 "region": [
+                                                  90,
+                                                  1060,
+                                                  370,
+                                                  1220
+                                                 ],
+                                                 "color": "#584878,#484878,#585888",
+                                                 "tolerance": 16,
+                                                 "min_fraction": 0.7
+                                                },
+                                                {
+                                                 "region": [
+                                                  30,
+                                                  600,
+                                                  870,
+                                                  680
+                                                 ],
+                                                 "color": "#f8f8f8,#f8f8e8",
+                                                 "tolerance": 10,
+                                                 "min_fraction": 0.9
+                                                }
+                                               ],
+                                               "then_steps": [
+                                                {
+                                                 "type": "click",
+                                                 "x": 545,
+                                                 "y": 740,
+                                                 "button": "left",
+                                                 "delay_before_ms": 1000,
+                                                 "duration_ms": 80,
+                                                 "space": "device"
+                                                }
+                                               ],
+                                               "else_steps": [
+                                                {
+                                                 "type": "if_image",
+                                                 "name": "«Join» en el chat (y=715)",
+                                                 "condition": {
+                                                  "region": [
+                                                   335,
+                                                   703,
+                                                   470,
+                                                   727
+                                                  ],
+                                                  "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                                  "tolerance": 24,
+                                                  "min_fraction": 0.7
+                                                 },
+                                                 "delay_before_ms": 0,
+                                                 "also": [
+                                                  {
+                                                   "region": [
+                                                    620,
+                                                    703,
+                                                    755,
+                                                    727
+                                                   ],
+                                                   "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                                   "tolerance": 24,
+                                                   "min_fraction": 0.7
+                                                  }
+                                                 ],
+                                                 "unless": [
+                                                  {
+                                                   "region": [
+                                                    90,
+                                                    1060,
+                                                    370,
+                                                    1220
+                                                   ],
+                                                   "color": "#584878,#484878,#585888",
+                                                   "tolerance": 16,
+                                                   "min_fraction": 0.7
+                                                  },
+                                                  {
+                                                   "region": [
+                                                    30,
+                                                    600,
+                                                    870,
+                                                    680
+                                                   ],
+                                                   "color": "#f8f8f8,#f8f8e8",
+                                                   "tolerance": 10,
+                                                   "min_fraction": 0.9
+                                                  }
+                                                 ],
+                                                 "then_steps": [
+                                                  {
+                                                   "type": "click",
+                                                   "x": 545,
+                                                   "y": 715,
+                                                   "button": "left",
+                                                   "delay_before_ms": 1000,
+                                                   "duration_ms": 80,
+                                                   "space": "device"
+                                                  }
+                                                 ],
+                                                 "else_steps": [
+                                                  {
+                                                   "type": "if_image",
+                                                   "name": "«Join» en el chat (y=690)",
+                                                   "condition": {
+                                                    "region": [
+                                                     335,
+                                                     678,
+                                                     470,
+                                                     702
+                                                    ],
+                                                    "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                                    "tolerance": 24,
+                                                    "min_fraction": 0.7
+                                                   },
+                                                   "delay_before_ms": 0,
+                                                   "also": [
+                                                    {
+                                                     "region": [
+                                                      620,
+                                                      678,
+                                                      755,
+                                                      702
+                                                     ],
+                                                     "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                                     "tolerance": 24,
+                                                     "min_fraction": 0.7
+                                                    }
+                                                   ],
+                                                   "unless": [
+                                                    {
+                                                     "region": [
+                                                      90,
+                                                      1060,
+                                                      370,
+                                                      1220
+                                                     ],
+                                                     "color": "#584878,#484878,#585888",
+                                                     "tolerance": 16,
+                                                     "min_fraction": 0.7
+                                                    },
+                                                    {
+                                                     "region": [
+                                                      30,
+                                                      600,
+                                                      870,
+                                                      680
+                                                     ],
+                                                     "color": "#f8f8f8,#f8f8e8",
+                                                     "tolerance": 10,
+                                                     "min_fraction": 0.9
+                                                    }
+                                                   ],
+                                                   "then_steps": [
+                                                    {
+                                                     "type": "click",
+                                                     "x": 545,
+                                                     "y": 690,
+                                                     "button": "left",
+                                                     "delay_before_ms": 1000,
+                                                     "duration_ms": 80,
+                                                     "space": "device"
+                                                    }
+                                                   ],
+                                                   "else_steps": [
+                                                    {
+                                                     "type": "if_image",
+                                                     "name": "«Join» en el chat (y=665)",
+                                                     "condition": {
+                                                      "region": [
+                                                       335,
+                                                       653,
+                                                       470,
+                                                       677
+                                                      ],
+                                                      "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                                      "tolerance": 24,
+                                                      "min_fraction": 0.7
+                                                     },
+                                                     "delay_before_ms": 0,
+                                                     "also": [
+                                                      {
+                                                       "region": [
+                                                        620,
+                                                        653,
+                                                        755,
+                                                        677
+                                                       ],
+                                                       "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                                       "tolerance": 24,
+                                                       "min_fraction": 0.7
+                                                      }
+                                                     ],
+                                                     "unless": [
+                                                      {
+                                                       "region": [
+                                                        90,
+                                                        1060,
+                                                        370,
+                                                        1220
+                                                       ],
+                                                       "color": "#584878,#484878,#585888",
+                                                       "tolerance": 16,
+                                                       "min_fraction": 0.7
+                                                      },
+                                                      {
+                                                       "region": [
+                                                        30,
+                                                        600,
+                                                        870,
+                                                        680
+                                                       ],
+                                                       "color": "#f8f8f8,#f8f8e8",
+                                                       "tolerance": 10,
+                                                       "min_fraction": 0.9
+                                                      }
+                                                     ],
+                                                     "then_steps": [
+                                                      {
+                                                       "type": "click",
+                                                       "x": 545,
+                                                       "y": 665,
+                                                       "button": "left",
+                                                       "delay_before_ms": 1000,
+                                                       "duration_ms": 80,
+                                                       "space": "device"
+                                                      }
+                                                     ],
+                                                     "else_steps": [
+                                                      {
+                                                       "type": "if_image",
+                                                       "name": "«Join» en el chat (y=640)",
+                                                       "condition": {
+                                                        "region": [
+                                                         335,
+                                                         628,
+                                                         470,
+                                                         652
+                                                        ],
+                                                        "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                                        "tolerance": 24,
+                                                        "min_fraction": 0.7
+                                                       },
+                                                       "delay_before_ms": 0,
+                                                       "also": [
+                                                        {
+                                                         "region": [
+                                                          620,
+                                                          628,
+                                                          755,
+                                                          652
+                                                         ],
+                                                         "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                                         "tolerance": 24,
+                                                         "min_fraction": 0.7
+                                                        }
+                                                       ],
+                                                       "unless": [
+                                                        {
+                                                         "region": [
+                                                          90,
+                                                          1060,
+                                                          370,
+                                                          1220
+                                                         ],
+                                                         "color": "#584878,#484878,#585888",
+                                                         "tolerance": 16,
+                                                         "min_fraction": 0.7
+                                                        },
+                                                        {
+                                                         "region": [
+                                                          30,
+                                                          600,
+                                                          870,
+                                                          680
+                                                         ],
+                                                         "color": "#f8f8f8,#f8f8e8",
+                                                         "tolerance": 10,
+                                                         "min_fraction": 0.9
+                                                        }
+                                                       ],
+                                                       "then_steps": [
+                                                        {
+                                                         "type": "click",
+                                                         "x": 545,
+                                                         "y": 640,
+                                                         "button": "left",
+                                                         "delay_before_ms": 1000,
+                                                         "duration_ms": 80,
+                                                         "space": "device"
+                                                        }
+                                                       ],
+                                                       "else_steps": [
+                                                        {
+                                                         "type": "if_image",
+                                                         "name": "«Join» en el chat (y=615)",
+                                                         "condition": {
+                                                          "region": [
+                                                           335,
+                                                           603,
+                                                           470,
+                                                           627
+                                                          ],
+                                                          "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                                          "tolerance": 24,
+                                                          "min_fraction": 0.7
+                                                         },
+                                                         "delay_before_ms": 0,
+                                                         "also": [
+                                                          {
+                                                           "region": [
+                                                            620,
+                                                            603,
+                                                            755,
+                                                            627
+                                                           ],
+                                                           "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                                           "tolerance": 24,
+                                                           "min_fraction": 0.7
+                                                          }
+                                                         ],
+                                                         "unless": [
+                                                          {
+                                                           "region": [
+                                                            90,
+                                                            1060,
+                                                            370,
+                                                            1220
+                                                           ],
+                                                           "color": "#584878,#484878,#585888",
+                                                           "tolerance": 16,
+                                                           "min_fraction": 0.7
+                                                          },
+                                                          {
+                                                           "region": [
+                                                            30,
+                                                            600,
+                                                            870,
+                                                            680
+                                                           ],
+                                                           "color": "#f8f8f8,#f8f8e8",
+                                                           "tolerance": 10,
+                                                           "min_fraction": 0.9
+                                                          }
+                                                         ],
+                                                         "then_steps": [
+                                                          {
+                                                           "type": "click",
+                                                           "x": 545,
+                                                           "y": 615,
+                                                           "button": "left",
+                                                           "delay_before_ms": 1000,
+                                                           "duration_ms": 80,
+                                                           "space": "device"
+                                                          }
+                                                         ],
+                                                         "else_steps": [
+                                                          {
+                                                           "type": "if_image",
+                                                           "name": "«Join» en el chat (y=590)",
+                                                           "condition": {
+                                                            "region": [
+                                                             335,
+                                                             578,
+                                                             470,
+                                                             602
+                                                            ],
+                                                            "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                                            "tolerance": 24,
+                                                            "min_fraction": 0.7
+                                                           },
+                                                           "delay_before_ms": 0,
+                                                           "also": [
+                                                            {
+                                                             "region": [
+                                                              620,
+                                                              578,
+                                                              755,
+                                                              602
+                                                             ],
+                                                             "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                                             "tolerance": 24,
+                                                             "min_fraction": 0.7
+                                                            }
+                                                           ],
+                                                           "unless": [
+                                                            {
+                                                             "region": [
+                                                              90,
+                                                              1060,
+                                                              370,
+                                                              1220
+                                                             ],
+                                                             "color": "#584878,#484878,#585888",
+                                                             "tolerance": 16,
+                                                             "min_fraction": 0.7
+                                                            },
+                                                            {
+                                                             "region": [
+                                                              30,
+                                                              600,
+                                                              870,
+                                                              680
+                                                             ],
+                                                             "color": "#f8f8f8,#f8f8e8",
+                                                             "tolerance": 10,
+                                                             "min_fraction": 0.9
+                                                            }
+                                                           ],
+                                                           "then_steps": [
+                                                            {
+                                                             "type": "click",
+                                                             "x": 545,
+                                                             "y": 590,
+                                                             "button": "left",
+                                                             "delay_before_ms": 1000,
+                                                             "duration_ms": 80,
+                                                             "space": "device"
+                                                            }
+                                                           ],
+                                                           "else_steps": [
+                                                            {
+                                                             "type": "if_image",
+                                                             "name": "«Join» en el chat (y=565)",
+                                                             "condition": {
+                                                              "region": [
+                                                               335,
+                                                               553,
+                                                               470,
+                                                               577
+                                                              ],
+                                                              "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                                              "tolerance": 24,
+                                                              "min_fraction": 0.7
+                                                             },
+                                                             "delay_before_ms": 0,
+                                                             "also": [
+                                                              {
+                                                               "region": [
+                                                                620,
+                                                                553,
+                                                                755,
+                                                                577
+                                                               ],
+                                                               "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                                               "tolerance": 24,
+                                                               "min_fraction": 0.7
+                                                              }
+                                                             ],
+                                                             "unless": [
+                                                              {
+                                                               "region": [
+                                                                90,
+                                                                1060,
+                                                                370,
+                                                                1220
+                                                               ],
+                                                               "color": "#584878,#484878,#585888",
+                                                               "tolerance": 16,
+                                                               "min_fraction": 0.7
+                                                              },
+                                                              {
+                                                               "region": [
+                                                                30,
+                                                                600,
+                                                                870,
+                                                                680
+                                                               ],
+                                                               "color": "#f8f8f8,#f8f8e8",
+                                                               "tolerance": 10,
+                                                               "min_fraction": 0.9
+                                                              }
+                                                             ],
+                                                             "then_steps": [
+                                                              {
+                                                               "type": "click",
+                                                               "x": 545,
+                                                               "y": 565,
+                                                               "button": "left",
+                                                               "delay_before_ms": 1000,
+                                                               "duration_ms": 80,
+                                                               "space": "device"
+                                                              }
+                                                             ],
+                                                             "else_steps": [
+                                                              {
+                                                               "type": "if_image",
+                                                               "name": "«Join» en el chat (y=540)",
+                                                               "condition": {
+                                                                "region": [
+                                                                 335,
+                                                                 528,
+                                                                 470,
+                                                                 552
+                                                                ],
+                                                                "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                                                "tolerance": 24,
+                                                                "min_fraction": 0.7
+                                                               },
+                                                               "delay_before_ms": 0,
+                                                               "also": [
+                                                                {
+                                                                 "region": [
+                                                                  620,
+                                                                  528,
+                                                                  755,
+                                                                  552
+                                                                 ],
+                                                                 "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                                                 "tolerance": 24,
+                                                                 "min_fraction": 0.7
+                                                                }
+                                                               ],
+                                                               "unless": [
+                                                                {
+                                                                 "region": [
+                                                                  90,
+                                                                  1060,
+                                                                  370,
+                                                                  1220
+                                                                 ],
+                                                                 "color": "#584878,#484878,#585888",
+                                                                 "tolerance": 16,
+                                                                 "min_fraction": 0.7
+                                                                },
+                                                                {
+                                                                 "region": [
+                                                                  30,
+                                                                  600,
+                                                                  870,
+                                                                  680
+                                                                 ],
+                                                                 "color": "#f8f8f8,#f8f8e8",
+                                                                 "tolerance": 10,
+                                                                 "min_fraction": 0.9
+                                                                }
+                                                               ],
+                                                               "then_steps": [
+                                                                {
+                                                                 "type": "click",
+                                                                 "x": 545,
+                                                                 "y": 540,
+                                                                 "button": "left",
+                                                                 "delay_before_ms": 1000,
+                                                                 "duration_ms": 80,
+                                                                 "space": "device"
+                                                                }
+                                                               ],
+                                                               "else_steps": [
+                                                                {
+                                                                 "type": "if_image",
+                                                                 "name": "«Join» en el chat (y=515)",
+                                                                 "condition": {
+                                                                  "region": [
+                                                                   335,
+                                                                   503,
+                                                                   470,
+                                                                   527
+                                                                  ],
+                                                                  "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                                                  "tolerance": 24,
+                                                                  "min_fraction": 0.7
+                                                                 },
+                                                                 "delay_before_ms": 0,
+                                                                 "also": [
+                                                                  {
+                                                                   "region": [
+                                                                    620,
+                                                                    503,
+                                                                    755,
+                                                                    527
+                                                                   ],
+                                                                   "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                                                   "tolerance": 24,
+                                                                   "min_fraction": 0.7
+                                                                  }
+                                                                 ],
+                                                                 "unless": [
+                                                                  {
+                                                                   "region": [
+                                                                    90,
+                                                                    1060,
+                                                                    370,
+                                                                    1220
+                                                                   ],
+                                                                   "color": "#584878,#484878,#585888",
+                                                                   "tolerance": 16,
+                                                                   "min_fraction": 0.7
+                                                                  },
+                                                                  {
+                                                                   "region": [
+                                                                    30,
+                                                                    600,
+                                                                    870,
+                                                                    680
+                                                                   ],
+                                                                   "color": "#f8f8f8,#f8f8e8",
+                                                                   "tolerance": 10,
+                                                                   "min_fraction": 0.9
+                                                                  }
+                                                                 ],
+                                                                 "then_steps": [
+                                                                  {
+                                                                   "type": "click",
+                                                                   "x": 545,
+                                                                   "y": 515,
+                                                                   "button": "left",
+                                                                   "delay_before_ms": 1000,
+                                                                   "duration_ms": 80,
+                                                                   "space": "device"
+                                                                  }
+                                                                 ],
+                                                                 "else_steps": [
+                                                                  {
+                                                                   "type": "if_image",
+                                                                   "name": "«Join» en el chat (y=490)",
+                                                                   "condition": {
+                                                                    "region": [
+                                                                     335,
+                                                                     478,
+                                                                     470,
+                                                                     502
+                                                                    ],
+                                                                    "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                                                    "tolerance": 24,
+                                                                    "min_fraction": 0.7
+                                                                   },
+                                                                   "delay_before_ms": 0,
+                                                                   "also": [
+                                                                    {
+                                                                     "region": [
+                                                                      620,
+                                                                      478,
+                                                                      755,
+                                                                      502
+                                                                     ],
+                                                                     "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                                                     "tolerance": 24,
+                                                                     "min_fraction": 0.7
+                                                                    }
+                                                                   ],
+                                                                   "unless": [
+                                                                    {
+                                                                     "region": [
+                                                                      90,
+                                                                      1060,
+                                                                      370,
+                                                                      1220
+                                                                     ],
+                                                                     "color": "#584878,#484878,#585888",
+                                                                     "tolerance": 16,
+                                                                     "min_fraction": 0.7
+                                                                    },
+                                                                    {
+                                                                     "region": [
+                                                                      30,
+                                                                      600,
+                                                                      870,
+                                                                      680
+                                                                     ],
+                                                                     "color": "#f8f8f8,#f8f8e8",
+                                                                     "tolerance": 10,
+                                                                     "min_fraction": 0.9
+                                                                    }
+                                                                   ],
+                                                                   "then_steps": [
+                                                                    {
+                                                                     "type": "click",
+                                                                     "x": 545,
+                                                                     "y": 490,
+                                                                     "button": "left",
+                                                                     "delay_before_ms": 1000,
+                                                                     "duration_ms": 80,
+                                                                     "space": "device"
+                                                                    }
+                                                                   ],
+                                                                   "else_steps": [
+                                                                    {
+                                                                     "type": "if_image",
+                                                                     "name": "«Join» en el chat (y=465)",
+                                                                     "condition": {
+                                                                      "region": [
+                                                                       335,
+                                                                       453,
+                                                                       470,
+                                                                       477
+                                                                      ],
+                                                                      "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                                                      "tolerance": 24,
+                                                                      "min_fraction": 0.7
+                                                                     },
+                                                                     "delay_before_ms": 0,
+                                                                     "also": [
+                                                                      {
+                                                                       "region": [
+                                                                        620,
+                                                                        453,
+                                                                        755,
+                                                                        477
+                                                                       ],
+                                                                       "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                                                       "tolerance": 24,
+                                                                       "min_fraction": 0.7
+                                                                      }
+                                                                     ],
+                                                                     "unless": [
+                                                                      {
+                                                                       "region": [
+                                                                        90,
+                                                                        1060,
+                                                                        370,
+                                                                        1220
+                                                                       ],
+                                                                       "color": "#584878,#484878,#585888",
+                                                                       "tolerance": 16,
+                                                                       "min_fraction": 0.7
+                                                                      },
+                                                                      {
+                                                                       "region": [
+                                                                        30,
+                                                                        600,
+                                                                        870,
+                                                                        680
+                                                                       ],
+                                                                       "color": "#f8f8f8,#f8f8e8",
+                                                                       "tolerance": 10,
+                                                                       "min_fraction": 0.9
+                                                                      }
+                                                                     ],
+                                                                     "then_steps": [
+                                                                      {
+                                                                       "type": "click",
+                                                                       "x": 545,
+                                                                       "y": 465,
+                                                                       "button": "left",
+                                                                       "delay_before_ms": 1000,
+                                                                       "duration_ms": 80,
+                                                                       "space": "device"
+                                                                      }
+                                                                     ],
+                                                                     "else_steps": [
+                                                                      {
+                                                                       "type": "if_image",
+                                                                       "name": "«Join» en el chat (y=440)",
+                                                                       "condition": {
+                                                                        "region": [
+                                                                         335,
+                                                                         428,
+                                                                         470,
+                                                                         452
+                                                                        ],
+                                                                        "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                                                        "tolerance": 24,
+                                                                        "min_fraction": 0.7
+                                                                       },
+                                                                       "delay_before_ms": 0,
+                                                                       "also": [
+                                                                        {
+                                                                         "region": [
+                                                                          620,
+                                                                          428,
+                                                                          755,
+                                                                          452
+                                                                         ],
+                                                                         "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                                                         "tolerance": 24,
+                                                                         "min_fraction": 0.7
+                                                                        }
+                                                                       ],
+                                                                       "unless": [
+                                                                        {
+                                                                         "region": [
+                                                                          90,
+                                                                          1060,
+                                                                          370,
+                                                                          1220
+                                                                         ],
+                                                                         "color": "#584878,#484878,#585888",
+                                                                         "tolerance": 16,
+                                                                         "min_fraction": 0.7
+                                                                        },
+                                                                        {
+                                                                         "region": [
+                                                                          30,
+                                                                          600,
+                                                                          870,
+                                                                          680
+                                                                         ],
+                                                                         "color": "#f8f8f8,#f8f8e8",
+                                                                         "tolerance": 10,
+                                                                         "min_fraction": 0.9
+                                                                        }
+                                                                       ],
+                                                                       "then_steps": [
+                                                                        {
+                                                                         "type": "click",
+                                                                         "x": 545,
+                                                                         "y": 440,
+                                                                         "button": "left",
+                                                                         "delay_before_ms": 1000,
+                                                                         "duration_ms": 80,
+                                                                         "space": "device"
+                                                                        }
+                                                                       ],
+                                                                       "else_steps": [
+                                                                        {
+                                                                         "type": "if_image",
+                                                                         "name": "«Join» en el chat (y=415)",
+                                                                         "condition": {
+                                                                          "region": [
+                                                                           335,
+                                                                           403,
+                                                                           470,
+                                                                           427
+                                                                          ],
+                                                                          "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                                                          "tolerance": 24,
+                                                                          "min_fraction": 0.7
+                                                                         },
+                                                                         "delay_before_ms": 0,
+                                                                         "also": [
+                                                                          {
+                                                                           "region": [
+                                                                            620,
+                                                                            403,
+                                                                            755,
+                                                                            427
+                                                                           ],
+                                                                           "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                                                           "tolerance": 24,
+                                                                           "min_fraction": 0.7
+                                                                          }
+                                                                         ],
+                                                                         "unless": [
+                                                                          {
+                                                                           "region": [
+                                                                            90,
+                                                                            1060,
+                                                                            370,
+                                                                            1220
+                                                                           ],
+                                                                           "color": "#584878,#484878,#585888",
+                                                                           "tolerance": 16,
+                                                                           "min_fraction": 0.7
+                                                                          },
+                                                                          {
+                                                                           "region": [
+                                                                            30,
+                                                                            600,
+                                                                            870,
+                                                                            680
+                                                                           ],
+                                                                           "color": "#f8f8f8,#f8f8e8",
+                                                                           "tolerance": 10,
+                                                                           "min_fraction": 0.9
+                                                                          }
+                                                                         ],
+                                                                         "then_steps": [
+                                                                          {
+                                                                           "type": "click",
+                                                                           "x": 545,
+                                                                           "y": 415,
+                                                                           "button": "left",
+                                                                           "delay_before_ms": 1000,
+                                                                           "duration_ms": 80,
+                                                                           "space": "device"
+                                                                          }
+                                                                         ],
+                                                                         "else_steps": [
+                                                                          {
+                                                                           "type": "if_image",
+                                                                           "name": "«Join» en el chat (y=390)",
+                                                                           "condition": {
+                                                                            "region": [
+                                                                             335,
+                                                                             378,
+                                                                             470,
+                                                                             402
+                                                                            ],
+                                                                            "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                                                            "tolerance": 24,
+                                                                            "min_fraction": 0.7
+                                                                           },
+                                                                           "delay_before_ms": 0,
+                                                                           "also": [
+                                                                            {
+                                                                             "region": [
+                                                                              620,
+                                                                              378,
+                                                                              755,
+                                                                              402
+                                                                             ],
+                                                                             "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                                                             "tolerance": 24,
+                                                                             "min_fraction": 0.7
+                                                                            }
+                                                                           ],
+                                                                           "unless": [
+                                                                            {
+                                                                             "region": [
+                                                                              90,
+                                                                              1060,
+                                                                              370,
+                                                                              1220
+                                                                             ],
+                                                                             "color": "#584878,#484878,#585888",
+                                                                             "tolerance": 16,
+                                                                             "min_fraction": 0.7
+                                                                            },
+                                                                            {
+                                                                             "region": [
+                                                                              30,
+                                                                              600,
+                                                                              870,
+                                                                              680
+                                                                             ],
+                                                                             "color": "#f8f8f8,#f8f8e8",
+                                                                             "tolerance": 10,
+                                                                             "min_fraction": 0.9
+                                                                            }
+                                                                           ],
+                                                                           "then_steps": [
+                                                                            {
+                                                                             "type": "click",
+                                                                             "x": 545,
+                                                                             "y": 390,
+                                                                             "button": "left",
+                                                                             "delay_before_ms": 1000,
+                                                                             "duration_ms": 80,
+                                                                             "space": "device"
+                                                                            }
+                                                                           ],
+                                                                           "else_steps": [
+                                                                            {
+                                                                             "type": "if_image",
+                                                                             "name": "«Join» en el chat (y=365)",
+                                                                             "condition": {
+                                                                              "region": [
+                                                                               335,
+                                                                               353,
+                                                                               470,
+                                                                               377
+                                                                              ],
+                                                                              "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                                                              "tolerance": 24,
+                                                                              "min_fraction": 0.7
+                                                                             },
+                                                                             "delay_before_ms": 0,
+                                                                             "also": [
+                                                                              {
+                                                                               "region": [
+                                                                                620,
+                                                                                353,
+                                                                                755,
+                                                                                377
+                                                                               ],
+                                                                               "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                                                               "tolerance": 24,
+                                                                               "min_fraction": 0.7
+                                                                              }
+                                                                             ],
+                                                                             "unless": [
+                                                                              {
+                                                                               "region": [
+                                                                                90,
+                                                                                1060,
+                                                                                370,
+                                                                                1220
+                                                                               ],
+                                                                               "color": "#584878,#484878,#585888",
+                                                                               "tolerance": 16,
+                                                                               "min_fraction": 0.7
+                                                                              },
+                                                                              {
+                                                                               "region": [
+                                                                                30,
+                                                                                600,
+                                                                                870,
+                                                                                680
+                                                                               ],
+                                                                               "color": "#f8f8f8,#f8f8e8",
+                                                                               "tolerance": 10,
+                                                                               "min_fraction": 0.9
+                                                                              }
+                                                                             ],
+                                                                             "then_steps": [
+                                                                              {
+                                                                               "type": "click",
+                                                                               "x": 545,
+                                                                               "y": 365,
+                                                                               "button": "left",
+                                                                               "delay_before_ms": 1000,
+                                                                               "duration_ms": 80,
+                                                                               "space": "device"
+                                                                              }
+                                                                             ],
+                                                                             "else_steps": [
+                                                                              {
+                                                                               "type": "if_image",
+                                                                               "name": "«Join» en el chat (y=340)",
+                                                                               "condition": {
+                                                                                "region": [
+                                                                                 335,
+                                                                                 328,
+                                                                                 470,
+                                                                                 352
+                                                                                ],
+                                                                                "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                                                                "tolerance": 24,
+                                                                                "min_fraction": 0.7
+                                                                               },
+                                                                               "delay_before_ms": 0,
+                                                                               "also": [
+                                                                                {
+                                                                                 "region": [
+                                                                                  620,
+                                                                                  328,
+                                                                                  755,
+                                                                                  352
+                                                                                 ],
+                                                                                 "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                                                                 "tolerance": 24,
+                                                                                 "min_fraction": 0.7
+                                                                                }
+                                                                               ],
+                                                                               "unless": [
+                                                                                {
+                                                                                 "region": [
+                                                                                  90,
+                                                                                  1060,
+                                                                                  370,
+                                                                                  1220
+                                                                                 ],
+                                                                                 "color": "#584878,#484878,#585888",
+                                                                                 "tolerance": 16,
+                                                                                 "min_fraction": 0.7
+                                                                                },
+                                                                                {
+                                                                                 "region": [
+                                                                                  30,
+                                                                                  600,
+                                                                                  870,
+                                                                                  680
+                                                                                 ],
+                                                                                 "color": "#f8f8f8,#f8f8e8",
+                                                                                 "tolerance": 10,
+                                                                                 "min_fraction": 0.9
+                                                                                }
+                                                                               ],
+                                                                               "then_steps": [
+                                                                                {
+                                                                                 "type": "click",
+                                                                                 "x": 545,
+                                                                                 "y": 340,
+                                                                                 "button": "left",
+                                                                                 "delay_before_ms": 1000,
+                                                                                 "duration_ms": 80,
+                                                                                 "space": "device"
+                                                                                }
+                                                                               ],
+                                                                               "else_steps": [
+                                                                                {
+                                                                                 "type": "if_image",
+                                                                                 "name": "«Join» en el chat (y=315)",
+                                                                                 "condition": {
+                                                                                  "region": [
+                                                                                   335,
+                                                                                   303,
+                                                                                   470,
+                                                                                   327
+                                                                                  ],
+                                                                                  "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                                                                  "tolerance": 24,
+                                                                                  "min_fraction": 0.7
+                                                                                 },
+                                                                                 "delay_before_ms": 0,
+                                                                                 "also": [
+                                                                                  {
+                                                                                   "region": [
+                                                                                    620,
+                                                                                    303,
+                                                                                    755,
+                                                                                    327
+                                                                                   ],
+                                                                                   "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                                                                   "tolerance": 24,
+                                                                                   "min_fraction": 0.7
+                                                                                  }
+                                                                                 ],
+                                                                                 "unless": [
+                                                                                  {
+                                                                                   "region": [
+                                                                                    90,
+                                                                                    1060,
+                                                                                    370,
+                                                                                    1220
+                                                                                   ],
+                                                                                   "color": "#584878,#484878,#585888",
+                                                                                   "tolerance": 16,
+                                                                                   "min_fraction": 0.7
+                                                                                  },
+                                                                                  {
+                                                                                   "region": [
+                                                                                    30,
+                                                                                    600,
+                                                                                    870,
+                                                                                    680
+                                                                                   ],
+                                                                                   "color": "#f8f8f8,#f8f8e8",
+                                                                                   "tolerance": 10,
+                                                                                   "min_fraction": 0.9
+                                                                                  }
+                                                                                 ],
+                                                                                 "then_steps": [
+                                                                                  {
+                                                                                   "type": "click",
+                                                                                   "x": 545,
+                                                                                   "y": 315,
+                                                                                   "button": "left",
+                                                                                   "delay_before_ms": 1000,
+                                                                                   "duration_ms": 80,
+                                                                                   "space": "device"
+                                                                                  }
+                                                                                 ],
+                                                                                 "else_steps": [
+                                                                                  {
+                                                                                   "type": "if_image",
+                                                                                   "name": "«Join» en el chat (y=290)",
+                                                                                   "condition": {
+                                                                                    "region": [
+                                                                                     335,
+                                                                                     278,
+                                                                                     470,
+                                                                                     302
+                                                                                    ],
+                                                                                    "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                                                                    "tolerance": 24,
+                                                                                    "min_fraction": 0.7
+                                                                                   },
+                                                                                   "delay_before_ms": 0,
+                                                                                   "also": [
+                                                                                    {
+                                                                                     "region": [
+                                                                                      620,
+                                                                                      278,
+                                                                                      755,
+                                                                                      302
+                                                                                     ],
+                                                                                     "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                                                                                     "tolerance": 24,
+                                                                                     "min_fraction": 0.7
+                                                                                    }
+                                                                                   ],
+                                                                                   "unless": [
+                                                                                    {
+                                                                                     "region": [
+                                                                                      90,
+                                                                                      1060,
+                                                                                      370,
+                                                                                      1220
+                                                                                     ],
+                                                                                     "color": "#584878,#484878,#585888",
+                                                                                     "tolerance": 16,
+                                                                                     "min_fraction": 0.7
+                                                                                    },
+                                                                                    {
+                                                                                     "region": [
+                                                                                      30,
+                                                                                      600,
+                                                                                      870,
+                                                                                      680
+                                                                                     ],
+                                                                                     "color": "#f8f8f8,#f8f8e8",
+                                                                                     "tolerance": 10,
+                                                                                     "min_fraction": 0.9
+                                                                                    }
+                                                                                   ],
+                                                                                   "then_steps": [
+                                                                                    {
+                                                                                     "type": "click",
+                                                                                     "x": 545,
+                                                                                     "y": 290,
+                                                                                     "button": "left",
+                                                                                     "delay_before_ms": 1000,
+                                                                                     "duration_ms": 80,
+                                                                                     "space": "device"
+                                                                                    }
+                                                                                   ],
+                                                                                   "else_steps": [
+                                                                                    {
+                                                                                     "type": "subsequence",
+                                                                                     "name": "pausa 2500 ms",
+                                                                                     "repeats": 1,
+                                                                                     "delay_before_ms": 2500,
+                                                                                     "steps": []
+                                                                                    }
+                                                                                   ]
+                                                                                  }
+                                                                                 ]
+                                                                                }
+                                                                               ]
+                                                                              }
+                                                                             ]
+                                                                            }
+                                                                           ]
+                                                                          }
+                                                                         ]
+                                                                        }
+                                                                       ]
+                                                                      }
+                                                                     ]
+                                                                    }
+                                                                   ]
+                                                                  }
+                                                                 ]
+                                                                }
+                                                               ]
+                                                              }
+                                                             ]
+                                                            }
+                                                           ]
+                                                          }
+                                                         ]
+                                                        }
+                                                       ]
+                                                      }
+                                                     ]
+                                                    }
+                                                   ]
+                                                  }
+                                                 ]
+                                                }
+                                               ]
+                                              }
+                                             ]
+                                            }
+                                           ]
+                                          }
+                                         ]
+                                        }
+                                       ]
+                                      }
+                                     ]
+                                    }
+                                   ]
+                                  }
+                                 ]
+                                }
+                               ]
+                              }
+                             ]
+                            }
+                           ]
+                          }
+                         ]
+                        }
+                       ]
+                      }
+                     ]
+                    }
+                   ]
+                  }
+                 ]
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "subsequence",
+     "name": "pausa 3000 ms",
+     "repeats": 1,
+     "delay_before_ms": 3000,
+     "steps": []
+    },
+    {
+     "type": "subsequence",
+     "name": "cerrar resúmenes de raid",
+     "repeats": 8,
+     "delay_before_ms": 0,
+     "steps": [
+      {
+       "type": "if_image",
+       "name": "«Rally Attack Complete!» → Confirm",
+       "condition": {
+        "region": [
+         90,
+         1060,
+         370,
+         1220
+        ],
+        "color": "#584878,#484878,#585888",
+        "tolerance": 16,
+        "min_fraction": 0.7
+       },
+       "delay_before_ms": 0,
+       "also": [
+        {
+         "region": [
+          300,
+          1300,
+          600,
+          1370
+         ],
+         "color": "#88d828,#78c828,#185828,#f8f8f8,#98e828",
+         "tolerance": 24,
+         "min_fraction": 0.6
+        },
+        {
+         "region": [
+          65,
+          280,
+          110,
+          700
+         ],
+         "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+         "tolerance": 24,
+         "min_fraction": 0.5
+        },
+        {
+         "region": [
+          790,
+          280,
+          835,
+          660
+         ],
+         "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+         "tolerance": 24,
+         "min_fraction": 0.5
+        }
+       ],
+       "then_steps": [
+        {
+         "type": "click",
+         "x": 450,
+         "y": 1333,
+         "button": "left",
+         "delay_before_ms": 1000,
+         "duration_ms": 80,
+         "space": "device"
+        },
+        {
+         "type": "subsequence",
+         "name": "pausa 1500 ms",
+         "repeats": 1,
+         "delay_before_ms": 1500,
+         "steps": []
+        }
+       ],
+       "else_steps": [
+        {
+         "type": "if_image",
+         "name": "«Rally Incomplete» → Confirm",
+         "condition": {
+          "region": [
+           30,
+           600,
+           870,
+           680
+          ],
+          "color": "#f8f8f8,#f8f8e8",
+          "tolerance": 10,
+          "min_fraction": 0.9
+         },
+         "delay_before_ms": 0,
+         "also": [
+          {
+           "region": [
+            30,
+            820,
+            870,
+            940
+           ],
+           "color": "#f8f8f8,#f8f8e8,#080808",
+           "tolerance": 12,
+           "min_fraction": 0.85
+          },
+          {
+           "region": [
+            20,
+            490,
+            880,
+            560
+           ],
+           "color": "#584898,#6858a8,#f8f8f8,#080808",
+           "tolerance": 16,
+           "min_fraction": 0.7
+          },
+          {
+           "region": [
+            285,
+            965,
+            330,
+            1045
+           ],
+           "color": "#88d828,#78c828,#88c828,#88d838",
+           "tolerance": 20,
+           "min_fraction": 0.6
+          }
+         ],
+         "then_steps": [
+          {
+           "type": "click",
+           "x": 450,
+           "y": 1005,
+           "button": "left",
+           "delay_before_ms": 1000,
+           "duration_ms": 80,
+           "space": "device"
+          },
+          {
+           "type": "subsequence",
+           "name": "pausa 1500 ms",
+           "repeats": 1,
+           "delay_before_ms": 1500,
+           "steps": []
+          }
+         ],
+         "else_steps": [
+          {
+           "type": "wait_image",
+           "name": "→ salir del bucle",
+           "condition": {
+            "region": [
+             0,
+             0,
+             1,
+             1
+            ],
+            "color": "#010203",
+            "tolerance": 0,
+            "min_fraction": 1.0
+           },
+           "timeout_ms": 0,
+           "poll_ms": 10,
+           "on_timeout": "break",
+           "delay_before_ms": 0
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "wait_image",
+     "name": "overview de la raid",
+     "condition": {
+      "region": [
+       20,
+       1455,
+       125,
+       1555
+      ],
+      "color": "#484878,#586898,#f8f8f8,#585888",
+      "tolerance": 20,
+      "min_fraction": 0.45
+     },
+     "timeout_ms": 10000,
+     "poll_ms": 200,
+     "on_timeout": "skip",
+     "delay_before_ms": 0,
+     "also": [
+      {
+       "region": [
+        740,
+        600,
+        880,
+        740
+       ],
+       "color": "#585888,#484878,#f8f8f8,#080808",
+       "tolerance": 20,
+       "min_fraction": 0.45
+      }
+     ],
+     "unless": [
+      {
+       "region": [
+        90,
+        1060,
+        370,
+        1220
+       ],
+       "color": "#584878,#484878,#585888",
+       "tolerance": 16,
+       "min_fraction": 0.7
+      },
+      {
+       "region": [
+        30,
+        600,
+        870,
+        680
+       ],
+       "color": "#f8f8f8,#f8f8e8",
+       "tolerance": 10,
+       "min_fraction": 0.9
+      }
+     ]
+    },
+    {
+     "type": "if_image",
+     "name": "overview → «Join»",
+     "condition": {
+      "region": [
+       200,
+       1470,
+       840,
+       1540
+      ],
+      "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+      "tolerance": 24,
+      "min_fraction": 0.6
+     },
+     "delay_before_ms": 0,
+     "unless": [
+      {
+       "region": [
+        90,
+        1060,
+        370,
+        1220
+       ],
+       "color": "#584878,#484878,#585888",
+       "tolerance": 16,
+       "min_fraction": 0.7
+      },
+      {
+       "region": [
+        30,
+        600,
+        870,
+        680
+       ],
+       "color": "#f8f8f8,#f8f8e8",
+       "tolerance": 10,
+       "min_fraction": 0.9
+      }
+     ],
+     "then_steps": [
+      {
+       "type": "click",
+       "x": 515,
+       "y": 1505,
+       "button": "left",
+       "delay_before_ms": 1000,
+       "duration_ms": 80,
+       "space": "device"
+      }
+     ],
+     "else_steps": []
+    },
+    {
+     "type": "wait_image",
+     "name": "«Pending» (unido)",
+     "condition": {
+      "region": [
+       200,
+       1470,
+       840,
+       1540
+      ],
+      "color": "#888888,#989898,#a8a8a8,#787878",
+      "tolerance": 16,
+      "min_fraction": 0.6
+     },
+     "timeout_ms": 8000,
+     "poll_ms": 200,
+     "on_timeout": "continue",
+     "delay_before_ms": 0
+    },
+    {
+     "type": "subsequence",
+     "name": "cerrar resúmenes de raid",
+     "repeats": 8,
+     "delay_before_ms": 0,
+     "steps": [
+      {
+       "type": "if_image",
+       "name": "«Rally Attack Complete!» → Confirm",
+       "condition": {
+        "region": [
+         90,
+         1060,
+         370,
+         1220
+        ],
+        "color": "#584878,#484878,#585888",
+        "tolerance": 16,
+        "min_fraction": 0.7
+       },
+       "delay_before_ms": 0,
+       "also": [
+        {
+         "region": [
+          300,
+          1300,
+          600,
+          1370
+         ],
+         "color": "#88d828,#78c828,#185828,#f8f8f8,#98e828",
+         "tolerance": 24,
+         "min_fraction": 0.6
+        },
+        {
+         "region": [
+          65,
+          280,
+          110,
+          700
+         ],
+         "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+         "tolerance": 24,
+         "min_fraction": 0.5
+        },
+        {
+         "region": [
+          790,
+          280,
+          835,
+          660
+         ],
+         "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+         "tolerance": 24,
+         "min_fraction": 0.5
+        }
+       ],
+       "then_steps": [
+        {
+         "type": "click",
+         "x": 450,
+         "y": 1333,
+         "button": "left",
+         "delay_before_ms": 1000,
+         "duration_ms": 80,
+         "space": "device"
+        },
+        {
+         "type": "subsequence",
+         "name": "pausa 1500 ms",
+         "repeats": 1,
+         "delay_before_ms": 1500,
+         "steps": []
+        }
+       ],
+       "else_steps": [
+        {
+         "type": "if_image",
+         "name": "«Rally Incomplete» → Confirm",
+         "condition": {
+          "region": [
+           30,
+           600,
+           870,
+           680
+          ],
+          "color": "#f8f8f8,#f8f8e8",
+          "tolerance": 10,
+          "min_fraction": 0.9
+         },
+         "delay_before_ms": 0,
+         "also": [
+          {
+           "region": [
+            30,
+            820,
+            870,
+            940
+           ],
+           "color": "#f8f8f8,#f8f8e8,#080808",
+           "tolerance": 12,
+           "min_fraction": 0.85
+          },
+          {
+           "region": [
+            20,
+            490,
+            880,
+            560
+           ],
+           "color": "#584898,#6858a8,#f8f8f8,#080808",
+           "tolerance": 16,
+           "min_fraction": 0.7
+          },
+          {
+           "region": [
+            285,
+            965,
+            330,
+            1045
+           ],
+           "color": "#88d828,#78c828,#88c828,#88d838",
+           "tolerance": 20,
+           "min_fraction": 0.6
+          }
+         ],
+         "then_steps": [
+          {
+           "type": "click",
+           "x": 450,
+           "y": 1005,
+           "button": "left",
+           "delay_before_ms": 1000,
+           "duration_ms": 80,
+           "space": "device"
+          },
+          {
+           "type": "subsequence",
+           "name": "pausa 1500 ms",
+           "repeats": 1,
+           "delay_before_ms": 1500,
+           "steps": []
+          }
+         ],
+         "else_steps": [
+          {
+           "type": "wait_image",
+           "name": "→ salir del bucle",
+           "condition": {
+            "region": [
+             0,
+             0,
+             1,
+             1
+            ],
+            "color": "#010203",
+            "tolerance": 0,
+            "min_fraction": 1.0
+           },
+           "timeout_ms": 0,
+           "poll_ms": 10,
+           "on_timeout": "break",
+           "delay_before_ms": 0
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "if_image",
+     "name": "flecha atrás",
+     "condition": {
+      "region": [
+       20,
+       1455,
+       125,
+       1555
+      ],
+      "color": "#484878,#586898,#f8f8f8,#585888",
+      "tolerance": 20,
+      "min_fraction": 0.45
+     },
+     "delay_before_ms": 0,
+     "also": [
+      {
+       "region": [
+        740,
+        600,
+        880,
+        740
+       ],
+       "color": "#585888,#484878,#f8f8f8,#080808",
+       "tolerance": 20,
+       "min_fraction": 0.45
+      }
+     ],
+     "unless": [
+      {
+       "region": [
+        90,
+        1060,
+        370,
+        1220
+       ],
+       "color": "#584878,#484878,#585888",
+       "tolerance": 16,
+       "min_fraction": 0.7
+      },
+      {
+       "region": [
+        30,
+        600,
+        870,
+        680
+       ],
+       "color": "#f8f8f8,#f8f8e8",
+       "tolerance": 10,
+       "min_fraction": 0.9
+      }
+     ],
+     "then_steps": [
+      {
+       "type": "click",
+       "x": 70,
+       "y": 1500,
+       "button": "left",
+       "delay_before_ms": 1000,
+       "duration_ms": 80,
+       "space": "device"
+      }
+     ],
+     "else_steps": []
+    },
+    {
+     "type": "subsequence",
+     "name": "cerrar resúmenes de raid",
+     "repeats": 8,
+     "delay_before_ms": 0,
+     "steps": [
+      {
+       "type": "if_image",
+       "name": "«Rally Attack Complete!» → Confirm",
+       "condition": {
+        "region": [
+         90,
+         1060,
+         370,
+         1220
+        ],
+        "color": "#584878,#484878,#585888",
+        "tolerance": 16,
+        "min_fraction": 0.7
+       },
+       "delay_before_ms": 0,
+       "also": [
+        {
+         "region": [
+          300,
+          1300,
+          600,
+          1370
+         ],
+         "color": "#88d828,#78c828,#185828,#f8f8f8,#98e828",
+         "tolerance": 24,
+         "min_fraction": 0.6
+        },
+        {
+         "region": [
+          65,
+          280,
+          110,
+          700
+         ],
+         "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+         "tolerance": 24,
+         "min_fraction": 0.5
+        },
+        {
+         "region": [
+          790,
+          280,
+          835,
+          660
+         ],
+         "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+         "tolerance": 24,
+         "min_fraction": 0.5
+        }
+       ],
+       "then_steps": [
+        {
+         "type": "click",
+         "x": 450,
+         "y": 1333,
+         "button": "left",
+         "delay_before_ms": 1000,
+         "duration_ms": 80,
+         "space": "device"
+        },
+        {
+         "type": "subsequence",
+         "name": "pausa 1500 ms",
+         "repeats": 1,
+         "delay_before_ms": 1500,
+         "steps": []
+        }
+       ],
+       "else_steps": [
+        {
+         "type": "if_image",
+         "name": "«Rally Incomplete» → Confirm",
+         "condition": {
+          "region": [
+           30,
+           600,
+           870,
+           680
+          ],
+          "color": "#f8f8f8,#f8f8e8",
+          "tolerance": 10,
+          "min_fraction": 0.9
+         },
+         "delay_before_ms": 0,
+         "also": [
+          {
+           "region": [
+            30,
+            820,
+            870,
+            940
+           ],
+           "color": "#f8f8f8,#f8f8e8,#080808",
+           "tolerance": 12,
+           "min_fraction": 0.85
+          },
+          {
+           "region": [
+            20,
+            490,
+            880,
+            560
+           ],
+           "color": "#584898,#6858a8,#f8f8f8,#080808",
+           "tolerance": 16,
+           "min_fraction": 0.7
+          },
+          {
+           "region": [
+            285,
+            965,
+            330,
+            1045
+           ],
+           "color": "#88d828,#78c828,#88c828,#88d838",
+           "tolerance": 20,
+           "min_fraction": 0.6
+          }
+         ],
+         "then_steps": [
+          {
+           "type": "click",
+           "x": 450,
+           "y": 1005,
+           "button": "left",
+           "delay_before_ms": 1000,
+           "duration_ms": 80,
+           "space": "device"
+          },
+          {
+           "type": "subsequence",
+           "name": "pausa 1500 ms",
+           "repeats": 1,
+           "delay_before_ms": 1500,
+           "steps": []
+          }
+         ],
+         "else_steps": [
+          {
+           "type": "wait_image",
+           "name": "→ salir del bucle",
+           "condition": {
+            "region": [
+             0,
+             0,
+             1,
+             1
+            ],
+            "color": "#010203",
+            "tolerance": 0,
+            "min_fraction": 1.0
+           },
+           "timeout_ms": 0,
+           "poll_ms": 10,
+           "on_timeout": "break",
+           "delay_before_ms": 0
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "wait_image",
+     "name": "mapa",
+     "condition": {
+      "region": [
+       800,
+       1195,
+       885,
+       1275
+      ],
+      "color": "#f8f8f8,#181818,#586898,#484878",
+      "tolerance": 24,
+      "min_fraction": 0.5
+     },
+     "timeout_ms": 10000,
+     "poll_ms": 200,
+     "on_timeout": "continue",
+     "delay_before_ms": 0,
+     "also": [
+      {
+       "region": [
+        15,
+        1320,
+        160,
+        1460
+       ],
+       "color": "#585888,#f8f8f8,#080808,#484878",
+       "tolerance": 24,
+       "min_fraction": 0.5
+      },
+      {
+       "region": [
+        735,
+        1320,
+        880,
+        1460
+       ],
+       "color": "#585888,#484878,#f8f8f8,#080808,#6858a8",
+       "tolerance": 24,
+       "min_fraction": 0.4
+      }
+     ],
+     "unless": [
+      {
+       "region": [
+        170,
+        80,
+        860,
+        160
+       ],
+       "color": "#484878",
+       "tolerance": 16,
+       "min_fraction": 0.8
+      },
+      {
+       "region": [
+        200,
+        1470,
+        840,
+        1540
+       ],
+       "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+       "tolerance": 24,
+       "min_fraction": 0.6
+      },
+      {
+       "region": [
+        200,
+        1470,
+        840,
+        1540
+       ],
+       "color": "#888888,#989898,#a8a8a8,#787878",
+       "tolerance": 16,
+       "min_fraction": 0.6
+      },
+      {
+       "region": [
+        90,
+        1060,
+        370,
+        1220
+       ],
+       "color": "#584878,#484878,#585888",
+       "tolerance": 16,
+       "min_fraction": 0.7
+      },
+      {
+       "region": [
+        30,
+        600,
+        870,
+        680
+       ],
+       "color": "#f8f8f8,#f8f8e8",
+       "tolerance": 10,
+       "min_fraction": 0.9
+      }
+     ]
+    },
+    {
+     "type": "subsequence",
+     "name": "cerrar resúmenes de raid",
+     "repeats": 8,
+     "delay_before_ms": 0,
+     "steps": [
+      {
+       "type": "if_image",
+       "name": "«Rally Attack Complete!» → Confirm",
+       "condition": {
+        "region": [
+         90,
+         1060,
+         370,
+         1220
+        ],
+        "color": "#584878,#484878,#585888",
+        "tolerance": 16,
+        "min_fraction": 0.7
+       },
+       "delay_before_ms": 0,
+       "also": [
+        {
+         "region": [
+          300,
+          1300,
+          600,
+          1370
+         ],
+         "color": "#88d828,#78c828,#185828,#f8f8f8,#98e828",
+         "tolerance": 24,
+         "min_fraction": 0.6
+        },
+        {
+         "region": [
+          65,
+          280,
+          110,
+          700
+         ],
+         "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+         "tolerance": 24,
+         "min_fraction": 0.5
+        },
+        {
+         "region": [
+          790,
+          280,
+          835,
+          660
+         ],
+         "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+         "tolerance": 24,
+         "min_fraction": 0.5
+        }
+       ],
+       "then_steps": [
+        {
+         "type": "click",
+         "x": 450,
+         "y": 1333,
+         "button": "left",
+         "delay_before_ms": 1000,
+         "duration_ms": 80,
+         "space": "device"
+        },
+        {
+         "type": "subsequence",
+         "name": "pausa 1500 ms",
+         "repeats": 1,
+         "delay_before_ms": 1500,
+         "steps": []
+        }
+       ],
+       "else_steps": [
+        {
+         "type": "if_image",
+         "name": "«Rally Incomplete» → Confirm",
+         "condition": {
+          "region": [
+           30,
+           600,
+           870,
+           680
+          ],
+          "color": "#f8f8f8,#f8f8e8",
+          "tolerance": 10,
+          "min_fraction": 0.9
+         },
+         "delay_before_ms": 0,
+         "also": [
+          {
+           "region": [
+            30,
+            820,
+            870,
+            940
+           ],
+           "color": "#f8f8f8,#f8f8e8,#080808",
+           "tolerance": 12,
+           "min_fraction": 0.85
+          },
+          {
+           "region": [
+            20,
+            490,
+            880,
+            560
+           ],
+           "color": "#584898,#6858a8,#f8f8f8,#080808",
+           "tolerance": 16,
+           "min_fraction": 0.7
+          },
+          {
+           "region": [
+            285,
+            965,
+            330,
+            1045
+           ],
+           "color": "#88d828,#78c828,#88c828,#88d838",
+           "tolerance": 20,
+           "min_fraction": 0.6
+          }
+         ],
+         "then_steps": [
+          {
+           "type": "click",
+           "x": 450,
+           "y": 1005,
+           "button": "left",
+           "delay_before_ms": 1000,
+           "duration_ms": 80,
+           "space": "device"
+          },
+          {
+           "type": "subsequence",
+           "name": "pausa 1500 ms",
+           "repeats": 1,
+           "delay_before_ms": 1500,
+           "steps": []
+          }
+         ],
+         "else_steps": [
+          {
+           "type": "wait_image",
+           "name": "→ salir del bucle",
+           "condition": {
+            "region": [
+             0,
+             0,
+             1,
+             1
+            ],
+            "color": "#010203",
+            "tolerance": 0,
+            "min_fraction": 1.0
+           },
+           "timeout_ms": 0,
+           "poll_ms": 10,
+           "on_timeout": "break",
+           "delay_before_ms": 0
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "if_image",
+     "name": "botón de chat",
+     "condition": {
+      "region": [
+       800,
+       1195,
+       885,
+       1275
+      ],
+      "color": "#f8f8f8,#181818,#586898,#484878",
+      "tolerance": 24,
+      "min_fraction": 0.5
+     },
+     "delay_before_ms": 0,
+     "also": [
+      {
+       "region": [
+        15,
+        1320,
+        160,
+        1460
+       ],
+       "color": "#585888,#f8f8f8,#080808,#484878",
+       "tolerance": 24,
+       "min_fraction": 0.5
+      },
+      {
+       "region": [
+        735,
+        1320,
+        880,
+        1460
+       ],
+       "color": "#585888,#484878,#f8f8f8,#080808,#6858a8",
+       "tolerance": 24,
+       "min_fraction": 0.4
+      }
+     ],
+     "unless": [
+      {
+       "region": [
+        170,
+        80,
+        860,
+        160
+       ],
+       "color": "#484878",
+       "tolerance": 16,
+       "min_fraction": 0.8
+      },
+      {
+       "region": [
+        200,
+        1470,
+        840,
+        1540
+       ],
+       "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+       "tolerance": 24,
+       "min_fraction": 0.6
+      },
+      {
+       "region": [
+        200,
+        1470,
+        840,
+        1540
+       ],
+       "color": "#888888,#989898,#a8a8a8,#787878",
+       "tolerance": 16,
+       "min_fraction": 0.6
+      },
+      {
+       "region": [
+        90,
+        1060,
+        370,
+        1220
+       ],
+       "color": "#584878,#484878,#585888",
+       "tolerance": 16,
+       "min_fraction": 0.7
+      },
+      {
+       "region": [
+        30,
+        600,
+        870,
+        680
+       ],
+       "color": "#f8f8f8,#f8f8e8",
+       "tolerance": 10,
+       "min_fraction": 0.9
+      }
+     ],
+     "then_steps": [
+      {
+       "type": "click",
+       "x": 840,
+       "y": 1235,
+       "button": "left",
+       "delay_before_ms": 1000,
+       "duration_ms": 80,
+       "space": "device"
+      }
+     ],
+     "else_steps": []
+    },
+    {
+     "type": "wait_image",
+     "name": "chat",
+     "condition": {
+      "region": [
+       170,
+       80,
+       860,
+       160
+      ],
+      "color": "#484878",
+      "tolerance": 16,
+      "min_fraction": 0.8
+     },
+     "timeout_ms": 10000,
+     "poll_ms": 200,
+     "on_timeout": "continue",
+     "delay_before_ms": 0,
+     "also": [
+      {
+       "region": [
+        170,
+        1320,
+        600,
+        1340
+       ],
+       "color": "#484878",
+       "tolerance": 16,
+       "min_fraction": 0.8
+      }
+     ],
+     "unless": [
+      {
+       "region": [
+        90,
+        1060,
+        370,
+        1220
+       ],
+       "color": "#584878,#484878,#585888",
+       "tolerance": 16,
+       "min_fraction": 0.7
+      },
+      {
+       "region": [
+        30,
+        600,
+        870,
+        680
+       ],
+       "color": "#f8f8f8,#f8f8e8",
+       "tolerance": 10,
+       "min_fraction": 0.9
+      }
+     ]
+    },
+    {
+     "type": "subsequence",
+     "name": "cerrar resúmenes de raid",
+     "repeats": 8,
+     "delay_before_ms": 0,
+     "steps": [
+      {
+       "type": "if_image",
+       "name": "«Rally Attack Complete!» → Confirm",
+       "condition": {
+        "region": [
+         90,
+         1060,
+         370,
+         1220
+        ],
+        "color": "#584878,#484878,#585888",
+        "tolerance": 16,
+        "min_fraction": 0.7
+       },
+       "delay_before_ms": 0,
+       "also": [
+        {
+         "region": [
+          300,
+          1300,
+          600,
+          1370
+         ],
+         "color": "#88d828,#78c828,#185828,#f8f8f8,#98e828",
+         "tolerance": 24,
+         "min_fraction": 0.6
+        },
+        {
+         "region": [
+          65,
+          280,
+          110,
+          700
+         ],
+         "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+         "tolerance": 24,
+         "min_fraction": 0.5
+        },
+        {
+         "region": [
+          790,
+          280,
+          835,
+          660
+         ],
+         "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+         "tolerance": 24,
+         "min_fraction": 0.5
+        }
+       ],
+       "then_steps": [
+        {
+         "type": "click",
+         "x": 450,
+         "y": 1333,
+         "button": "left",
+         "delay_before_ms": 1000,
+         "duration_ms": 80,
+         "space": "device"
+        },
+        {
+         "type": "subsequence",
+         "name": "pausa 1500 ms",
+         "repeats": 1,
+         "delay_before_ms": 1500,
+         "steps": []
+        }
+       ],
+       "else_steps": [
+        {
+         "type": "if_image",
+         "name": "«Rally Incomplete» → Confirm",
+         "condition": {
+          "region": [
+           30,
+           600,
+           870,
+           680
+          ],
+          "color": "#f8f8f8,#f8f8e8",
+          "tolerance": 10,
+          "min_fraction": 0.9
+         },
+         "delay_before_ms": 0,
+         "also": [
+          {
+           "region": [
+            30,
+            820,
+            870,
+            940
+           ],
+           "color": "#f8f8f8,#f8f8e8,#080808",
+           "tolerance": 12,
+           "min_fraction": 0.85
+          },
+          {
+           "region": [
+            20,
+            490,
+            880,
+            560
+           ],
+           "color": "#584898,#6858a8,#f8f8f8,#080808",
+           "tolerance": 16,
+           "min_fraction": 0.7
+          },
+          {
+           "region": [
+            285,
+            965,
+            330,
+            1045
+           ],
+           "color": "#88d828,#78c828,#88c828,#88d838",
+           "tolerance": 20,
+           "min_fraction": 0.6
+          }
+         ],
+         "then_steps": [
+          {
+           "type": "click",
+           "x": 450,
+           "y": 1005,
+           "button": "left",
+           "delay_before_ms": 1000,
+           "duration_ms": 80,
+           "space": "device"
+          },
+          {
+           "type": "subsequence",
+           "name": "pausa 1500 ms",
+           "repeats": 1,
+           "delay_before_ms": 1500,
+           "steps": []
+          }
+         ],
+         "else_steps": [
+          {
+           "type": "wait_image",
+           "name": "→ salir del bucle",
+           "condition": {
+            "region": [
+             0,
+             0,
+             1,
+             1
+            ],
+            "color": "#010203",
+            "tolerance": 0,
+            "min_fraction": 1.0
+           },
+           "timeout_ms": 0,
+           "poll_ms": 10,
+           "on_timeout": "break",
+           "delay_before_ms": 0
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

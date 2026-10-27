@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
                 .putExtra(RunnerService.EXTRA_SEQUENCE, pendingSequence ?: prefs().getString("active", null))
             startForegroundService(i)
             Toast.makeText(this, "Panel flotante activo. Abre el juego.", Toast.LENGTH_SHORT).show()
-            render()
+            root.postDelayed({ render() }, 700)
         } else {
             Toast.makeText(this, "Sin permiso de captura no se pueden usar las condiciones de color.", Toast.LENGTH_LONG).show()
         }

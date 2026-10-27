@@ -20,15 +20,22 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Assert.fail
 import org.junit.Test
-import javax.imageio.ImageIO
+import java.io.DataInputStream
+import java.util.zip.GZIPInputStream
 
 private fun res(name: String) = Thread.currentThread().contextClassLoader!!.getResourceAsStream(name)!!
 
-private fun png(name: String): Frame {
-    val img = ImageIO.read(res("raid/$name"))
-    val px = IntArray(img.width * img.height)
-    img.getRGB(0, 0, img.width, img.height, px, 0, img.width)
-    return Frame(img.width, img.height, px)
+/** Captura de prueba: (ancho, alto) + RGB, gzip (ver tools/mask_test_images.py). */
+private fun shot(name: String): Frame {
+    DataInputStream(GZIPInputStream(res("raid/$name.rgb.gz"))).use { inp ->
+        val w = inp.readInt(); val h = inp.readInt()
+        val rgb = ByteArray(w * h * 3).also { inp.readFully(it) }
+        val px = IntArray(w * h) { i ->
+            val r = rgb[3 * i].toInt() and 0xff; val g = rgb[3 * i + 1].toInt() and 0xff; val b = rgb[3 * i + 2].toInt() and 0xff
+            (0xff shl 24) or (r shl 16) or (g shl 8) or b
+        }
+        return Frame(w, h, px)
+    }
 }
 
 class ModelTest {
@@ -115,7 +122,7 @@ private class FakeDevice(var screen: String, val transitions: Map<String, List<P
     }
     override suspend fun drag(x1: Int, y1: Int, x2: Int, y2: Int, durationMs: Int, holdMs: Int) { taps += x1 to y1 }
     override suspend fun back() {}
-    override fun frame(): Frame = frames.getOrPut(screen) { png("$screen.png") }
+    override fun frame(): Frame = frames.getOrPut(screen) { shot(screen) }
 }
 
 class RaidJoinPlayerTest {

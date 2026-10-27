@@ -4,7 +4,9 @@ raid_join.json y tapa nombres/mensajes de jugadores (el repo es público).
 
     python tools/mask_test_images.py <carpeta_capturas_originales>
 """
+import gzip
 import json
+import struct
 import os
 import sys
 
@@ -60,7 +62,11 @@ def main():
         a[~mask] = 0
         for x1, y1, x2, y2 in BLACK[out]:
             a[y1:y2, x1:x2] = 0
-        Image.fromarray(a).save(os.path.join(D, out), optimize=True)
+        # Formato de prueba: cabecera (ancho, alto) big-endian + RGB, gzip.
+        # (javax.imageio no está disponible en los tests unitarios de Android.)
+        with gzip.open(os.path.join(D, out.replace(".png", ".rgb.gz")), "wb", compresslevel=9) as g:
+            g.write(struct.pack(">II", a.shape[1], a.shape[0]))
+            g.write(a.astype("uint8").tobytes())
         print(out)
 
 

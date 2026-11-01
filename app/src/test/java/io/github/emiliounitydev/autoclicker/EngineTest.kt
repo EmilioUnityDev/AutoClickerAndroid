@@ -255,9 +255,24 @@ class RaidJoinPhoneTest {
     }
 
     @Test
-    fun unknownScreenMeansNoTaps() = runTest {
-        // Lista «Rally Attack» (pantalla que la secuencia no conoce).
-        assertTrue(play("phone_rally_list").taps.isEmpty())
+    fun rallyListInsteadOfOverview() = runTest {
+        // A veces «Join» en el chat abre la lista «Rally Attack»: su «Join» lleva al overview.
+        val tl = t + mapOf(
+            "phone_chat_join" to listOf(intArrayOf(480, 1850, 1070, 1960) to "phone_rally_list_join"),
+            "phone_rally_list_join" to listOf(intArrayOf(830, 2200, 1160, 2290) to "phone_overview_join"),
+        )
+        val dev = FakeDevice("phone_chat_join", tl, w, h)
+        Player(oneCycle(), dev, object : PlayerListener {}, clock = { testScheduler.currentTime }).run()
+        assertEquals(listOf(775 to 1905, 996 to 2260, 732 to 2637, 100 to 2630, 1195 to 2253), dev.taps)
+        assertEquals("phone_chat_pending", dev.screen)
+    }
+
+    @Test
+    fun rallyListWithoutJoinIsClosed() = runTest {
+        // Lista sin «Join» (todas Pending/Battle): se cierra con la X de abajo.
+        val dev = FakeDevice("phone_rally_list", t, w, h)
+        Player(oneCycle(), dev, object : PlayerListener {}, clock = { testScheduler.currentTime }).run()
+        assertEquals(640 to 2715, dev.taps.first())
     }
 
     @Test

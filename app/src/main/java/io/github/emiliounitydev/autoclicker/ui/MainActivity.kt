@@ -101,7 +101,14 @@ class MainActivity : AppCompatActivity() {
         root.addView(Ui.text(this, "AutoClicker ${BuildConfig.VERSION_NAME} · pantalla ${s.width}×${s.height}", 12f))
 
         root.addView(Ui.title(this, "Permisos"))
-        permRow("Accesibilidad (tocar en otras apps)", accessibilityEnabled()) {
+        val accOn = accessibilityEnabled()
+        if (accOn && !ClickerAccessibilityService.isRunning) {
+            // Activada en Ajustes pero el sistema no la ha arrancado (pasa en
+            // Xiaomi/HyperOS tras actualizar la app o al cerrarla desde recientes).
+            permRow("Accesibilidad activada pero DETENIDA por el sistema: desactívala y vuelve a activarla", false) {
+                startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
+            }
+        } else permRow("Accesibilidad (tocar en otras apps)", accOn) {
             AlertDialog.Builder(this).setTitle("Activar accesibilidad")
                 .setMessage("Ajustes → Accesibilidad → Apps instaladas → AutoClicker → activar.\n\n" +
                     "Si aparece como «ajuste restringido»: Ajustes → Apps → AutoClicker → ⋮ (arriba a la " +

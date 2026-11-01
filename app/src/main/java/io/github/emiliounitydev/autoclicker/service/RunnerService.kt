@@ -201,12 +201,12 @@ class RunnerService : Service(), DeviceIO {
 
     // ------------------------------------------------------------ DeviceIO
     override suspend fun tap(x: Int, y: Int, durationMs: Int) {
-        val svc = ClickerAccessibilityService.instance ?: throw StopSequence("Servicio de accesibilidad desactivado")
+        val svc = ClickerAccessibilityService.instance ?: throw StopSequence(ACC_STOPPED)
         svc.tap(x, y, durationMs)
     }
 
     override suspend fun drag(x1: Int, y1: Int, x2: Int, y2: Int, durationMs: Int, holdMs: Int) {
-        val svc = ClickerAccessibilityService.instance ?: throw StopSequence("Servicio de accesibilidad desactivado")
+        val svc = ClickerAccessibilityService.instance ?: throw StopSequence(ACC_STOPPED)
         svc.drag(x1, y1, x2, y2, durationMs, holdMs)
     }
 
@@ -317,6 +317,8 @@ class RunnerService : Service(), DeviceIO {
         const val EXTRA_SEQUENCE = "sequence"
         const val EXTRA_STEP_PATH = "step_path"
         const val EXTRA_AUTOPLAY = "autoplay"
+        const val ACC_STOPPED = "Accesibilidad detenida por el sistema: en Ajustes → Accesibilidad, " +
+            "desactiva AutoClicker y vuelve a activarlo"
         private const val CHANNEL = "runner"
         private const val NOTIF_ID = 1
 

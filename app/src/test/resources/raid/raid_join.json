@@ -32,7 +32,8 @@
         ],
         "color": "#484878",
         "tolerance": 16,
-        "min_fraction": 0.8
+        "min_fraction": 0.8,
+        "anchor_y": 0.5
        },
        "delay_before_ms": 0,
        "then_steps": [
@@ -64,7 +65,8 @@
            ],
            "color": "#484878",
            "tolerance": 16,
-           "min_fraction": 0.8
+           "min_fraction": 0.6,
+           "anchor_y": 0.5
           }
          ]
         }
@@ -83,7 +85,8 @@
         ],
         "color": "#584878,#484878,#585888",
         "tolerance": 16,
-        "min_fraction": 0.7
+        "min_fraction": 0.7,
+        "anchor_y": 0.66
        },
        "delay_before_ms": 0,
        "also": [
@@ -96,7 +99,8 @@
          ],
          "color": "#88d828,#78c828,#185828,#f8f8f8,#98e828",
          "tolerance": 24,
-         "min_fraction": 0.6
+         "min_fraction": 0.6,
+         "anchor_y": 0.66
         },
         {
          "region": [
@@ -107,7 +111,8 @@
          ],
          "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
          "tolerance": 24,
-         "min_fraction": 0.5
+         "min_fraction": 0.5,
+         "anchor_y": 0.66
         },
         {
          "region": [
@@ -118,7 +123,8 @@
          ],
          "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
          "tolerance": 24,
-         "min_fraction": 0.5
+         "min_fraction": 0.5,
+         "anchor_y": 0.66
         }
        ],
        "then_steps": [
@@ -129,7 +135,8 @@
          "button": "left",
          "delay_before_ms": 1000,
          "duration_ms": 80,
-         "space": "device"
+         "space": "device",
+         "anchor_y": 0.66
         }
        ],
        "else_steps": [
@@ -145,7 +152,8 @@
           ],
           "color": "#f8f8f8,#f8f8e8",
           "tolerance": 10,
-          "min_fraction": 0.9
+          "min_fraction": 0.9,
+          "anchor_y": 0.66
          },
          "delay_before_ms": 0,
          "also": [
@@ -158,7 +166,8 @@
            ],
            "color": "#f8f8f8,#f8f8e8,#080808",
            "tolerance": 12,
-           "min_fraction": 0.85
+           "min_fraction": 0.85,
+           "anchor_y": 0.66
           },
           {
            "region": [
@@ -169,7 +178,8 @@
            ],
            "color": "#584898,#6858a8,#f8f8f8,#080808",
            "tolerance": 16,
-           "min_fraction": 0.7
+           "min_fraction": 0.7,
+           "anchor_y": 0.66
           },
           {
            "region": [
@@ -180,7 +190,8 @@
            ],
            "color": "#88d828,#78c828,#88c828,#88d838",
            "tolerance": 20,
-           "min_fraction": 0.6
+           "min_fraction": 0.6,
+           "anchor_y": 0.66
           }
          ],
          "then_steps": [
@@ -191,7 +202,8 @@
            "button": "left",
            "delay_before_ms": 1000,
            "duration_ms": 80,
-           "space": "device"
+           "space": "device",
+           "anchor_y": 0.66
           }
          ],
          "else_steps": [
@@ -207,7 +219,8 @@
             ],
             "color": "#484878",
             "tolerance": 16,
-            "min_fraction": 0.8
+            "min_fraction": 0.6,
+            "anchor_y": 0.5
            },
            "delay_before_ms": 0,
            "also": [
@@ -220,7 +233,8 @@
              ],
              "color": "#484878",
              "tolerance": 16,
-             "min_fraction": 0.8
+             "min_fraction": 0.8,
+             "anchor_y": 0.5
             }
            ],
            "unless": [
@@ -233,7 +247,8 @@
              ],
              "color": "#584878,#484878,#585888",
              "tolerance": 16,
-             "min_fraction": 0.7
+             "min_fraction": 0.7,
+             "anchor_y": 0.66
             },
             {
              "region": [
@@ -244,7 +259,8 @@
              ],
              "color": "#f8f8f8,#f8f8e8",
              "tolerance": 10,
-             "min_fraction": 0.9
+             "min_fraction": 0.9,
+             "anchor_y": 0.66
             }
            ],
            "then_steps": [],
@@ -261,7 +277,8 @@
               ],
               "color": "#484878,#586898,#f8f8f8,#585888",
               "tolerance": 20,
-              "min_fraction": 0.45
+              "min_fraction": 0.45,
+              "anchor_y": 1.0
              },
              "delay_before_ms": 0,
              "also": [
@@ -274,7 +291,8 @@
                ],
                "color": "#585888,#484878,#f8f8f8,#080808",
                "tolerance": 20,
-               "min_fraction": 0.45
+               "min_fraction": 0.45,
+               "anchor_y": 1.0
               }
              ],
              "unless": [
@@ -287,7 +305,8 @@
                ],
                "color": "#584878,#484878,#585888",
                "tolerance": 16,
-               "min_fraction": 0.7
+               "min_fraction": 0.7,
+               "anchor_y": 0.66
               },
               {
                "region": [
@@ -298,7 +317,8 @@
                ],
                "color": "#f8f8f8,#f8f8e8",
                "tolerance": 10,
-               "min_fraction": 0.9
+               "min_fraction": 0.9,
+               "anchor_y": 0.66
               }
              ],
              "then_steps": [
@@ -309,7 +329,8 @@
                "button": "left",
                "delay_before_ms": 1000,
                "duration_ms": 80,
-               "space": "device"
+               "space": "device",
+               "anchor_y": 1.0
               }
              ],
              "else_steps": [
@@ -325,7 +346,8 @@
                 ],
                 "color": "#f8f8f8,#181818,#586898,#484878",
                 "tolerance": 24,
-                "min_fraction": 0.5
+                "min_fraction": 0.5,
+                "anchor_y": 1.0
                },
                "delay_before_ms": 0,
                "also": [
@@ -338,7 +360,8 @@
                  ],
                  "color": "#585888,#f8f8f8,#080808,#484878",
                  "tolerance": 24,
-                 "min_fraction": 0.5
+                 "min_fraction": 0.5,
+                 "anchor_y": 1.0
                 },
                 {
                  "region": [
@@ -349,7 +372,8 @@
                  ],
                  "color": "#585888,#484878,#f8f8f8,#080808,#6858a8",
                  "tolerance": 24,
-                 "min_fraction": 0.4
+                 "min_fraction": 0.4,
+                 "anchor_y": 1.0
                 }
                ],
                "unless": [
@@ -362,7 +386,8 @@
                  ],
                  "color": "#484878",
                  "tolerance": 16,
-                 "min_fraction": 0.8
+                 "min_fraction": 0.6,
+                 "anchor_y": 0.5
                 },
                 {
                  "region": [
@@ -373,7 +398,8 @@
                  ],
                  "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                  "tolerance": 24,
-                 "min_fraction": 0.6
+                 "min_fraction": 0.6,
+                 "anchor_y": 1.0
                 },
                 {
                  "region": [
@@ -384,7 +410,8 @@
                  ],
                  "color": "#888888,#989898,#a8a8a8,#787878",
                  "tolerance": 16,
-                 "min_fraction": 0.6
+                 "min_fraction": 0.6,
+                 "anchor_y": 1.0
                 },
                 {
                  "region": [
@@ -395,7 +422,8 @@
                  ],
                  "color": "#584878,#484878,#585888",
                  "tolerance": 16,
-                 "min_fraction": 0.7
+                 "min_fraction": 0.7,
+                 "anchor_y": 0.66
                 },
                 {
                  "region": [
@@ -406,7 +434,8 @@
                  ],
                  "color": "#f8f8f8,#f8f8e8",
                  "tolerance": 10,
-                 "min_fraction": 0.9
+                 "min_fraction": 0.9,
+                 "anchor_y": 0.66
                 }
                ],
                "then_steps": [
@@ -417,7 +446,8 @@
                  "button": "left",
                  "delay_before_ms": 1000,
                  "duration_ms": 80,
-                 "space": "device"
+                 "space": "device",
+                 "anchor_y": 1.0
                 }
                ],
                "else_steps": [
@@ -459,7 +489,8 @@
       ],
       "color": "#484878",
       "tolerance": 16,
-      "min_fraction": 0.8
+      "min_fraction": 0.6,
+      "anchor_y": 0.5
      },
      "timeout_ms": 5000,
      "poll_ms": 200,
@@ -475,7 +506,8 @@
        ],
        "color": "#484878",
        "tolerance": 16,
-       "min_fraction": 0.8
+       "min_fraction": 0.8,
+       "anchor_y": 0.5
       }
      ],
      "unless": [
@@ -488,7 +520,8 @@
        ],
        "color": "#584878,#484878,#585888",
        "tolerance": 16,
-       "min_fraction": 0.7
+       "min_fraction": 0.7,
+       "anchor_y": 0.66
       },
       {
        "region": [
@@ -499,7 +532,8 @@
        ],
        "color": "#f8f8f8,#f8f8e8",
        "tolerance": 10,
-       "min_fraction": 0.9
+       "min_fraction": 0.9,
+       "anchor_y": 0.66
       }
      ]
     },
@@ -521,7 +555,8 @@
         ],
         "color": "#584878,#484878,#585888",
         "tolerance": 16,
-        "min_fraction": 0.7
+        "min_fraction": 0.7,
+        "anchor_y": 0.66
        },
        "delay_before_ms": 0,
        "also": [
@@ -534,7 +569,8 @@
          ],
          "color": "#88d828,#78c828,#185828,#f8f8f8,#98e828",
          "tolerance": 24,
-         "min_fraction": 0.6
+         "min_fraction": 0.6,
+         "anchor_y": 0.66
         },
         {
          "region": [
@@ -545,7 +581,8 @@
          ],
          "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
          "tolerance": 24,
-         "min_fraction": 0.5
+         "min_fraction": 0.5,
+         "anchor_y": 0.66
         },
         {
          "region": [
@@ -556,7 +593,8 @@
          ],
          "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
          "tolerance": 24,
-         "min_fraction": 0.5
+         "min_fraction": 0.5,
+         "anchor_y": 0.66
         }
        ],
        "then_steps": [
@@ -567,7 +605,8 @@
          "button": "left",
          "delay_before_ms": 1000,
          "duration_ms": 80,
-         "space": "device"
+         "space": "device",
+         "anchor_y": 0.66
         },
         {
          "type": "subsequence",
@@ -590,7 +629,8 @@
           ],
           "color": "#f8f8f8,#f8f8e8",
           "tolerance": 10,
-          "min_fraction": 0.9
+          "min_fraction": 0.9,
+          "anchor_y": 0.66
          },
          "delay_before_ms": 0,
          "also": [
@@ -603,7 +643,8 @@
            ],
            "color": "#f8f8f8,#f8f8e8,#080808",
            "tolerance": 12,
-           "min_fraction": 0.85
+           "min_fraction": 0.85,
+           "anchor_y": 0.66
           },
           {
            "region": [
@@ -614,7 +655,8 @@
            ],
            "color": "#584898,#6858a8,#f8f8f8,#080808",
            "tolerance": 16,
-           "min_fraction": 0.7
+           "min_fraction": 0.7,
+           "anchor_y": 0.66
           },
           {
            "region": [
@@ -625,7 +667,8 @@
            ],
            "color": "#88d828,#78c828,#88c828,#88d838",
            "tolerance": 20,
-           "min_fraction": 0.6
+           "min_fraction": 0.6,
+           "anchor_y": 0.66
           }
          ],
          "then_steps": [
@@ -636,7 +679,8 @@
            "button": "left",
            "delay_before_ms": 1000,
            "duration_ms": 80,
-           "space": "device"
+           "space": "device",
+           "anchor_y": 0.66
           },
           {
            "type": "subsequence",
@@ -684,7 +728,8 @@
       ],
       "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
       "tolerance": 24,
-      "min_fraction": 0.7
+      "min_fraction": 0.7,
+      "anchor_y": 0.5
      },
      "delay_before_ms": 0,
      "also": [
@@ -697,7 +742,8 @@
        ],
        "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
        "tolerance": 24,
-       "min_fraction": 0.7
+       "min_fraction": 0.7,
+       "anchor_y": 0.5
       }
      ],
      "unless": [
@@ -710,7 +756,8 @@
        ],
        "color": "#584878,#484878,#585888",
        "tolerance": 16,
-       "min_fraction": 0.7
+       "min_fraction": 0.7,
+       "anchor_y": 0.66
       },
       {
        "region": [
@@ -721,7 +768,8 @@
        ],
        "color": "#f8f8f8,#f8f8e8",
        "tolerance": 10,
-       "min_fraction": 0.9
+       "min_fraction": 0.9,
+       "anchor_y": 0.66
       }
      ],
      "then_steps": [
@@ -732,7 +780,8 @@
        "button": "left",
        "delay_before_ms": 1000,
        "duration_ms": 80,
-       "space": "device"
+       "space": "device",
+       "anchor_y": 0.5
       }
      ],
      "else_steps": [
@@ -748,7 +797,8 @@
         ],
         "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
         "tolerance": 24,
-        "min_fraction": 0.7
+        "min_fraction": 0.7,
+        "anchor_y": 0.5
        },
        "delay_before_ms": 0,
        "also": [
@@ -761,7 +811,8 @@
          ],
          "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
          "tolerance": 24,
-         "min_fraction": 0.7
+         "min_fraction": 0.7,
+         "anchor_y": 0.5
         }
        ],
        "unless": [
@@ -774,7 +825,8 @@
          ],
          "color": "#584878,#484878,#585888",
          "tolerance": 16,
-         "min_fraction": 0.7
+         "min_fraction": 0.7,
+         "anchor_y": 0.66
         },
         {
          "region": [
@@ -785,7 +837,8 @@
          ],
          "color": "#f8f8f8,#f8f8e8",
          "tolerance": 10,
-         "min_fraction": 0.9
+         "min_fraction": 0.9,
+         "anchor_y": 0.66
         }
        ],
        "then_steps": [
@@ -796,7 +849,8 @@
          "button": "left",
          "delay_before_ms": 1000,
          "duration_ms": 80,
-         "space": "device"
+         "space": "device",
+         "anchor_y": 0.5
         }
        ],
        "else_steps": [
@@ -812,7 +866,8 @@
           ],
           "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
           "tolerance": 24,
-          "min_fraction": 0.7
+          "min_fraction": 0.7,
+          "anchor_y": 0.5
          },
          "delay_before_ms": 0,
          "also": [
@@ -825,7 +880,8 @@
            ],
            "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
            "tolerance": 24,
-           "min_fraction": 0.7
+           "min_fraction": 0.7,
+           "anchor_y": 0.5
           }
          ],
          "unless": [
@@ -838,7 +894,8 @@
            ],
            "color": "#584878,#484878,#585888",
            "tolerance": 16,
-           "min_fraction": 0.7
+           "min_fraction": 0.7,
+           "anchor_y": 0.66
           },
           {
            "region": [
@@ -849,7 +906,8 @@
            ],
            "color": "#f8f8f8,#f8f8e8",
            "tolerance": 10,
-           "min_fraction": 0.9
+           "min_fraction": 0.9,
+           "anchor_y": 0.66
           }
          ],
          "then_steps": [
@@ -860,7 +918,8 @@
            "button": "left",
            "delay_before_ms": 1000,
            "duration_ms": 80,
-           "space": "device"
+           "space": "device",
+           "anchor_y": 0.5
           }
          ],
          "else_steps": [
@@ -876,7 +935,8 @@
             ],
             "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
             "tolerance": 24,
-            "min_fraction": 0.7
+            "min_fraction": 0.7,
+            "anchor_y": 0.5
            },
            "delay_before_ms": 0,
            "also": [
@@ -889,7 +949,8 @@
              ],
              "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
              "tolerance": 24,
-             "min_fraction": 0.7
+             "min_fraction": 0.7,
+             "anchor_y": 0.5
             }
            ],
            "unless": [
@@ -902,7 +963,8 @@
              ],
              "color": "#584878,#484878,#585888",
              "tolerance": 16,
-             "min_fraction": 0.7
+             "min_fraction": 0.7,
+             "anchor_y": 0.66
             },
             {
              "region": [
@@ -913,7 +975,8 @@
              ],
              "color": "#f8f8f8,#f8f8e8",
              "tolerance": 10,
-             "min_fraction": 0.9
+             "min_fraction": 0.9,
+             "anchor_y": 0.66
             }
            ],
            "then_steps": [
@@ -924,7 +987,8 @@
              "button": "left",
              "delay_before_ms": 1000,
              "duration_ms": 80,
-             "space": "device"
+             "space": "device",
+             "anchor_y": 0.5
             }
            ],
            "else_steps": [
@@ -940,7 +1004,8 @@
               ],
               "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
               "tolerance": 24,
-              "min_fraction": 0.7
+              "min_fraction": 0.7,
+              "anchor_y": 0.5
              },
              "delay_before_ms": 0,
              "also": [
@@ -953,7 +1018,8 @@
                ],
                "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                "tolerance": 24,
-               "min_fraction": 0.7
+               "min_fraction": 0.7,
+               "anchor_y": 0.5
               }
              ],
              "unless": [
@@ -966,7 +1032,8 @@
                ],
                "color": "#584878,#484878,#585888",
                "tolerance": 16,
-               "min_fraction": 0.7
+               "min_fraction": 0.7,
+               "anchor_y": 0.66
               },
               {
                "region": [
@@ -977,7 +1044,8 @@
                ],
                "color": "#f8f8f8,#f8f8e8",
                "tolerance": 10,
-               "min_fraction": 0.9
+               "min_fraction": 0.9,
+               "anchor_y": 0.66
               }
              ],
              "then_steps": [
@@ -988,7 +1056,8 @@
                "button": "left",
                "delay_before_ms": 1000,
                "duration_ms": 80,
-               "space": "device"
+               "space": "device",
+               "anchor_y": 0.5
               }
              ],
              "else_steps": [
@@ -1004,7 +1073,8 @@
                 ],
                 "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                 "tolerance": 24,
-                "min_fraction": 0.7
+                "min_fraction": 0.7,
+                "anchor_y": 0.5
                },
                "delay_before_ms": 0,
                "also": [
@@ -1017,7 +1087,8 @@
                  ],
                  "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                  "tolerance": 24,
-                 "min_fraction": 0.7
+                 "min_fraction": 0.7,
+                 "anchor_y": 0.5
                 }
                ],
                "unless": [
@@ -1030,7 +1101,8 @@
                  ],
                  "color": "#584878,#484878,#585888",
                  "tolerance": 16,
-                 "min_fraction": 0.7
+                 "min_fraction": 0.7,
+                 "anchor_y": 0.66
                 },
                 {
                  "region": [
@@ -1041,7 +1113,8 @@
                  ],
                  "color": "#f8f8f8,#f8f8e8",
                  "tolerance": 10,
-                 "min_fraction": 0.9
+                 "min_fraction": 0.9,
+                 "anchor_y": 0.66
                 }
                ],
                "then_steps": [
@@ -1052,7 +1125,8 @@
                  "button": "left",
                  "delay_before_ms": 1000,
                  "duration_ms": 80,
-                 "space": "device"
+                 "space": "device",
+                 "anchor_y": 0.5
                 }
                ],
                "else_steps": [
@@ -1068,7 +1142,8 @@
                   ],
                   "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                   "tolerance": 24,
-                  "min_fraction": 0.7
+                  "min_fraction": 0.7,
+                  "anchor_y": 0.5
                  },
                  "delay_before_ms": 0,
                  "also": [
@@ -1081,7 +1156,8 @@
                    ],
                    "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                    "tolerance": 24,
-                   "min_fraction": 0.7
+                   "min_fraction": 0.7,
+                   "anchor_y": 0.5
                   }
                  ],
                  "unless": [
@@ -1094,7 +1170,8 @@
                    ],
                    "color": "#584878,#484878,#585888",
                    "tolerance": 16,
-                   "min_fraction": 0.7
+                   "min_fraction": 0.7,
+                   "anchor_y": 0.66
                   },
                   {
                    "region": [
@@ -1105,7 +1182,8 @@
                    ],
                    "color": "#f8f8f8,#f8f8e8",
                    "tolerance": 10,
-                   "min_fraction": 0.9
+                   "min_fraction": 0.9,
+                   "anchor_y": 0.66
                   }
                  ],
                  "then_steps": [
@@ -1116,7 +1194,8 @@
                    "button": "left",
                    "delay_before_ms": 1000,
                    "duration_ms": 80,
-                   "space": "device"
+                   "space": "device",
+                   "anchor_y": 0.5
                   }
                  ],
                  "else_steps": [
@@ -1132,7 +1211,8 @@
                     ],
                     "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                     "tolerance": 24,
-                    "min_fraction": 0.7
+                    "min_fraction": 0.7,
+                    "anchor_y": 0.5
                    },
                    "delay_before_ms": 0,
                    "also": [
@@ -1145,7 +1225,8 @@
                      ],
                      "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                      "tolerance": 24,
-                     "min_fraction": 0.7
+                     "min_fraction": 0.7,
+                     "anchor_y": 0.5
                     }
                    ],
                    "unless": [
@@ -1158,7 +1239,8 @@
                      ],
                      "color": "#584878,#484878,#585888",
                      "tolerance": 16,
-                     "min_fraction": 0.7
+                     "min_fraction": 0.7,
+                     "anchor_y": 0.66
                     },
                     {
                      "region": [
@@ -1169,7 +1251,8 @@
                      ],
                      "color": "#f8f8f8,#f8f8e8",
                      "tolerance": 10,
-                     "min_fraction": 0.9
+                     "min_fraction": 0.9,
+                     "anchor_y": 0.66
                     }
                    ],
                    "then_steps": [
@@ -1180,7 +1263,8 @@
                      "button": "left",
                      "delay_before_ms": 1000,
                      "duration_ms": 80,
-                     "space": "device"
+                     "space": "device",
+                     "anchor_y": 0.5
                     }
                    ],
                    "else_steps": [
@@ -1196,7 +1280,8 @@
                       ],
                       "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                       "tolerance": 24,
-                      "min_fraction": 0.7
+                      "min_fraction": 0.7,
+                      "anchor_y": 0.5
                      },
                      "delay_before_ms": 0,
                      "also": [
@@ -1209,7 +1294,8 @@
                        ],
                        "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                        "tolerance": 24,
-                       "min_fraction": 0.7
+                       "min_fraction": 0.7,
+                       "anchor_y": 0.5
                       }
                      ],
                      "unless": [
@@ -1222,7 +1308,8 @@
                        ],
                        "color": "#584878,#484878,#585888",
                        "tolerance": 16,
-                       "min_fraction": 0.7
+                       "min_fraction": 0.7,
+                       "anchor_y": 0.66
                       },
                       {
                        "region": [
@@ -1233,7 +1320,8 @@
                        ],
                        "color": "#f8f8f8,#f8f8e8",
                        "tolerance": 10,
-                       "min_fraction": 0.9
+                       "min_fraction": 0.9,
+                       "anchor_y": 0.66
                       }
                      ],
                      "then_steps": [
@@ -1244,7 +1332,8 @@
                        "button": "left",
                        "delay_before_ms": 1000,
                        "duration_ms": 80,
-                       "space": "device"
+                       "space": "device",
+                       "anchor_y": 0.5
                       }
                      ],
                      "else_steps": [
@@ -1260,7 +1349,8 @@
                         ],
                         "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                         "tolerance": 24,
-                        "min_fraction": 0.7
+                        "min_fraction": 0.7,
+                        "anchor_y": 0.5
                        },
                        "delay_before_ms": 0,
                        "also": [
@@ -1273,7 +1363,8 @@
                          ],
                          "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                          "tolerance": 24,
-                         "min_fraction": 0.7
+                         "min_fraction": 0.7,
+                         "anchor_y": 0.5
                         }
                        ],
                        "unless": [
@@ -1286,7 +1377,8 @@
                          ],
                          "color": "#584878,#484878,#585888",
                          "tolerance": 16,
-                         "min_fraction": 0.7
+                         "min_fraction": 0.7,
+                         "anchor_y": 0.66
                         },
                         {
                          "region": [
@@ -1297,7 +1389,8 @@
                          ],
                          "color": "#f8f8f8,#f8f8e8",
                          "tolerance": 10,
-                         "min_fraction": 0.9
+                         "min_fraction": 0.9,
+                         "anchor_y": 0.66
                         }
                        ],
                        "then_steps": [
@@ -1308,7 +1401,8 @@
                          "button": "left",
                          "delay_before_ms": 1000,
                          "duration_ms": 80,
-                         "space": "device"
+                         "space": "device",
+                         "anchor_y": 0.5
                         }
                        ],
                        "else_steps": [
@@ -1324,7 +1418,8 @@
                           ],
                           "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                           "tolerance": 24,
-                          "min_fraction": 0.7
+                          "min_fraction": 0.7,
+                          "anchor_y": 0.5
                          },
                          "delay_before_ms": 0,
                          "also": [
@@ -1337,7 +1432,8 @@
                            ],
                            "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                            "tolerance": 24,
-                           "min_fraction": 0.7
+                           "min_fraction": 0.7,
+                           "anchor_y": 0.5
                           }
                          ],
                          "unless": [
@@ -1350,7 +1446,8 @@
                            ],
                            "color": "#584878,#484878,#585888",
                            "tolerance": 16,
-                           "min_fraction": 0.7
+                           "min_fraction": 0.7,
+                           "anchor_y": 0.66
                           },
                           {
                            "region": [
@@ -1361,7 +1458,8 @@
                            ],
                            "color": "#f8f8f8,#f8f8e8",
                            "tolerance": 10,
-                           "min_fraction": 0.9
+                           "min_fraction": 0.9,
+                           "anchor_y": 0.66
                           }
                          ],
                          "then_steps": [
@@ -1372,7 +1470,8 @@
                            "button": "left",
                            "delay_before_ms": 1000,
                            "duration_ms": 80,
-                           "space": "device"
+                           "space": "device",
+                           "anchor_y": 0.5
                           }
                          ],
                          "else_steps": [
@@ -1388,7 +1487,8 @@
                             ],
                             "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                             "tolerance": 24,
-                            "min_fraction": 0.7
+                            "min_fraction": 0.7,
+                            "anchor_y": 0.5
                            },
                            "delay_before_ms": 0,
                            "also": [
@@ -1401,7 +1501,8 @@
                              ],
                              "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                              "tolerance": 24,
-                             "min_fraction": 0.7
+                             "min_fraction": 0.7,
+                             "anchor_y": 0.5
                             }
                            ],
                            "unless": [
@@ -1414,7 +1515,8 @@
                              ],
                              "color": "#584878,#484878,#585888",
                              "tolerance": 16,
-                             "min_fraction": 0.7
+                             "min_fraction": 0.7,
+                             "anchor_y": 0.66
                             },
                             {
                              "region": [
@@ -1425,7 +1527,8 @@
                              ],
                              "color": "#f8f8f8,#f8f8e8",
                              "tolerance": 10,
-                             "min_fraction": 0.9
+                             "min_fraction": 0.9,
+                             "anchor_y": 0.66
                             }
                            ],
                            "then_steps": [
@@ -1436,7 +1539,8 @@
                              "button": "left",
                              "delay_before_ms": 1000,
                              "duration_ms": 80,
-                             "space": "device"
+                             "space": "device",
+                             "anchor_y": 0.5
                             }
                            ],
                            "else_steps": [
@@ -1452,7 +1556,8 @@
                               ],
                               "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                               "tolerance": 24,
-                              "min_fraction": 0.7
+                              "min_fraction": 0.7,
+                              "anchor_y": 0.5
                              },
                              "delay_before_ms": 0,
                              "also": [
@@ -1465,7 +1570,8 @@
                                ],
                                "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                "tolerance": 24,
-                               "min_fraction": 0.7
+                               "min_fraction": 0.7,
+                               "anchor_y": 0.5
                               }
                              ],
                              "unless": [
@@ -1478,7 +1584,8 @@
                                ],
                                "color": "#584878,#484878,#585888",
                                "tolerance": 16,
-                               "min_fraction": 0.7
+                               "min_fraction": 0.7,
+                               "anchor_y": 0.66
                               },
                               {
                                "region": [
@@ -1489,7 +1596,8 @@
                                ],
                                "color": "#f8f8f8,#f8f8e8",
                                "tolerance": 10,
-                               "min_fraction": 0.9
+                               "min_fraction": 0.9,
+                               "anchor_y": 0.66
                               }
                              ],
                              "then_steps": [
@@ -1500,7 +1608,8 @@
                                "button": "left",
                                "delay_before_ms": 1000,
                                "duration_ms": 80,
-                               "space": "device"
+                               "space": "device",
+                               "anchor_y": 0.5
                               }
                              ],
                              "else_steps": [
@@ -1516,7 +1625,8 @@
                                 ],
                                 "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                 "tolerance": 24,
-                                "min_fraction": 0.7
+                                "min_fraction": 0.7,
+                                "anchor_y": 0.5
                                },
                                "delay_before_ms": 0,
                                "also": [
@@ -1529,7 +1639,8 @@
                                  ],
                                  "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                  "tolerance": 24,
-                                 "min_fraction": 0.7
+                                 "min_fraction": 0.7,
+                                 "anchor_y": 0.5
                                 }
                                ],
                                "unless": [
@@ -1542,7 +1653,8 @@
                                  ],
                                  "color": "#584878,#484878,#585888",
                                  "tolerance": 16,
-                                 "min_fraction": 0.7
+                                 "min_fraction": 0.7,
+                                 "anchor_y": 0.66
                                 },
                                 {
                                  "region": [
@@ -1553,7 +1665,8 @@
                                  ],
                                  "color": "#f8f8f8,#f8f8e8",
                                  "tolerance": 10,
-                                 "min_fraction": 0.9
+                                 "min_fraction": 0.9,
+                                 "anchor_y": 0.66
                                 }
                                ],
                                "then_steps": [
@@ -1564,7 +1677,8 @@
                                  "button": "left",
                                  "delay_before_ms": 1000,
                                  "duration_ms": 80,
-                                 "space": "device"
+                                 "space": "device",
+                                 "anchor_y": 0.5
                                 }
                                ],
                                "else_steps": [
@@ -1580,7 +1694,8 @@
                                   ],
                                   "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                   "tolerance": 24,
-                                  "min_fraction": 0.7
+                                  "min_fraction": 0.7,
+                                  "anchor_y": 0.5
                                  },
                                  "delay_before_ms": 0,
                                  "also": [
@@ -1593,7 +1708,8 @@
                                    ],
                                    "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                    "tolerance": 24,
-                                   "min_fraction": 0.7
+                                   "min_fraction": 0.7,
+                                   "anchor_y": 0.5
                                   }
                                  ],
                                  "unless": [
@@ -1606,7 +1722,8 @@
                                    ],
                                    "color": "#584878,#484878,#585888",
                                    "tolerance": 16,
-                                   "min_fraction": 0.7
+                                   "min_fraction": 0.7,
+                                   "anchor_y": 0.66
                                   },
                                   {
                                    "region": [
@@ -1617,7 +1734,8 @@
                                    ],
                                    "color": "#f8f8f8,#f8f8e8",
                                    "tolerance": 10,
-                                   "min_fraction": 0.9
+                                   "min_fraction": 0.9,
+                                   "anchor_y": 0.66
                                   }
                                  ],
                                  "then_steps": [
@@ -1628,7 +1746,8 @@
                                    "button": "left",
                                    "delay_before_ms": 1000,
                                    "duration_ms": 80,
-                                   "space": "device"
+                                   "space": "device",
+                                   "anchor_y": 0.5
                                   }
                                  ],
                                  "else_steps": [
@@ -1644,7 +1763,8 @@
                                     ],
                                     "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                     "tolerance": 24,
-                                    "min_fraction": 0.7
+                                    "min_fraction": 0.7,
+                                    "anchor_y": 0.5
                                    },
                                    "delay_before_ms": 0,
                                    "also": [
@@ -1657,7 +1777,8 @@
                                      ],
                                      "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                      "tolerance": 24,
-                                     "min_fraction": 0.7
+                                     "min_fraction": 0.7,
+                                     "anchor_y": 0.5
                                     }
                                    ],
                                    "unless": [
@@ -1670,7 +1791,8 @@
                                      ],
                                      "color": "#584878,#484878,#585888",
                                      "tolerance": 16,
-                                     "min_fraction": 0.7
+                                     "min_fraction": 0.7,
+                                     "anchor_y": 0.66
                                     },
                                     {
                                      "region": [
@@ -1681,7 +1803,8 @@
                                      ],
                                      "color": "#f8f8f8,#f8f8e8",
                                      "tolerance": 10,
-                                     "min_fraction": 0.9
+                                     "min_fraction": 0.9,
+                                     "anchor_y": 0.66
                                     }
                                    ],
                                    "then_steps": [
@@ -1692,7 +1815,8 @@
                                      "button": "left",
                                      "delay_before_ms": 1000,
                                      "duration_ms": 80,
-                                     "space": "device"
+                                     "space": "device",
+                                     "anchor_y": 0.5
                                     }
                                    ],
                                    "else_steps": [
@@ -1708,7 +1832,8 @@
                                       ],
                                       "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                       "tolerance": 24,
-                                      "min_fraction": 0.7
+                                      "min_fraction": 0.7,
+                                      "anchor_y": 0.5
                                      },
                                      "delay_before_ms": 0,
                                      "also": [
@@ -1721,7 +1846,8 @@
                                        ],
                                        "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                        "tolerance": 24,
-                                       "min_fraction": 0.7
+                                       "min_fraction": 0.7,
+                                       "anchor_y": 0.5
                                       }
                                      ],
                                      "unless": [
@@ -1734,7 +1860,8 @@
                                        ],
                                        "color": "#584878,#484878,#585888",
                                        "tolerance": 16,
-                                       "min_fraction": 0.7
+                                       "min_fraction": 0.7,
+                                       "anchor_y": 0.66
                                       },
                                       {
                                        "region": [
@@ -1745,7 +1872,8 @@
                                        ],
                                        "color": "#f8f8f8,#f8f8e8",
                                        "tolerance": 10,
-                                       "min_fraction": 0.9
+                                       "min_fraction": 0.9,
+                                       "anchor_y": 0.66
                                       }
                                      ],
                                      "then_steps": [
@@ -1756,7 +1884,8 @@
                                        "button": "left",
                                        "delay_before_ms": 1000,
                                        "duration_ms": 80,
-                                       "space": "device"
+                                       "space": "device",
+                                       "anchor_y": 0.5
                                       }
                                      ],
                                      "else_steps": [
@@ -1772,7 +1901,8 @@
                                         ],
                                         "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                         "tolerance": 24,
-                                        "min_fraction": 0.7
+                                        "min_fraction": 0.7,
+                                        "anchor_y": 0.5
                                        },
                                        "delay_before_ms": 0,
                                        "also": [
@@ -1785,7 +1915,8 @@
                                          ],
                                          "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                          "tolerance": 24,
-                                         "min_fraction": 0.7
+                                         "min_fraction": 0.7,
+                                         "anchor_y": 0.5
                                         }
                                        ],
                                        "unless": [
@@ -1798,7 +1929,8 @@
                                          ],
                                          "color": "#584878,#484878,#585888",
                                          "tolerance": 16,
-                                         "min_fraction": 0.7
+                                         "min_fraction": 0.7,
+                                         "anchor_y": 0.66
                                         },
                                         {
                                          "region": [
@@ -1809,7 +1941,8 @@
                                          ],
                                          "color": "#f8f8f8,#f8f8e8",
                                          "tolerance": 10,
-                                         "min_fraction": 0.9
+                                         "min_fraction": 0.9,
+                                         "anchor_y": 0.66
                                         }
                                        ],
                                        "then_steps": [
@@ -1820,7 +1953,8 @@
                                          "button": "left",
                                          "delay_before_ms": 1000,
                                          "duration_ms": 80,
-                                         "space": "device"
+                                         "space": "device",
+                                         "anchor_y": 0.5
                                         }
                                        ],
                                        "else_steps": [
@@ -1836,7 +1970,8 @@
                                           ],
                                           "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                           "tolerance": 24,
-                                          "min_fraction": 0.7
+                                          "min_fraction": 0.7,
+                                          "anchor_y": 0.5
                                          },
                                          "delay_before_ms": 0,
                                          "also": [
@@ -1849,7 +1984,8 @@
                                            ],
                                            "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                            "tolerance": 24,
-                                           "min_fraction": 0.7
+                                           "min_fraction": 0.7,
+                                           "anchor_y": 0.5
                                           }
                                          ],
                                          "unless": [
@@ -1862,7 +1998,8 @@
                                            ],
                                            "color": "#584878,#484878,#585888",
                                            "tolerance": 16,
-                                           "min_fraction": 0.7
+                                           "min_fraction": 0.7,
+                                           "anchor_y": 0.66
                                           },
                                           {
                                            "region": [
@@ -1873,7 +2010,8 @@
                                            ],
                                            "color": "#f8f8f8,#f8f8e8",
                                            "tolerance": 10,
-                                           "min_fraction": 0.9
+                                           "min_fraction": 0.9,
+                                           "anchor_y": 0.66
                                           }
                                          ],
                                          "then_steps": [
@@ -1884,7 +2022,8 @@
                                            "button": "left",
                                            "delay_before_ms": 1000,
                                            "duration_ms": 80,
-                                           "space": "device"
+                                           "space": "device",
+                                           "anchor_y": 0.5
                                           }
                                          ],
                                          "else_steps": [
@@ -1900,7 +2039,8 @@
                                             ],
                                             "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                             "tolerance": 24,
-                                            "min_fraction": 0.7
+                                            "min_fraction": 0.7,
+                                            "anchor_y": 0.5
                                            },
                                            "delay_before_ms": 0,
                                            "also": [
@@ -1913,7 +2053,8 @@
                                              ],
                                              "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                              "tolerance": 24,
-                                             "min_fraction": 0.7
+                                             "min_fraction": 0.7,
+                                             "anchor_y": 0.5
                                             }
                                            ],
                                            "unless": [
@@ -1926,7 +2067,8 @@
                                              ],
                                              "color": "#584878,#484878,#585888",
                                              "tolerance": 16,
-                                             "min_fraction": 0.7
+                                             "min_fraction": 0.7,
+                                             "anchor_y": 0.66
                                             },
                                             {
                                              "region": [
@@ -1937,7 +2079,8 @@
                                              ],
                                              "color": "#f8f8f8,#f8f8e8",
                                              "tolerance": 10,
-                                             "min_fraction": 0.9
+                                             "min_fraction": 0.9,
+                                             "anchor_y": 0.66
                                             }
                                            ],
                                            "then_steps": [
@@ -1948,7 +2091,8 @@
                                              "button": "left",
                                              "delay_before_ms": 1000,
                                              "duration_ms": 80,
-                                             "space": "device"
+                                             "space": "device",
+                                             "anchor_y": 0.5
                                             }
                                            ],
                                            "else_steps": [
@@ -1964,7 +2108,8 @@
                                               ],
                                               "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                               "tolerance": 24,
-                                              "min_fraction": 0.7
+                                              "min_fraction": 0.7,
+                                              "anchor_y": 0.5
                                              },
                                              "delay_before_ms": 0,
                                              "also": [
@@ -1977,7 +2122,8 @@
                                                ],
                                                "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                                "tolerance": 24,
-                                               "min_fraction": 0.7
+                                               "min_fraction": 0.7,
+                                               "anchor_y": 0.5
                                               }
                                              ],
                                              "unless": [
@@ -1990,7 +2136,8 @@
                                                ],
                                                "color": "#584878,#484878,#585888",
                                                "tolerance": 16,
-                                               "min_fraction": 0.7
+                                               "min_fraction": 0.7,
+                                               "anchor_y": 0.66
                                               },
                                               {
                                                "region": [
@@ -2001,7 +2148,8 @@
                                                ],
                                                "color": "#f8f8f8,#f8f8e8",
                                                "tolerance": 10,
-                                               "min_fraction": 0.9
+                                               "min_fraction": 0.9,
+                                               "anchor_y": 0.66
                                               }
                                              ],
                                              "then_steps": [
@@ -2012,7 +2160,8 @@
                                                "button": "left",
                                                "delay_before_ms": 1000,
                                                "duration_ms": 80,
-                                               "space": "device"
+                                               "space": "device",
+                                               "anchor_y": 0.5
                                               }
                                              ],
                                              "else_steps": [
@@ -2028,7 +2177,8 @@
                                                 ],
                                                 "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                                 "tolerance": 24,
-                                                "min_fraction": 0.7
+                                                "min_fraction": 0.7,
+                                                "anchor_y": 0.5
                                                },
                                                "delay_before_ms": 0,
                                                "also": [
@@ -2041,7 +2191,8 @@
                                                  ],
                                                  "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                                  "tolerance": 24,
-                                                 "min_fraction": 0.7
+                                                 "min_fraction": 0.7,
+                                                 "anchor_y": 0.5
                                                 }
                                                ],
                                                "unless": [
@@ -2054,7 +2205,8 @@
                                                  ],
                                                  "color": "#584878,#484878,#585888",
                                                  "tolerance": 16,
-                                                 "min_fraction": 0.7
+                                                 "min_fraction": 0.7,
+                                                 "anchor_y": 0.66
                                                 },
                                                 {
                                                  "region": [
@@ -2065,7 +2217,8 @@
                                                  ],
                                                  "color": "#f8f8f8,#f8f8e8",
                                                  "tolerance": 10,
-                                                 "min_fraction": 0.9
+                                                 "min_fraction": 0.9,
+                                                 "anchor_y": 0.66
                                                 }
                                                ],
                                                "then_steps": [
@@ -2076,7 +2229,8 @@
                                                  "button": "left",
                                                  "delay_before_ms": 1000,
                                                  "duration_ms": 80,
-                                                 "space": "device"
+                                                 "space": "device",
+                                                 "anchor_y": 0.5
                                                 }
                                                ],
                                                "else_steps": [
@@ -2092,7 +2246,8 @@
                                                   ],
                                                   "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                                   "tolerance": 24,
-                                                  "min_fraction": 0.7
+                                                  "min_fraction": 0.7,
+                                                  "anchor_y": 0.5
                                                  },
                                                  "delay_before_ms": 0,
                                                  "also": [
@@ -2105,7 +2260,8 @@
                                                    ],
                                                    "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                                    "tolerance": 24,
-                                                   "min_fraction": 0.7
+                                                   "min_fraction": 0.7,
+                                                   "anchor_y": 0.5
                                                   }
                                                  ],
                                                  "unless": [
@@ -2118,7 +2274,8 @@
                                                    ],
                                                    "color": "#584878,#484878,#585888",
                                                    "tolerance": 16,
-                                                   "min_fraction": 0.7
+                                                   "min_fraction": 0.7,
+                                                   "anchor_y": 0.66
                                                   },
                                                   {
                                                    "region": [
@@ -2129,7 +2286,8 @@
                                                    ],
                                                    "color": "#f8f8f8,#f8f8e8",
                                                    "tolerance": 10,
-                                                   "min_fraction": 0.9
+                                                   "min_fraction": 0.9,
+                                                   "anchor_y": 0.66
                                                   }
                                                  ],
                                                  "then_steps": [
@@ -2140,7 +2298,8 @@
                                                    "button": "left",
                                                    "delay_before_ms": 1000,
                                                    "duration_ms": 80,
-                                                   "space": "device"
+                                                   "space": "device",
+                                                   "anchor_y": 0.5
                                                   }
                                                  ],
                                                  "else_steps": [
@@ -2156,7 +2315,8 @@
                                                     ],
                                                     "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                                     "tolerance": 24,
-                                                    "min_fraction": 0.7
+                                                    "min_fraction": 0.7,
+                                                    "anchor_y": 0.5
                                                    },
                                                    "delay_before_ms": 0,
                                                    "also": [
@@ -2169,7 +2329,8 @@
                                                      ],
                                                      "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                                      "tolerance": 24,
-                                                     "min_fraction": 0.7
+                                                     "min_fraction": 0.7,
+                                                     "anchor_y": 0.5
                                                     }
                                                    ],
                                                    "unless": [
@@ -2182,7 +2343,8 @@
                                                      ],
                                                      "color": "#584878,#484878,#585888",
                                                      "tolerance": 16,
-                                                     "min_fraction": 0.7
+                                                     "min_fraction": 0.7,
+                                                     "anchor_y": 0.66
                                                     },
                                                     {
                                                      "region": [
@@ -2193,7 +2355,8 @@
                                                      ],
                                                      "color": "#f8f8f8,#f8f8e8",
                                                      "tolerance": 10,
-                                                     "min_fraction": 0.9
+                                                     "min_fraction": 0.9,
+                                                     "anchor_y": 0.66
                                                     }
                                                    ],
                                                    "then_steps": [
@@ -2204,7 +2367,8 @@
                                                      "button": "left",
                                                      "delay_before_ms": 1000,
                                                      "duration_ms": 80,
-                                                     "space": "device"
+                                                     "space": "device",
+                                                     "anchor_y": 0.5
                                                     }
                                                    ],
                                                    "else_steps": [
@@ -2220,7 +2384,8 @@
                                                       ],
                                                       "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                                       "tolerance": 24,
-                                                      "min_fraction": 0.7
+                                                      "min_fraction": 0.7,
+                                                      "anchor_y": 0.5
                                                      },
                                                      "delay_before_ms": 0,
                                                      "also": [
@@ -2233,7 +2398,8 @@
                                                        ],
                                                        "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                                        "tolerance": 24,
-                                                       "min_fraction": 0.7
+                                                       "min_fraction": 0.7,
+                                                       "anchor_y": 0.5
                                                       }
                                                      ],
                                                      "unless": [
@@ -2246,7 +2412,8 @@
                                                        ],
                                                        "color": "#584878,#484878,#585888",
                                                        "tolerance": 16,
-                                                       "min_fraction": 0.7
+                                                       "min_fraction": 0.7,
+                                                       "anchor_y": 0.66
                                                       },
                                                       {
                                                        "region": [
@@ -2257,7 +2424,8 @@
                                                        ],
                                                        "color": "#f8f8f8,#f8f8e8",
                                                        "tolerance": 10,
-                                                       "min_fraction": 0.9
+                                                       "min_fraction": 0.9,
+                                                       "anchor_y": 0.66
                                                       }
                                                      ],
                                                      "then_steps": [
@@ -2268,7 +2436,8 @@
                                                        "button": "left",
                                                        "delay_before_ms": 1000,
                                                        "duration_ms": 80,
-                                                       "space": "device"
+                                                       "space": "device",
+                                                       "anchor_y": 0.5
                                                       }
                                                      ],
                                                      "else_steps": [
@@ -2284,7 +2453,8 @@
                                                         ],
                                                         "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                                         "tolerance": 24,
-                                                        "min_fraction": 0.7
+                                                        "min_fraction": 0.7,
+                                                        "anchor_y": 0.5
                                                        },
                                                        "delay_before_ms": 0,
                                                        "also": [
@@ -2297,7 +2467,8 @@
                                                          ],
                                                          "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                                          "tolerance": 24,
-                                                         "min_fraction": 0.7
+                                                         "min_fraction": 0.7,
+                                                         "anchor_y": 0.5
                                                         }
                                                        ],
                                                        "unless": [
@@ -2310,7 +2481,8 @@
                                                          ],
                                                          "color": "#584878,#484878,#585888",
                                                          "tolerance": 16,
-                                                         "min_fraction": 0.7
+                                                         "min_fraction": 0.7,
+                                                         "anchor_y": 0.66
                                                         },
                                                         {
                                                          "region": [
@@ -2321,7 +2493,8 @@
                                                          ],
                                                          "color": "#f8f8f8,#f8f8e8",
                                                          "tolerance": 10,
-                                                         "min_fraction": 0.9
+                                                         "min_fraction": 0.9,
+                                                         "anchor_y": 0.66
                                                         }
                                                        ],
                                                        "then_steps": [
@@ -2332,7 +2505,8 @@
                                                          "button": "left",
                                                          "delay_before_ms": 1000,
                                                          "duration_ms": 80,
-                                                         "space": "device"
+                                                         "space": "device",
+                                                         "anchor_y": 0.5
                                                         }
                                                        ],
                                                        "else_steps": [
@@ -2348,7 +2522,8 @@
                                                           ],
                                                           "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                                           "tolerance": 24,
-                                                          "min_fraction": 0.7
+                                                          "min_fraction": 0.7,
+                                                          "anchor_y": 0.5
                                                          },
                                                          "delay_before_ms": 0,
                                                          "also": [
@@ -2361,7 +2536,8 @@
                                                            ],
                                                            "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                                            "tolerance": 24,
-                                                           "min_fraction": 0.7
+                                                           "min_fraction": 0.7,
+                                                           "anchor_y": 0.5
                                                           }
                                                          ],
                                                          "unless": [
@@ -2374,7 +2550,8 @@
                                                            ],
                                                            "color": "#584878,#484878,#585888",
                                                            "tolerance": 16,
-                                                           "min_fraction": 0.7
+                                                           "min_fraction": 0.7,
+                                                           "anchor_y": 0.66
                                                           },
                                                           {
                                                            "region": [
@@ -2385,7 +2562,8 @@
                                                            ],
                                                            "color": "#f8f8f8,#f8f8e8",
                                                            "tolerance": 10,
-                                                           "min_fraction": 0.9
+                                                           "min_fraction": 0.9,
+                                                           "anchor_y": 0.66
                                                           }
                                                          ],
                                                          "then_steps": [
@@ -2396,7 +2574,8 @@
                                                            "button": "left",
                                                            "delay_before_ms": 1000,
                                                            "duration_ms": 80,
-                                                           "space": "device"
+                                                           "space": "device",
+                                                           "anchor_y": 0.5
                                                           }
                                                          ],
                                                          "else_steps": [
@@ -2412,7 +2591,8 @@
                                                             ],
                                                             "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                                             "tolerance": 24,
-                                                            "min_fraction": 0.7
+                                                            "min_fraction": 0.7,
+                                                            "anchor_y": 0.5
                                                            },
                                                            "delay_before_ms": 0,
                                                            "also": [
@@ -2425,7 +2605,8 @@
                                                              ],
                                                              "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                                              "tolerance": 24,
-                                                             "min_fraction": 0.7
+                                                             "min_fraction": 0.7,
+                                                             "anchor_y": 0.5
                                                             }
                                                            ],
                                                            "unless": [
@@ -2438,7 +2619,8 @@
                                                              ],
                                                              "color": "#584878,#484878,#585888",
                                                              "tolerance": 16,
-                                                             "min_fraction": 0.7
+                                                             "min_fraction": 0.7,
+                                                             "anchor_y": 0.66
                                                             },
                                                             {
                                                              "region": [
@@ -2449,7 +2631,8 @@
                                                              ],
                                                              "color": "#f8f8f8,#f8f8e8",
                                                              "tolerance": 10,
-                                                             "min_fraction": 0.9
+                                                             "min_fraction": 0.9,
+                                                             "anchor_y": 0.66
                                                             }
                                                            ],
                                                            "then_steps": [
@@ -2460,7 +2643,8 @@
                                                              "button": "left",
                                                              "delay_before_ms": 1000,
                                                              "duration_ms": 80,
-                                                             "space": "device"
+                                                             "space": "device",
+                                                             "anchor_y": 0.5
                                                             }
                                                            ],
                                                            "else_steps": [
@@ -2476,7 +2660,8 @@
                                                               ],
                                                               "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                                               "tolerance": 24,
-                                                              "min_fraction": 0.7
+                                                              "min_fraction": 0.7,
+                                                              "anchor_y": 0.5
                                                              },
                                                              "delay_before_ms": 0,
                                                              "also": [
@@ -2489,7 +2674,8 @@
                                                                ],
                                                                "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                                                "tolerance": 24,
-                                                               "min_fraction": 0.7
+                                                               "min_fraction": 0.7,
+                                                               "anchor_y": 0.5
                                                               }
                                                              ],
                                                              "unless": [
@@ -2502,7 +2688,8 @@
                                                                ],
                                                                "color": "#584878,#484878,#585888",
                                                                "tolerance": 16,
-                                                               "min_fraction": 0.7
+                                                               "min_fraction": 0.7,
+                                                               "anchor_y": 0.66
                                                               },
                                                               {
                                                                "region": [
@@ -2513,7 +2700,8 @@
                                                                ],
                                                                "color": "#f8f8f8,#f8f8e8",
                                                                "tolerance": 10,
-                                                               "min_fraction": 0.9
+                                                               "min_fraction": 0.9,
+                                                               "anchor_y": 0.66
                                                               }
                                                              ],
                                                              "then_steps": [
@@ -2524,7 +2712,8 @@
                                                                "button": "left",
                                                                "delay_before_ms": 1000,
                                                                "duration_ms": 80,
-                                                               "space": "device"
+                                                               "space": "device",
+                                                               "anchor_y": 0.5
                                                               }
                                                              ],
                                                              "else_steps": [
@@ -2540,7 +2729,8 @@
                                                                 ],
                                                                 "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                                                 "tolerance": 24,
-                                                                "min_fraction": 0.7
+                                                                "min_fraction": 0.7,
+                                                                "anchor_y": 0.5
                                                                },
                                                                "delay_before_ms": 0,
                                                                "also": [
@@ -2553,7 +2743,8 @@
                                                                  ],
                                                                  "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                                                  "tolerance": 24,
-                                                                 "min_fraction": 0.7
+                                                                 "min_fraction": 0.7,
+                                                                 "anchor_y": 0.5
                                                                 }
                                                                ],
                                                                "unless": [
@@ -2566,7 +2757,8 @@
                                                                  ],
                                                                  "color": "#584878,#484878,#585888",
                                                                  "tolerance": 16,
-                                                                 "min_fraction": 0.7
+                                                                 "min_fraction": 0.7,
+                                                                 "anchor_y": 0.66
                                                                 },
                                                                 {
                                                                  "region": [
@@ -2577,7 +2769,8 @@
                                                                  ],
                                                                  "color": "#f8f8f8,#f8f8e8",
                                                                  "tolerance": 10,
-                                                                 "min_fraction": 0.9
+                                                                 "min_fraction": 0.9,
+                                                                 "anchor_y": 0.66
                                                                 }
                                                                ],
                                                                "then_steps": [
@@ -2588,7 +2781,8 @@
                                                                  "button": "left",
                                                                  "delay_before_ms": 1000,
                                                                  "duration_ms": 80,
-                                                                 "space": "device"
+                                                                 "space": "device",
+                                                                 "anchor_y": 0.5
                                                                 }
                                                                ],
                                                                "else_steps": [
@@ -2604,7 +2798,8 @@
                                                                   ],
                                                                   "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                                                   "tolerance": 24,
-                                                                  "min_fraction": 0.7
+                                                                  "min_fraction": 0.7,
+                                                                  "anchor_y": 0.5
                                                                  },
                                                                  "delay_before_ms": 0,
                                                                  "also": [
@@ -2617,7 +2812,8 @@
                                                                    ],
                                                                    "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                                                    "tolerance": 24,
-                                                                   "min_fraction": 0.7
+                                                                   "min_fraction": 0.7,
+                                                                   "anchor_y": 0.5
                                                                   }
                                                                  ],
                                                                  "unless": [
@@ -2630,7 +2826,8 @@
                                                                    ],
                                                                    "color": "#584878,#484878,#585888",
                                                                    "tolerance": 16,
-                                                                   "min_fraction": 0.7
+                                                                   "min_fraction": 0.7,
+                                                                   "anchor_y": 0.66
                                                                   },
                                                                   {
                                                                    "region": [
@@ -2641,7 +2838,8 @@
                                                                    ],
                                                                    "color": "#f8f8f8,#f8f8e8",
                                                                    "tolerance": 10,
-                                                                   "min_fraction": 0.9
+                                                                   "min_fraction": 0.9,
+                                                                   "anchor_y": 0.66
                                                                   }
                                                                  ],
                                                                  "then_steps": [
@@ -2652,7 +2850,8 @@
                                                                    "button": "left",
                                                                    "delay_before_ms": 1000,
                                                                    "duration_ms": 80,
-                                                                   "space": "device"
+                                                                   "space": "device",
+                                                                   "anchor_y": 0.5
                                                                   }
                                                                  ],
                                                                  "else_steps": [
@@ -2668,7 +2867,8 @@
                                                                     ],
                                                                     "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                                                     "tolerance": 24,
-                                                                    "min_fraction": 0.7
+                                                                    "min_fraction": 0.7,
+                                                                    "anchor_y": 0.5
                                                                    },
                                                                    "delay_before_ms": 0,
                                                                    "also": [
@@ -2681,7 +2881,8 @@
                                                                      ],
                                                                      "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                                                      "tolerance": 24,
-                                                                     "min_fraction": 0.7
+                                                                     "min_fraction": 0.7,
+                                                                     "anchor_y": 0.5
                                                                     }
                                                                    ],
                                                                    "unless": [
@@ -2694,7 +2895,8 @@
                                                                      ],
                                                                      "color": "#584878,#484878,#585888",
                                                                      "tolerance": 16,
-                                                                     "min_fraction": 0.7
+                                                                     "min_fraction": 0.7,
+                                                                     "anchor_y": 0.66
                                                                     },
                                                                     {
                                                                      "region": [
@@ -2705,7 +2907,8 @@
                                                                      ],
                                                                      "color": "#f8f8f8,#f8f8e8",
                                                                      "tolerance": 10,
-                                                                     "min_fraction": 0.9
+                                                                     "min_fraction": 0.9,
+                                                                     "anchor_y": 0.66
                                                                     }
                                                                    ],
                                                                    "then_steps": [
@@ -2716,7 +2919,8 @@
                                                                      "button": "left",
                                                                      "delay_before_ms": 1000,
                                                                      "duration_ms": 80,
-                                                                     "space": "device"
+                                                                     "space": "device",
+                                                                     "anchor_y": 0.5
                                                                     }
                                                                    ],
                                                                    "else_steps": [
@@ -2732,7 +2936,8 @@
                                                                       ],
                                                                       "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                                                       "tolerance": 24,
-                                                                      "min_fraction": 0.7
+                                                                      "min_fraction": 0.7,
+                                                                      "anchor_y": 0.5
                                                                      },
                                                                      "delay_before_ms": 0,
                                                                      "also": [
@@ -2745,7 +2950,8 @@
                                                                        ],
                                                                        "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                                                        "tolerance": 24,
-                                                                       "min_fraction": 0.7
+                                                                       "min_fraction": 0.7,
+                                                                       "anchor_y": 0.5
                                                                       }
                                                                      ],
                                                                      "unless": [
@@ -2758,7 +2964,8 @@
                                                                        ],
                                                                        "color": "#584878,#484878,#585888",
                                                                        "tolerance": 16,
-                                                                       "min_fraction": 0.7
+                                                                       "min_fraction": 0.7,
+                                                                       "anchor_y": 0.66
                                                                       },
                                                                       {
                                                                        "region": [
@@ -2769,7 +2976,8 @@
                                                                        ],
                                                                        "color": "#f8f8f8,#f8f8e8",
                                                                        "tolerance": 10,
-                                                                       "min_fraction": 0.9
+                                                                       "min_fraction": 0.9,
+                                                                       "anchor_y": 0.66
                                                                       }
                                                                      ],
                                                                      "then_steps": [
@@ -2780,7 +2988,8 @@
                                                                        "button": "left",
                                                                        "delay_before_ms": 1000,
                                                                        "duration_ms": 80,
-                                                                       "space": "device"
+                                                                       "space": "device",
+                                                                       "anchor_y": 0.5
                                                                       }
                                                                      ],
                                                                      "else_steps": [
@@ -2796,7 +3005,8 @@
                                                                         ],
                                                                         "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                                                         "tolerance": 24,
-                                                                        "min_fraction": 0.7
+                                                                        "min_fraction": 0.7,
+                                                                        "anchor_y": 0.5
                                                                        },
                                                                        "delay_before_ms": 0,
                                                                        "also": [
@@ -2809,7 +3019,8 @@
                                                                          ],
                                                                          "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                                                          "tolerance": 24,
-                                                                         "min_fraction": 0.7
+                                                                         "min_fraction": 0.7,
+                                                                         "anchor_y": 0.5
                                                                         }
                                                                        ],
                                                                        "unless": [
@@ -2822,7 +3033,8 @@
                                                                          ],
                                                                          "color": "#584878,#484878,#585888",
                                                                          "tolerance": 16,
-                                                                         "min_fraction": 0.7
+                                                                         "min_fraction": 0.7,
+                                                                         "anchor_y": 0.66
                                                                         },
                                                                         {
                                                                          "region": [
@@ -2833,7 +3045,8 @@
                                                                          ],
                                                                          "color": "#f8f8f8,#f8f8e8",
                                                                          "tolerance": 10,
-                                                                         "min_fraction": 0.9
+                                                                         "min_fraction": 0.9,
+                                                                         "anchor_y": 0.66
                                                                         }
                                                                        ],
                                                                        "then_steps": [
@@ -2844,7 +3057,8 @@
                                                                          "button": "left",
                                                                          "delay_before_ms": 1000,
                                                                          "duration_ms": 80,
-                                                                         "space": "device"
+                                                                         "space": "device",
+                                                                         "anchor_y": 0.5
                                                                         }
                                                                        ],
                                                                        "else_steps": [
@@ -2860,7 +3074,8 @@
                                                                           ],
                                                                           "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                                                           "tolerance": 24,
-                                                                          "min_fraction": 0.7
+                                                                          "min_fraction": 0.7,
+                                                                          "anchor_y": 0.5
                                                                          },
                                                                          "delay_before_ms": 0,
                                                                          "also": [
@@ -2873,7 +3088,8 @@
                                                                            ],
                                                                            "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                                                            "tolerance": 24,
-                                                                           "min_fraction": 0.7
+                                                                           "min_fraction": 0.7,
+                                                                           "anchor_y": 0.5
                                                                           }
                                                                          ],
                                                                          "unless": [
@@ -2886,7 +3102,8 @@
                                                                            ],
                                                                            "color": "#584878,#484878,#585888",
                                                                            "tolerance": 16,
-                                                                           "min_fraction": 0.7
+                                                                           "min_fraction": 0.7,
+                                                                           "anchor_y": 0.66
                                                                           },
                                                                           {
                                                                            "region": [
@@ -2897,7 +3114,8 @@
                                                                            ],
                                                                            "color": "#f8f8f8,#f8f8e8",
                                                                            "tolerance": 10,
-                                                                           "min_fraction": 0.9
+                                                                           "min_fraction": 0.9,
+                                                                           "anchor_y": 0.66
                                                                           }
                                                                          ],
                                                                          "then_steps": [
@@ -2908,7 +3126,8 @@
                                                                            "button": "left",
                                                                            "delay_before_ms": 1000,
                                                                            "duration_ms": 80,
-                                                                           "space": "device"
+                                                                           "space": "device",
+                                                                           "anchor_y": 0.5
                                                                           }
                                                                          ],
                                                                          "else_steps": [
@@ -2924,7 +3143,8 @@
                                                                             ],
                                                                             "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                                                             "tolerance": 24,
-                                                                            "min_fraction": 0.7
+                                                                            "min_fraction": 0.7,
+                                                                            "anchor_y": 0.5
                                                                            },
                                                                            "delay_before_ms": 0,
                                                                            "also": [
@@ -2937,7 +3157,8 @@
                                                                              ],
                                                                              "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                                                              "tolerance": 24,
-                                                                             "min_fraction": 0.7
+                                                                             "min_fraction": 0.7,
+                                                                             "anchor_y": 0.5
                                                                             }
                                                                            ],
                                                                            "unless": [
@@ -2950,7 +3171,8 @@
                                                                              ],
                                                                              "color": "#584878,#484878,#585888",
                                                                              "tolerance": 16,
-                                                                             "min_fraction": 0.7
+                                                                             "min_fraction": 0.7,
+                                                                             "anchor_y": 0.66
                                                                             },
                                                                             {
                                                                              "region": [
@@ -2961,7 +3183,8 @@
                                                                              ],
                                                                              "color": "#f8f8f8,#f8f8e8",
                                                                              "tolerance": 10,
-                                                                             "min_fraction": 0.9
+                                                                             "min_fraction": 0.9,
+                                                                             "anchor_y": 0.66
                                                                             }
                                                                            ],
                                                                            "then_steps": [
@@ -2972,7 +3195,8 @@
                                                                              "button": "left",
                                                                              "delay_before_ms": 1000,
                                                                              "duration_ms": 80,
-                                                                             "space": "device"
+                                                                             "space": "device",
+                                                                             "anchor_y": 0.5
                                                                             }
                                                                            ],
                                                                            "else_steps": [
@@ -2988,7 +3212,8 @@
                                                                               ],
                                                                               "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                                                               "tolerance": 24,
-                                                                              "min_fraction": 0.7
+                                                                              "min_fraction": 0.7,
+                                                                              "anchor_y": 0.5
                                                                              },
                                                                              "delay_before_ms": 0,
                                                                              "also": [
@@ -3001,7 +3226,8 @@
                                                                                ],
                                                                                "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                                                                "tolerance": 24,
-                                                                               "min_fraction": 0.7
+                                                                               "min_fraction": 0.7,
+                                                                               "anchor_y": 0.5
                                                                               }
                                                                              ],
                                                                              "unless": [
@@ -3014,7 +3240,8 @@
                                                                                ],
                                                                                "color": "#584878,#484878,#585888",
                                                                                "tolerance": 16,
-                                                                               "min_fraction": 0.7
+                                                                               "min_fraction": 0.7,
+                                                                               "anchor_y": 0.66
                                                                               },
                                                                               {
                                                                                "region": [
@@ -3025,7 +3252,8 @@
                                                                                ],
                                                                                "color": "#f8f8f8,#f8f8e8",
                                                                                "tolerance": 10,
-                                                                               "min_fraction": 0.9
+                                                                               "min_fraction": 0.9,
+                                                                               "anchor_y": 0.66
                                                                               }
                                                                              ],
                                                                              "then_steps": [
@@ -3036,7 +3264,8 @@
                                                                                "button": "left",
                                                                                "delay_before_ms": 1000,
                                                                                "duration_ms": 80,
-                                                                               "space": "device"
+                                                                               "space": "device",
+                                                                               "anchor_y": 0.5
                                                                               }
                                                                              ],
                                                                              "else_steps": [
@@ -3052,7 +3281,8 @@
                                                                                 ],
                                                                                 "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                                                                 "tolerance": 24,
-                                                                                "min_fraction": 0.7
+                                                                                "min_fraction": 0.7,
+                                                                                "anchor_y": 0.5
                                                                                },
                                                                                "delay_before_ms": 0,
                                                                                "also": [
@@ -3065,7 +3295,8 @@
                                                                                  ],
                                                                                  "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                                                                  "tolerance": 24,
-                                                                                 "min_fraction": 0.7
+                                                                                 "min_fraction": 0.7,
+                                                                                 "anchor_y": 0.5
                                                                                 }
                                                                                ],
                                                                                "unless": [
@@ -3078,7 +3309,8 @@
                                                                                  ],
                                                                                  "color": "#584878,#484878,#585888",
                                                                                  "tolerance": 16,
-                                                                                 "min_fraction": 0.7
+                                                                                 "min_fraction": 0.7,
+                                                                                 "anchor_y": 0.66
                                                                                 },
                                                                                 {
                                                                                  "region": [
@@ -3089,7 +3321,8 @@
                                                                                  ],
                                                                                  "color": "#f8f8f8,#f8f8e8",
                                                                                  "tolerance": 10,
-                                                                                 "min_fraction": 0.9
+                                                                                 "min_fraction": 0.9,
+                                                                                 "anchor_y": 0.66
                                                                                 }
                                                                                ],
                                                                                "then_steps": [
@@ -3100,7 +3333,8 @@
                                                                                  "button": "left",
                                                                                  "delay_before_ms": 1000,
                                                                                  "duration_ms": 80,
-                                                                                 "space": "device"
+                                                                                 "space": "device",
+                                                                                 "anchor_y": 0.5
                                                                                 }
                                                                                ],
                                                                                "else_steps": [
@@ -3116,7 +3350,8 @@
                                                                                   ],
                                                                                   "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                                                                   "tolerance": 24,
-                                                                                  "min_fraction": 0.7
+                                                                                  "min_fraction": 0.7,
+                                                                                  "anchor_y": 0.5
                                                                                  },
                                                                                  "delay_before_ms": 0,
                                                                                  "also": [
@@ -3129,7 +3364,8 @@
                                                                                    ],
                                                                                    "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                                                                    "tolerance": 24,
-                                                                                   "min_fraction": 0.7
+                                                                                   "min_fraction": 0.7,
+                                                                                   "anchor_y": 0.5
                                                                                   }
                                                                                  ],
                                                                                  "unless": [
@@ -3142,7 +3378,8 @@
                                                                                    ],
                                                                                    "color": "#584878,#484878,#585888",
                                                                                    "tolerance": 16,
-                                                                                   "min_fraction": 0.7
+                                                                                   "min_fraction": 0.7,
+                                                                                   "anchor_y": 0.66
                                                                                   },
                                                                                   {
                                                                                    "region": [
@@ -3153,7 +3390,8 @@
                                                                                    ],
                                                                                    "color": "#f8f8f8,#f8f8e8",
                                                                                    "tolerance": 10,
-                                                                                   "min_fraction": 0.9
+                                                                                   "min_fraction": 0.9,
+                                                                                   "anchor_y": 0.66
                                                                                   }
                                                                                  ],
                                                                                  "then_steps": [
@@ -3164,7 +3402,8 @@
                                                                                    "button": "left",
                                                                                    "delay_before_ms": 1000,
                                                                                    "duration_ms": 80,
-                                                                                   "space": "device"
+                                                                                   "space": "device",
+                                                                                   "anchor_y": 0.5
                                                                                   }
                                                                                  ],
                                                                                  "else_steps": [
@@ -3180,7 +3419,8 @@
                                                                                     ],
                                                                                     "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                                                                     "tolerance": 24,
-                                                                                    "min_fraction": 0.7
+                                                                                    "min_fraction": 0.7,
+                                                                                    "anchor_y": 0.5
                                                                                    },
                                                                                    "delay_before_ms": 0,
                                                                                    "also": [
@@ -3193,7 +3433,8 @@
                                                                                      ],
                                                                                      "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
                                                                                      "tolerance": 24,
-                                                                                     "min_fraction": 0.7
+                                                                                     "min_fraction": 0.7,
+                                                                                     "anchor_y": 0.5
                                                                                     }
                                                                                    ],
                                                                                    "unless": [
@@ -3206,7 +3447,8 @@
                                                                                      ],
                                                                                      "color": "#584878,#484878,#585888",
                                                                                      "tolerance": 16,
-                                                                                     "min_fraction": 0.7
+                                                                                     "min_fraction": 0.7,
+                                                                                     "anchor_y": 0.66
                                                                                     },
                                                                                     {
                                                                                      "region": [
@@ -3217,7 +3459,8 @@
                                                                                      ],
                                                                                      "color": "#f8f8f8,#f8f8e8",
                                                                                      "tolerance": 10,
-                                                                                     "min_fraction": 0.9
+                                                                                     "min_fraction": 0.9,
+                                                                                     "anchor_y": 0.66
                                                                                     }
                                                                                    ],
                                                                                    "then_steps": [
@@ -3228,7 +3471,8 @@
                                                                                      "button": "left",
                                                                                      "delay_before_ms": 1000,
                                                                                      "duration_ms": 80,
-                                                                                     "space": "device"
+                                                                                     "space": "device",
+                                                                                     "anchor_y": 0.5
                                                                                     }
                                                                                    ],
                                                                                    "else_steps": [
@@ -3344,7 +3588,8 @@
         ],
         "color": "#584878,#484878,#585888",
         "tolerance": 16,
-        "min_fraction": 0.7
+        "min_fraction": 0.7,
+        "anchor_y": 0.66
        },
        "delay_before_ms": 0,
        "also": [
@@ -3357,7 +3602,8 @@
          ],
          "color": "#88d828,#78c828,#185828,#f8f8f8,#98e828",
          "tolerance": 24,
-         "min_fraction": 0.6
+         "min_fraction": 0.6,
+         "anchor_y": 0.66
         },
         {
          "region": [
@@ -3368,7 +3614,8 @@
          ],
          "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
          "tolerance": 24,
-         "min_fraction": 0.5
+         "min_fraction": 0.5,
+         "anchor_y": 0.66
         },
         {
          "region": [
@@ -3379,7 +3626,8 @@
          ],
          "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
          "tolerance": 24,
-         "min_fraction": 0.5
+         "min_fraction": 0.5,
+         "anchor_y": 0.66
         }
        ],
        "then_steps": [
@@ -3390,7 +3638,8 @@
          "button": "left",
          "delay_before_ms": 1000,
          "duration_ms": 80,
-         "space": "device"
+         "space": "device",
+         "anchor_y": 0.66
         },
         {
          "type": "subsequence",
@@ -3413,7 +3662,8 @@
           ],
           "color": "#f8f8f8,#f8f8e8",
           "tolerance": 10,
-          "min_fraction": 0.9
+          "min_fraction": 0.9,
+          "anchor_y": 0.66
          },
          "delay_before_ms": 0,
          "also": [
@@ -3426,7 +3676,8 @@
            ],
            "color": "#f8f8f8,#f8f8e8,#080808",
            "tolerance": 12,
-           "min_fraction": 0.85
+           "min_fraction": 0.85,
+           "anchor_y": 0.66
           },
           {
            "region": [
@@ -3437,7 +3688,8 @@
            ],
            "color": "#584898,#6858a8,#f8f8f8,#080808",
            "tolerance": 16,
-           "min_fraction": 0.7
+           "min_fraction": 0.7,
+           "anchor_y": 0.66
           },
           {
            "region": [
@@ -3448,7 +3700,8 @@
            ],
            "color": "#88d828,#78c828,#88c828,#88d838",
            "tolerance": 20,
-           "min_fraction": 0.6
+           "min_fraction": 0.6,
+           "anchor_y": 0.66
           }
          ],
          "then_steps": [
@@ -3459,7 +3712,8 @@
            "button": "left",
            "delay_before_ms": 1000,
            "duration_ms": 80,
-           "space": "device"
+           "space": "device",
+           "anchor_y": 0.66
           },
           {
            "type": "subsequence",
@@ -3507,7 +3761,8 @@
       ],
       "color": "#484878,#586898,#f8f8f8,#585888",
       "tolerance": 20,
-      "min_fraction": 0.45
+      "min_fraction": 0.45,
+      "anchor_y": 1.0
      },
      "timeout_ms": 10000,
      "poll_ms": 200,
@@ -3523,7 +3778,8 @@
        ],
        "color": "#585888,#484878,#f8f8f8,#080808",
        "tolerance": 20,
-       "min_fraction": 0.45
+       "min_fraction": 0.45,
+       "anchor_y": 1.0
       }
      ],
      "unless": [
@@ -3536,7 +3792,8 @@
        ],
        "color": "#584878,#484878,#585888",
        "tolerance": 16,
-       "min_fraction": 0.7
+       "min_fraction": 0.7,
+       "anchor_y": 0.66
       },
       {
        "region": [
@@ -3547,7 +3804,8 @@
        ],
        "color": "#f8f8f8,#f8f8e8",
        "tolerance": 10,
-       "min_fraction": 0.9
+       "min_fraction": 0.9,
+       "anchor_y": 0.66
       }
      ]
     },
@@ -3563,7 +3821,8 @@
       ],
       "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
       "tolerance": 24,
-      "min_fraction": 0.6
+      "min_fraction": 0.6,
+      "anchor_y": 1.0
      },
      "delay_before_ms": 0,
      "unless": [
@@ -3576,7 +3835,8 @@
        ],
        "color": "#584878,#484878,#585888",
        "tolerance": 16,
-       "min_fraction": 0.7
+       "min_fraction": 0.7,
+       "anchor_y": 0.66
       },
       {
        "region": [
@@ -3587,7 +3847,8 @@
        ],
        "color": "#f8f8f8,#f8f8e8",
        "tolerance": 10,
-       "min_fraction": 0.9
+       "min_fraction": 0.9,
+       "anchor_y": 0.66
       }
      ],
      "then_steps": [
@@ -3598,7 +3859,8 @@
        "button": "left",
        "delay_before_ms": 1000,
        "duration_ms": 80,
-       "space": "device"
+       "space": "device",
+       "anchor_y": 1.0
       }
      ],
      "else_steps": []
@@ -3615,7 +3877,8 @@
       ],
       "color": "#888888,#989898,#a8a8a8,#787878",
       "tolerance": 16,
-      "min_fraction": 0.6
+      "min_fraction": 0.6,
+      "anchor_y": 1.0
      },
      "timeout_ms": 8000,
      "poll_ms": 200,
@@ -3640,7 +3903,8 @@
         ],
         "color": "#584878,#484878,#585888",
         "tolerance": 16,
-        "min_fraction": 0.7
+        "min_fraction": 0.7,
+        "anchor_y": 0.66
        },
        "delay_before_ms": 0,
        "also": [
@@ -3653,7 +3917,8 @@
          ],
          "color": "#88d828,#78c828,#185828,#f8f8f8,#98e828",
          "tolerance": 24,
-         "min_fraction": 0.6
+         "min_fraction": 0.6,
+         "anchor_y": 0.66
         },
         {
          "region": [
@@ -3664,7 +3929,8 @@
          ],
          "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
          "tolerance": 24,
-         "min_fraction": 0.5
+         "min_fraction": 0.5,
+         "anchor_y": 0.66
         },
         {
          "region": [
@@ -3675,7 +3941,8 @@
          ],
          "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
          "tolerance": 24,
-         "min_fraction": 0.5
+         "min_fraction": 0.5,
+         "anchor_y": 0.66
         }
        ],
        "then_steps": [
@@ -3686,7 +3953,8 @@
          "button": "left",
          "delay_before_ms": 1000,
          "duration_ms": 80,
-         "space": "device"
+         "space": "device",
+         "anchor_y": 0.66
         },
         {
          "type": "subsequence",
@@ -3709,7 +3977,8 @@
           ],
           "color": "#f8f8f8,#f8f8e8",
           "tolerance": 10,
-          "min_fraction": 0.9
+          "min_fraction": 0.9,
+          "anchor_y": 0.66
          },
          "delay_before_ms": 0,
          "also": [
@@ -3722,7 +3991,8 @@
            ],
            "color": "#f8f8f8,#f8f8e8,#080808",
            "tolerance": 12,
-           "min_fraction": 0.85
+           "min_fraction": 0.85,
+           "anchor_y": 0.66
           },
           {
            "region": [
@@ -3733,7 +4003,8 @@
            ],
            "color": "#584898,#6858a8,#f8f8f8,#080808",
            "tolerance": 16,
-           "min_fraction": 0.7
+           "min_fraction": 0.7,
+           "anchor_y": 0.66
           },
           {
            "region": [
@@ -3744,7 +4015,8 @@
            ],
            "color": "#88d828,#78c828,#88c828,#88d838",
            "tolerance": 20,
-           "min_fraction": 0.6
+           "min_fraction": 0.6,
+           "anchor_y": 0.66
           }
          ],
          "then_steps": [
@@ -3755,7 +4027,8 @@
            "button": "left",
            "delay_before_ms": 1000,
            "duration_ms": 80,
-           "space": "device"
+           "space": "device",
+           "anchor_y": 0.66
           },
           {
            "type": "subsequence",
@@ -3803,7 +4076,8 @@
       ],
       "color": "#484878,#586898,#f8f8f8,#585888",
       "tolerance": 20,
-      "min_fraction": 0.45
+      "min_fraction": 0.45,
+      "anchor_y": 1.0
      },
      "delay_before_ms": 0,
      "also": [
@@ -3816,7 +4090,8 @@
        ],
        "color": "#585888,#484878,#f8f8f8,#080808",
        "tolerance": 20,
-       "min_fraction": 0.45
+       "min_fraction": 0.45,
+       "anchor_y": 1.0
       }
      ],
      "unless": [
@@ -3829,7 +4104,8 @@
        ],
        "color": "#584878,#484878,#585888",
        "tolerance": 16,
-       "min_fraction": 0.7
+       "min_fraction": 0.7,
+       "anchor_y": 0.66
       },
       {
        "region": [
@@ -3840,7 +4116,8 @@
        ],
        "color": "#f8f8f8,#f8f8e8",
        "tolerance": 10,
-       "min_fraction": 0.9
+       "min_fraction": 0.9,
+       "anchor_y": 0.66
       }
      ],
      "then_steps": [
@@ -3851,7 +4128,8 @@
        "button": "left",
        "delay_before_ms": 1000,
        "duration_ms": 80,
-       "space": "device"
+       "space": "device",
+       "anchor_y": 1.0
       }
      ],
      "else_steps": []
@@ -3874,7 +4152,8 @@
         ],
         "color": "#584878,#484878,#585888",
         "tolerance": 16,
-        "min_fraction": 0.7
+        "min_fraction": 0.7,
+        "anchor_y": 0.66
        },
        "delay_before_ms": 0,
        "also": [
@@ -3887,7 +4166,8 @@
          ],
          "color": "#88d828,#78c828,#185828,#f8f8f8,#98e828",
          "tolerance": 24,
-         "min_fraction": 0.6
+         "min_fraction": 0.6,
+         "anchor_y": 0.66
         },
         {
          "region": [
@@ -3898,7 +4178,8 @@
          ],
          "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
          "tolerance": 24,
-         "min_fraction": 0.5
+         "min_fraction": 0.5,
+         "anchor_y": 0.66
         },
         {
          "region": [
@@ -3909,7 +4190,8 @@
          ],
          "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
          "tolerance": 24,
-         "min_fraction": 0.5
+         "min_fraction": 0.5,
+         "anchor_y": 0.66
         }
        ],
        "then_steps": [
@@ -3920,7 +4202,8 @@
          "button": "left",
          "delay_before_ms": 1000,
          "duration_ms": 80,
-         "space": "device"
+         "space": "device",
+         "anchor_y": 0.66
         },
         {
          "type": "subsequence",
@@ -3943,7 +4226,8 @@
           ],
           "color": "#f8f8f8,#f8f8e8",
           "tolerance": 10,
-          "min_fraction": 0.9
+          "min_fraction": 0.9,
+          "anchor_y": 0.66
          },
          "delay_before_ms": 0,
          "also": [
@@ -3956,7 +4240,8 @@
            ],
            "color": "#f8f8f8,#f8f8e8,#080808",
            "tolerance": 12,
-           "min_fraction": 0.85
+           "min_fraction": 0.85,
+           "anchor_y": 0.66
           },
           {
            "region": [
@@ -3967,7 +4252,8 @@
            ],
            "color": "#584898,#6858a8,#f8f8f8,#080808",
            "tolerance": 16,
-           "min_fraction": 0.7
+           "min_fraction": 0.7,
+           "anchor_y": 0.66
           },
           {
            "region": [
@@ -3978,7 +4264,8 @@
            ],
            "color": "#88d828,#78c828,#88c828,#88d838",
            "tolerance": 20,
-           "min_fraction": 0.6
+           "min_fraction": 0.6,
+           "anchor_y": 0.66
           }
          ],
          "then_steps": [
@@ -3989,7 +4276,8 @@
            "button": "left",
            "delay_before_ms": 1000,
            "duration_ms": 80,
-           "space": "device"
+           "space": "device",
+           "anchor_y": 0.66
           },
           {
            "type": "subsequence",
@@ -4037,7 +4325,8 @@
       ],
       "color": "#f8f8f8,#181818,#586898,#484878",
       "tolerance": 24,
-      "min_fraction": 0.5
+      "min_fraction": 0.5,
+      "anchor_y": 1.0
      },
      "timeout_ms": 10000,
      "poll_ms": 200,
@@ -4053,7 +4342,8 @@
        ],
        "color": "#585888,#f8f8f8,#080808,#484878",
        "tolerance": 24,
-       "min_fraction": 0.5
+       "min_fraction": 0.5,
+       "anchor_y": 1.0
       },
       {
        "region": [
@@ -4064,7 +4354,8 @@
        ],
        "color": "#585888,#484878,#f8f8f8,#080808,#6858a8",
        "tolerance": 24,
-       "min_fraction": 0.4
+       "min_fraction": 0.4,
+       "anchor_y": 1.0
       }
      ],
      "unless": [
@@ -4077,7 +4368,8 @@
        ],
        "color": "#484878",
        "tolerance": 16,
-       "min_fraction": 0.8
+       "min_fraction": 0.6,
+       "anchor_y": 0.5
       },
       {
        "region": [
@@ -4088,7 +4380,8 @@
        ],
        "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
        "tolerance": 24,
-       "min_fraction": 0.6
+       "min_fraction": 0.6,
+       "anchor_y": 1.0
       },
       {
        "region": [
@@ -4099,7 +4392,8 @@
        ],
        "color": "#888888,#989898,#a8a8a8,#787878",
        "tolerance": 16,
-       "min_fraction": 0.6
+       "min_fraction": 0.6,
+       "anchor_y": 1.0
       },
       {
        "region": [
@@ -4110,7 +4404,8 @@
        ],
        "color": "#584878,#484878,#585888",
        "tolerance": 16,
-       "min_fraction": 0.7
+       "min_fraction": 0.7,
+       "anchor_y": 0.66
       },
       {
        "region": [
@@ -4121,7 +4416,8 @@
        ],
        "color": "#f8f8f8,#f8f8e8",
        "tolerance": 10,
-       "min_fraction": 0.9
+       "min_fraction": 0.9,
+       "anchor_y": 0.66
       }
      ]
     },
@@ -4143,7 +4439,8 @@
         ],
         "color": "#584878,#484878,#585888",
         "tolerance": 16,
-        "min_fraction": 0.7
+        "min_fraction": 0.7,
+        "anchor_y": 0.66
        },
        "delay_before_ms": 0,
        "also": [
@@ -4156,7 +4453,8 @@
          ],
          "color": "#88d828,#78c828,#185828,#f8f8f8,#98e828",
          "tolerance": 24,
-         "min_fraction": 0.6
+         "min_fraction": 0.6,
+         "anchor_y": 0.66
         },
         {
          "region": [
@@ -4167,7 +4465,8 @@
          ],
          "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
          "tolerance": 24,
-         "min_fraction": 0.5
+         "min_fraction": 0.5,
+         "anchor_y": 0.66
         },
         {
          "region": [
@@ -4178,7 +4477,8 @@
          ],
          "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
          "tolerance": 24,
-         "min_fraction": 0.5
+         "min_fraction": 0.5,
+         "anchor_y": 0.66
         }
        ],
        "then_steps": [
@@ -4189,7 +4489,8 @@
          "button": "left",
          "delay_before_ms": 1000,
          "duration_ms": 80,
-         "space": "device"
+         "space": "device",
+         "anchor_y": 0.66
         },
         {
          "type": "subsequence",
@@ -4212,7 +4513,8 @@
           ],
           "color": "#f8f8f8,#f8f8e8",
           "tolerance": 10,
-          "min_fraction": 0.9
+          "min_fraction": 0.9,
+          "anchor_y": 0.66
          },
          "delay_before_ms": 0,
          "also": [
@@ -4225,7 +4527,8 @@
            ],
            "color": "#f8f8f8,#f8f8e8,#080808",
            "tolerance": 12,
-           "min_fraction": 0.85
+           "min_fraction": 0.85,
+           "anchor_y": 0.66
           },
           {
            "region": [
@@ -4236,7 +4539,8 @@
            ],
            "color": "#584898,#6858a8,#f8f8f8,#080808",
            "tolerance": 16,
-           "min_fraction": 0.7
+           "min_fraction": 0.7,
+           "anchor_y": 0.66
           },
           {
            "region": [
@@ -4247,7 +4551,8 @@
            ],
            "color": "#88d828,#78c828,#88c828,#88d838",
            "tolerance": 20,
-           "min_fraction": 0.6
+           "min_fraction": 0.6,
+           "anchor_y": 0.66
           }
          ],
          "then_steps": [
@@ -4258,7 +4563,8 @@
            "button": "left",
            "delay_before_ms": 1000,
            "duration_ms": 80,
-           "space": "device"
+           "space": "device",
+           "anchor_y": 0.66
           },
           {
            "type": "subsequence",
@@ -4306,7 +4612,8 @@
       ],
       "color": "#f8f8f8,#181818,#586898,#484878",
       "tolerance": 24,
-      "min_fraction": 0.5
+      "min_fraction": 0.5,
+      "anchor_y": 1.0
      },
      "delay_before_ms": 0,
      "also": [
@@ -4319,7 +4626,8 @@
        ],
        "color": "#585888,#f8f8f8,#080808,#484878",
        "tolerance": 24,
-       "min_fraction": 0.5
+       "min_fraction": 0.5,
+       "anchor_y": 1.0
       },
       {
        "region": [
@@ -4330,7 +4638,8 @@
        ],
        "color": "#585888,#484878,#f8f8f8,#080808,#6858a8",
        "tolerance": 24,
-       "min_fraction": 0.4
+       "min_fraction": 0.4,
+       "anchor_y": 1.0
       }
      ],
      "unless": [
@@ -4343,7 +4652,8 @@
        ],
        "color": "#484878",
        "tolerance": 16,
-       "min_fraction": 0.8
+       "min_fraction": 0.6,
+       "anchor_y": 0.5
       },
       {
        "region": [
@@ -4354,7 +4664,8 @@
        ],
        "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
        "tolerance": 24,
-       "min_fraction": 0.6
+       "min_fraction": 0.6,
+       "anchor_y": 1.0
       },
       {
        "region": [
@@ -4365,7 +4676,8 @@
        ],
        "color": "#888888,#989898,#a8a8a8,#787878",
        "tolerance": 16,
-       "min_fraction": 0.6
+       "min_fraction": 0.6,
+       "anchor_y": 1.0
       },
       {
        "region": [
@@ -4376,7 +4688,8 @@
        ],
        "color": "#584878,#484878,#585888",
        "tolerance": 16,
-       "min_fraction": 0.7
+       "min_fraction": 0.7,
+       "anchor_y": 0.66
       },
       {
        "region": [
@@ -4387,7 +4700,8 @@
        ],
        "color": "#f8f8f8,#f8f8e8",
        "tolerance": 10,
-       "min_fraction": 0.9
+       "min_fraction": 0.9,
+       "anchor_y": 0.66
       }
      ],
      "then_steps": [
@@ -4398,7 +4712,8 @@
        "button": "left",
        "delay_before_ms": 1000,
        "duration_ms": 80,
-       "space": "device"
+       "space": "device",
+       "anchor_y": 1.0
       }
      ],
      "else_steps": []
@@ -4415,7 +4730,8 @@
       ],
       "color": "#484878",
       "tolerance": 16,
-      "min_fraction": 0.8
+      "min_fraction": 0.6,
+      "anchor_y": 0.5
      },
      "timeout_ms": 10000,
      "poll_ms": 200,
@@ -4431,7 +4747,8 @@
        ],
        "color": "#484878",
        "tolerance": 16,
-       "min_fraction": 0.8
+       "min_fraction": 0.8,
+       "anchor_y": 0.5
       }
      ],
      "unless": [
@@ -4444,7 +4761,8 @@
        ],
        "color": "#584878,#484878,#585888",
        "tolerance": 16,
-       "min_fraction": 0.7
+       "min_fraction": 0.7,
+       "anchor_y": 0.66
       },
       {
        "region": [
@@ -4455,7 +4773,8 @@
        ],
        "color": "#f8f8f8,#f8f8e8",
        "tolerance": 10,
-       "min_fraction": 0.9
+       "min_fraction": 0.9,
+       "anchor_y": 0.66
       }
      ]
     },
@@ -4477,7 +4796,8 @@
         ],
         "color": "#584878,#484878,#585888",
         "tolerance": 16,
-        "min_fraction": 0.7
+        "min_fraction": 0.7,
+        "anchor_y": 0.66
        },
        "delay_before_ms": 0,
        "also": [
@@ -4490,7 +4810,8 @@
          ],
          "color": "#88d828,#78c828,#185828,#f8f8f8,#98e828",
          "tolerance": 24,
-         "min_fraction": 0.6
+         "min_fraction": 0.6,
+         "anchor_y": 0.66
         },
         {
          "region": [
@@ -4501,7 +4822,8 @@
          ],
          "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
          "tolerance": 24,
-         "min_fraction": 0.5
+         "min_fraction": 0.5,
+         "anchor_y": 0.66
         },
         {
          "region": [
@@ -4512,7 +4834,8 @@
          ],
          "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
          "tolerance": 24,
-         "min_fraction": 0.5
+         "min_fraction": 0.5,
+         "anchor_y": 0.66
         }
        ],
        "then_steps": [
@@ -4523,7 +4846,8 @@
          "button": "left",
          "delay_before_ms": 1000,
          "duration_ms": 80,
-         "space": "device"
+         "space": "device",
+         "anchor_y": 0.66
         },
         {
          "type": "subsequence",
@@ -4546,7 +4870,8 @@
           ],
           "color": "#f8f8f8,#f8f8e8",
           "tolerance": 10,
-          "min_fraction": 0.9
+          "min_fraction": 0.9,
+          "anchor_y": 0.66
          },
          "delay_before_ms": 0,
          "also": [
@@ -4559,7 +4884,8 @@
            ],
            "color": "#f8f8f8,#f8f8e8,#080808",
            "tolerance": 12,
-           "min_fraction": 0.85
+           "min_fraction": 0.85,
+           "anchor_y": 0.66
           },
           {
            "region": [
@@ -4570,7 +4896,8 @@
            ],
            "color": "#584898,#6858a8,#f8f8f8,#080808",
            "tolerance": 16,
-           "min_fraction": 0.7
+           "min_fraction": 0.7,
+           "anchor_y": 0.66
           },
           {
            "region": [
@@ -4581,7 +4908,8 @@
            ],
            "color": "#88d828,#78c828,#88c828,#88d838",
            "tolerance": 20,
-           "min_fraction": 0.6
+           "min_fraction": 0.6,
+           "anchor_y": 0.66
           }
          ],
          "then_steps": [
@@ -4592,7 +4920,8 @@
            "button": "left",
            "delay_before_ms": 1000,
            "duration_ms": 80,
-           "space": "device"
+           "space": "device",
+           "anchor_y": 0.66
           },
           {
            "type": "subsequence",

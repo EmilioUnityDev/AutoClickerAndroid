@@ -261,7 +261,7 @@ class EditorActivity : AppCompatActivity() {
                 val fd = Ui.field(this, box, "Duración (ms)", s.durationMs.toString())
                 box.addView(Ui.button(this, "📍 Elegir punto en pantalla") {
                     pickOnScreen(false, "Toca el punto (2 dedos = cancelar)") { p ->
-                        s.x = p[0]; s.y = p[1]; save(); rebuild(); editDialog(s)
+                        s.x = p[0]; s.y = p[1]; s.anchorY = null; save(); rebuild(); editDialog(s)
                     }
                 })
                 apply = { s.x = fx.edit.int(s.x); s.y = fy.edit.int(s.y); s.durationMs = fd.edit.int(60).coerceAtLeast(1) }
@@ -326,7 +326,7 @@ class EditorActivity : AppCompatActivity() {
 
     private fun pickDrag(s: DragStep) {
         pickOnScreen(false, "1/2 · Toca el INICIO del arrastre") { a ->
-            s.x1 = a[0]; s.y1 = a[1]; save()
+            s.x1 = a[0]; s.y1 = a[1]; s.anchorY = null; save()
             window.decorView.postDelayed({
                 pickOnScreen(false, "2/2 · Toca el FINAL del arrastre") { b ->
                     s.x2 = b[0]; s.y2 = b[1]; save(); rebuild(); editDialog(s)
@@ -353,6 +353,7 @@ class EditorActivity : AppCompatActivity() {
         row.addView(Ui.button(this, "▭ Elegir región") {
             pickOnScreen(true, "Arrastra para marcar la región") { r ->
                 c.x1 = r[0]; c.y1 = r[1]; c.x2 = maxOf(r[2], r[0] + 2); c.y2 = maxOf(r[3], r[1] + 2)
+                c.anchorY = null  // elegido en esta pantalla: sin anclaje
                 save(); rebuild(); editDialog(owner)
             }
         })
@@ -377,6 +378,7 @@ class EditorActivity : AppCompatActivity() {
         }
         pickOnScreen(true, "Arrastra sobre la zona cuyo color quieres detectar") { r ->
             c.x1 = r[0]; c.y1 = r[1]; c.x2 = maxOf(r[2], r[0] + 2); c.y2 = maxOf(r[3], r[1] + 2)
+            c.anchorY = null
             val f = RunnerService.instance?.currentFrame()
             if (f != null) {
                 val m = mapper()

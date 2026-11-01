@@ -90,17 +90,17 @@ class Player(
             return
         }
         val x = mapper.x(s.x)
-        val y = mapper.y(s.y)
+        val y = mapper.y(s.y, s.anchorY)
         checkGuards(x to y)
         listener.tapped(x, y)
         io.tap(x, y, s.durationMs)
     }
 
     private suspend fun doDrag(s: DragStep) {
-        val x1 = mapper.x(s.x1); val y1 = mapper.y(s.y1)
+        val x1 = mapper.x(s.x1); val y1 = mapper.y(s.y1, s.anchorY)
         checkGuards(x1 to y1)
         listener.tapped(x1, y1)
-        io.drag(x1, y1, mapper.x(s.x2), mapper.y(s.y2), s.durationMs, s.holdMs)
+        io.drag(x1, y1, mapper.x(s.x2), mapper.y(s.y2, s.anchorY), s.durationMs, s.holdMs)
     }
 
     private suspend fun doSub(s: SubsequenceStep) {

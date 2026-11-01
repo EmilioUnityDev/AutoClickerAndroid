@@ -88,6 +88,18 @@ class MappingTest {
     }
 
     @Test
+    fun anchorsPerElement() {
+        // Redmi Note 15 Pro: el juego escala por el ancho; sobran ≈496 px de alto.
+        val m = Mapping.Mapper(Screen(900, 1600), Screen(1280, 2772), Mapping.Mode.ANCHOR)
+        assertEquals(1905, m.y(1165, 0.5))   // chat (centrado)
+        assertEquals(2637, m.y(1505, 1.0))   // overview (abajo)
+        assertEquals(142, m.y(100, 0.0))     // arriba
+        for (a in listOf(0.0, 0.5, 0.66, 1.0)) assertEquals(1234.0, m.invY(m.y(1234, a), a).toDouble(), 1.0)
+        val c = m.cond(ColorCondition(170, 80, 860, 160, "#484878", 16, 0.6, anchorY = 0.5))
+        assertEquals(362, c.y1); assertEquals(0.5, c.anchorY!!, 0.0)
+    }
+
+    @Test
     fun remapRewritesAndUpdatesOrigin() {
         val seq = Sequence("t", null, mutableListOf(ClickStep(450, 1500)))
         val rep = Mapping.remap(seq, Screen(1220, 2712), Mapping.Mode.ANCHOR, "android", "test")
@@ -111,11 +123,14 @@ class VisionTest {
 }
 
 /** Dispositivo simulado: cada pantalla es una captura y los toques cambian de pantalla. */
-private class FakeDevice(var screen: String, val transitions: Map<String, List<Pair<IntArray, String>>>) : DeviceIO {
+private class FakeDevice(
+    var screen: String,
+    val transitions: Map<String, List<Pair<IntArray, String>>>,
+    override val screenWidth: Int = 900,
+    override val screenHeight: Int = 1600,
+) : DeviceIO {
     val frames = HashMap<String, Frame>()
     val taps = mutableListOf<Pair<Int, Int>>()
-    override val screenWidth = 900
-    override val screenHeight = 1600
     override suspend fun tap(x: Int, y: Int, durationMs: Int) {
         taps += x to y
         transitions[screen]?.firstOrNull { (r, _) -> x in r[0]..r[2] && y in r[1]..r[3] }?.let { screen = it.second }
@@ -170,6 +185,15 @@ class RaidJoinPlayerTest {
     }
 
     @Test
+    fun anchorsSurviveJsonRoundTrip() {
+        val seq = oneCycle()
+        val again = Sequence.parse(seq.toJson().toString())
+        var n = 0
+        Sequence.walk(again.steps) { if (it is ClickStep && it.anchorY != null) n++ }
+        assertTrue("toques con anclaje: $n", n >= 8)
+    }
+
+    @Test
     fun guardStopsWithoutTapping() = runTest {
         val seq = Sequence("g", null, mutableListOf(ClickStep(515, 1505)))
         // «Pantalla prohibida» = botón verde grande del overview (como si fuera de pago).
@@ -181,5 +205,67 @@ class RaidJoinPlayerTest {
         } catch (_: StopSequence) {
         }
         assertTrue(dev.taps.isEmpty())
+    }
+}
+
+/**
+ * La misma secuencia de PC (900×1600) sobre capturas reales de un Redmi Note 15
+ * Pro (1280×2772), sin mapear: el reproductor la adapta con los anclajes.
+ */
+class RaidJoinPhoneTest {
+    private val w = 1280
+    private val h = 2772
+    private val t = mapOf(
+        "phone_summary" to listOf(intArrayOf(500, 2180, 780, 2270) to "phone_chat_join"),
+        "phone_chat_join" to listOf(intArrayOf(480, 1850, 1070, 1960) to "phone_overview_join"),
+        // Sin captura de «Pending»: tras «Join» sigue el mismo overview.
+        "phone_overview_join" to listOf(intArrayOf(20, 2570, 180, 2700) to "phone_map"),
+        "phone_map" to listOf(intArrayOf(1140, 2190, 1260, 2320) to "phone_chat_pending"),
+    )
+
+    private fun oneCycle(): Sequence {
+        val seq = Sequence.parse(res("raid/raid_join.json").bufferedReader().readText())
+        (seq.steps[0] as SubsequenceStep).repeats = 1
+        return seq
+    }
+
+    private suspend fun kotlinx.coroutines.test.TestScope.play(start: String): FakeDevice {
+        val dev = FakeDevice(start, t, w, h)
+        Player(oneCycle(), dev, object : PlayerListener {}, clock = { testScheduler.currentTime }).run()
+        return dev
+    }
+
+    @Test
+    fun fullCycleFromChat() = runTest {
+        val dev = play("phone_chat_join")
+        assertEquals("phone_chat_pending", dev.screen)
+        assertEquals(listOf(775 to 1905, 732 to 2637, 100 to 2630, 1195 to 2253), dev.taps)
+    }
+
+    @Test
+    fun summaryIsConfirmedFirst() = runTest {
+        val dev = play("phone_summary")
+        assertEquals(640 to 2223, dev.taps[0])
+        assertEquals("phone_chat_pending", dev.screen)
+    }
+
+    @Test
+    fun noRaidMeansNoTaps() = runTest {
+        assertTrue(play("phone_chat_pending").taps.isEmpty())
+    }
+
+    @Test
+    fun unknownScreenMeansNoTaps() = runTest {
+        // Lista «Rally Attack» (pantalla que la secuencia no conoce).
+        assertTrue(play("phone_rally_list").taps.isEmpty())
+    }
+
+    @Test
+    fun remappedCopyBehavesTheSame() = runTest {
+        val seq = oneCycle()
+        Mapping.remap(seq, Screen(w, h), Mapping.Mode.ANCHOR, "android", "test")
+        val dev = FakeDevice("phone_chat_join", t, w, h)
+        Player(seq, dev, object : PlayerListener {}, clock = { testScheduler.currentTime }).run()
+        assertEquals(listOf(775 to 1905, 732 to 2637, 100 to 2630, 1195 to 2253), dev.taps)
     }
 }

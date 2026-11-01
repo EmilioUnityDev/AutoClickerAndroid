@@ -9,14 +9,18 @@ import kotlin.math.roundToInt
  *
  * - [Mode.STRETCH]: escala X e Y por separado. Exacto si ambas pantallas tienen
  *   el mismo formato (p. ej. 900×1600 → 1080×1920).
- * - [Mode.ANCHOR]: escala por el ancho y ancla la mitad superior arriba y la
- *   inferior abajo. Aproximación para formatos distintos (9:16 → 20:9), donde
- *   los juegos suelen pegar los menús a los bordes y estirar el centro.
+ * - [Mode.ANCHOR]: escala por el ancho (como hacen los juegos) y reparte el
+ *   alto sobrante según el anclaje de cada elemento (`anchor_y`: 0 arriba,
+ *   0.5 centrado, 1 abajo). Sin anclaje: la mitad superior arriba y la
+ *   inferior abajo (aproximación).
+ *
+ *   Medido en Clash of Critters (900×1600 → 1280×2772): chat centrado (0.5),
+ *   mapa y overview abajo (1), ventanas de resumen ≈0.66.
  */
 object Mapping {
     enum class Mode(val label: String) {
         STRETCH("Estirar (mismo formato)"),
-        ANCHOR("Ancho + anclar arriba/abajo (formato distinto)"),
+        ANCHOR("Ancho + anclajes (formato distinto)"),
     }
 
     /** Las secuencias de PC antiguas (sin origen) se hicieron sobre MuMu 900×1600. */
@@ -35,20 +39,30 @@ object Mapping {
 
         fun x(x: Int): Int = (x * sx).roundToInt()
 
-        fun y(y: Int): Int = when (mode) {
+        /** Alto sobrante al escalar por el ancho (negativo si la pantalla es más ancha). */
+        private val extra = dst.height - src.height * sx
+
+        fun y(y: Int, anchor: Double? = null): Int = when (mode) {
             Mode.STRETCH -> (y * sy).roundToInt()
-            Mode.ANCHOR -> if (y < src.height / 2) (y * sx).roundToInt()
-            else (dst.height - (src.height - y) * sx).roundToInt()
+            Mode.ANCHOR -> when {
+                anchor != null -> (y * sx + anchor * extra).roundToInt()
+                y < src.height / 2 -> (y * sx).roundToInt()
+                else -> (dst.height - (src.height - y) * sx).roundToInt()
+            }
         }
 
-        fun cond(c: ColorCondition) = ColorCondition(x(c.x1), y(c.y1), x(c.x2), y(c.y2), c.color, c.tolerance, c.minFraction)
+        fun cond(c: ColorCondition) = ColorCondition(x(c.x1), y(c.y1, c.anchorY), x(c.x2), y(c.y2, c.anchorY),
+            c.color, c.tolerance, c.minFraction, c.anchorY)
 
         /** Inversa (de la pantalla real a la de la secuencia), p. ej. para el selector de punto. */
         fun invX(x: Int): Int = (x / sx).roundToInt()
-        fun invY(y: Int): Int = when (mode) {
+        fun invY(y: Int, anchor: Double? = null): Int = when (mode) {
             Mode.STRETCH -> (y / sy).roundToInt()
-            Mode.ANCHOR -> if (y < dst.height / 2) (y / sx).roundToInt()
-            else (src.height - (dst.height - y) / sx).roundToInt()
+            Mode.ANCHOR -> when {
+                anchor != null -> ((y - anchor * extra) / sx).roundToInt()
+                y < dst.height / 2 -> (y / sx).roundToInt()
+                else -> (src.height - (dst.height - y) / sx).roundToInt()
+            }
         }
     }
 
@@ -66,8 +80,10 @@ object Mapping {
         var n = 0
         Sequence.walk(seq.steps) { s ->
             when (s) {
-                is ClickStep -> { s.x = m.x(s.x); s.y = m.y(s.y); n++ }
-                is DragStep -> { s.x1 = m.x(s.x1); s.y1 = m.y(s.y1); s.x2 = m.x(s.x2); s.y2 = m.y(s.y2); n++ }
+                is ClickStep -> { s.x = m.x(s.x); s.y = m.y(s.y, s.anchorY); n++ }
+                is DragStep -> {
+                    s.x1 = m.x(s.x1); s.y1 = m.y(s.y1, s.anchorY); s.x2 = m.x(s.x2); s.y2 = m.y(s.y2, s.anchorY); n++
+                }
                 is WaitImageStep -> { remapConds(m, s.condition, s.also, s.unless); n++ }
                 is IfImageStep -> { remapConds(m, s.condition, s.also, s.unless); n++ }
                 is PluginStep -> warnings += "Paso de complemento «${s.pluginId}» sin mapear."

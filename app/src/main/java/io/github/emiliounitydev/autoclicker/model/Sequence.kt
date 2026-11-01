@@ -16,6 +16,8 @@ class ColorCondition(
     var color: String = "#ffffff",
     var tolerance: Int = 45,
     var minFraction: Double = 0.15,
+    /** Anclaje vertical al mapear a otro formato (0 arriba, 0.5 centro, 1 abajo; null = automático). */
+    var anchorY: Double? = null,
 ) {
     val rgbs: List<Int>
         get() = color.split(",").map { it.trim() }.filter { it.isNotEmpty() }.mapNotNull { hexToRgb(it) }
@@ -23,8 +25,9 @@ class ColorCondition(
     fun toJson() = JSONObject()
         .put("region", JSONArray(listOf(x1, y1, x2, y2)))
         .put("color", color).put("tolerance", tolerance).put("min_fraction", minFraction)
+        .also { o -> anchorY?.let { o.put("anchor_y", it) } }
 
-    fun copy() = ColorCondition(x1, y1, x2, y2, color, tolerance, minFraction)
+    fun copy() = ColorCondition(x1, y1, x2, y2, color, tolerance, minFraction, anchorY)
 
     fun describe() = "$color en ($x1,$y1)-($x2,$y2) ≥${(minFraction * 100).toInt()}%"
 
@@ -36,6 +39,7 @@ class ColorCondition(
                 r?.optInt(0) ?: 0, r?.optInt(1) ?: 0, r?.optInt(2) ?: 100, r?.optInt(3) ?: 100,
                 o.optString("color", "#ffffff"), o.optInt("tolerance", 45),
                 o.optDouble("min_fraction", 0.15),
+                optAnchor(o),
             )
         }
 
@@ -46,6 +50,9 @@ class ColorCondition(
         }
     }
 }
+
+internal fun optAnchor(o: JSONObject): Double? =
+    if (o.has("anchor_y") && !o.isNull("anchor_y")) o.optDouble("anchor_y") else null
 
 private fun conds(arr: JSONArray?): MutableList<ColorCondition> {
     val out = mutableListOf<ColorCondition>()
@@ -74,11 +81,13 @@ class ClickStep(
     /** "left" = toque; "right" = botón Atrás de Android. */
     var button: String = "left",
     var space: String = "device",
+    var anchorY: Double? = null,
 ) : Step() {
     override val type = "click"
     override fun toJson() = base(JSONObject()).put("x", x).put("y", y).put("button", button)
         .put("duration_ms", durationMs).put("space", space)
-    override fun deepCopy() = ClickStep(x, y, durationMs, button, space).also { it.delayBeforeMs = delayBeforeMs }
+        .also { o -> anchorY?.let { o.put("anchor_y", it) } }
+    override fun deepCopy() = ClickStep(x, y, durationMs, button, space, anchorY).also { it.delayBeforeMs = delayBeforeMs }
     override fun label() = if (button == "right") "◀ Atrás (Android)"
     else if (durationMs >= 400) "👆 Mantener ($x, $y) · $durationMs ms" else "👆 Toque ($x, $y)"
 }
@@ -87,11 +96,13 @@ class DragStep(
     var x1: Int = 0, var y1: Int = 0, var x2: Int = 0, var y2: Int = 0,
     var durationMs: Int = 400, var holdMs: Int = 0,
     var space: String = "device",
+    var anchorY: Double? = null,
 ) : Step() {
     override val type = "drag"
     override fun toJson() = base(JSONObject()).put("x1", x1).put("y1", y1).put("x2", x2).put("y2", y2)
         .put("duration_ms", durationMs).put("hold_ms", holdMs).put("button", "left").put("space", space)
-    override fun deepCopy() = DragStep(x1, y1, x2, y2, durationMs, holdMs, space).also { it.delayBeforeMs = delayBeforeMs }
+        .also { o -> anchorY?.let { o.put("anchor_y", it) } }
+    override fun deepCopy() = DragStep(x1, y1, x2, y2, durationMs, holdMs, space, anchorY).also { it.delayBeforeMs = delayBeforeMs }
     override fun label() = "↔ Arrastre ($x1, $y1) → ($x2, $y2) · $durationMs ms"
 }
 
@@ -277,9 +288,9 @@ fun stepsFrom(arr: JSONArray?): MutableList<Step> {
 fun stepFrom(o: JSONObject): Step {
     val s: Step = when (o.optString("type", "click")) {
         "click" -> ClickStep(o.optInt("x"), o.optInt("y"), o.optInt("duration_ms", 60),
-            o.optString("button", "left"), o.optString("space", "device"))
+            o.optString("button", "left"), o.optString("space", "device"), optAnchor(o))
         "drag" -> DragStep(o.optInt("x1"), o.optInt("y1"), o.optInt("x2"), o.optInt("y2"),
-            o.optInt("duration_ms", 400), o.optInt("hold_ms", 0), o.optString("space", "device"))
+            o.optInt("duration_ms", 400), o.optInt("hold_ms", 0), o.optString("space", "device"), optAnchor(o))
         "subsequence" -> SubsequenceStep(o.optString("name", "Subsecuencia"),
             if (o.isNull("repeats")) null else o.optInt("repeats", 1), stepsFrom(o.optJSONArray("steps")))
         "wait_image" -> WaitImageStep(o.optString("name", "Esperar imagen"),

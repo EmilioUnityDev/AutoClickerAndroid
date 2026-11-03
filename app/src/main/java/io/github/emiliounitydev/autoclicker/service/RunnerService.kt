@@ -117,10 +117,7 @@ class RunnerService : Service(), DeviceIO {
         job?.cancel()
         scope.cancel()
         panel?.let { runCatching { wm.removeView(it) } }
-        display?.release()
-        reader?.close()
-        projection?.stop()
-        thread?.quitSafely()
+        stopCapture()
         if (instance === this) instance = null
         super.onDestroy()
     }
@@ -151,6 +148,29 @@ class RunnerService : Service(), DeviceIO {
     }
 
     // ------------------------------------------------------------- captura
+    /**
+     * Para la captura sin carreras: el lector se cierra en su propio hilo, así
+     * nunca se cierra una imagen mientras se está copiando (antes eso tiraba
+     * la app entera, y con ella el servicio de accesibilidad, que Android deja
+     * marcado como «No funciona» hasta desactivarlo y activarlo).
+     */
+    private fun stopCapture() {
+        val r = reader
+        val ht = thread
+        reader = null
+        thread = null
+        lastFrame = null
+        runCatching { r?.setOnImageAvailableListener(null, null) }
+        runCatching { display?.release() }
+        display = null
+        runCatching { projection?.stop() }
+        projection = null
+        if (ht != null && ht.isAlive) {
+            Handler(ht.looper).post { runCatching { r?.close() } }
+            ht.quitSafely()
+        } else runCatching { r?.close() }
+    }
+
     private fun startCapture(code: Int, data: Intent) {
         val mpm = getSystemService(MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
         val mp = mpm.getMediaProjection(code, data) ?: return
@@ -161,7 +181,7 @@ class RunnerService : Service(), DeviceIO {
         mp.registerCallback(object : MediaProjection.Callback() {
             override fun onStop() {
                 lastFrame = null
-                main.post { setStatus("Captura detenida por el sistema") }
+                main.post { stopCapture(); setStatus("Captura detenida por el sistema: vuelve a iniciar el panel desde la app") }
             }
         }, handler)
         // Media resolución: suficiente para condiciones de color y más ligero.
@@ -170,30 +190,38 @@ class RunnerService : Service(), DeviceIO {
         val r = ImageReader.newInstance(cw, ch, PixelFormat.RGBA_8888, 2)
         reader = r
         r.setOnImageAvailableListener({ ir ->
+            if (reader !== ir) return@setOnImageAvailableListener  // captura ya parada
             val img = runCatching { ir.acquireLatestImage() }.getOrNull() ?: return@setOnImageAvailableListener
-            try {
+            val w = img.width
+            val h = img.height
+            // 1) Copiar los bytes de golpe (rápido) y soltar la imagen.
+            val copy = try {
                 val plane = img.planes[0]
-                val buf = plane.buffer
-                val pixelStride = plane.pixelStride
-                val rowStride = plane.rowStride
-                val w = img.width
-                val h = img.height
-                val out = IntArray(w * h)
-                for (y in 0 until h) {
-                    var off = y * rowStride
-                    val row = y * w
-                    for (x in 0 until w) {
-                        val rr = buf.get(off).toInt() and 0xff
-                        val gg = buf.get(off + 1).toInt() and 0xff
-                        val bb = buf.get(off + 2).toInt() and 0xff
-                        out[row + x] = (0xff shl 24) or (rr shl 16) or (gg shl 8) or bb
-                        off += pixelStride
-                    }
-                }
-                lastFrame = Frame(w, h, out)
+                val buf = plane.buffer.duplicate().apply { rewind() }
+                val bytes = ByteArray(buf.remaining()).also { buf.get(it) }
+                Triple(bytes, plane.pixelStride, plane.rowStride)
+            } catch (e: Exception) {
+                // Buffer inaccesible (captura parada a medias): se ignora este fotograma.
+                null
             } finally {
-                img.close()
+                runCatching { img.close() }
+            } ?: return@setOnImageAvailableListener
+            // 2) Convertir a píxeles fuera de la imagen.
+            val (bytes, pixelStride, rowStride) = copy
+            val out = IntArray(w * h)
+            for (y in 0 until h) {
+                var off = y * rowStride
+                val row = y * w
+                if (off + (w - 1) * pixelStride + 2 >= bytes.size) break
+                for (x in 0 until w) {
+                    val rr = bytes[off].toInt() and 0xff
+                    val gg = bytes[off + 1].toInt() and 0xff
+                    val bb = bytes[off + 2].toInt() and 0xff
+                    out[row + x] = (0xff shl 24) or (rr shl 16) or (gg shl 8) or bb
+                    off += pixelStride
+                }
             }
+            lastFrame = Frame(w, h, out)
         }, handler)
         display = mp.createVirtualDisplay("autoclicker", cw, ch, ScreenInfo.density(this) / 2,
             DisplayManager.VIRTUAL_DISPLAY_FLAG_AUTO_MIRROR, r.surface, null, handler)

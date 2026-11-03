@@ -298,14 +298,14 @@
              "unless": [
               {
                "region": [
-                90,
-                1060,
-                370,
-                1220
+                65,
+                280,
+                110,
+                700
                ],
-               "color": "#584878,#484878,#585888",
-               "tolerance": 16,
-               "min_fraction": 0.7,
+               "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+               "tolerance": 24,
+               "min_fraction": 0.5,
                "anchor_y": 0.66
               },
               {
@@ -362,6 +362,18 @@
                  "tolerance": 20,
                  "min_fraction": 0.45,
                  "anchor_y": 1.0
+                },
+                {
+                 "region": [
+                  20,
+                  1455,
+                  125,
+                  1555
+                 ],
+                 "color": "#585888,#484878,#6858a8,#586898,#483878",
+                 "tolerance": 16,
+                 "min_fraction": 0.4,
+                 "anchor_y": 1.0
                 }
                ],
                "unless": [
@@ -417,59 +429,35 @@
                "else_steps": [
                 {
                  "type": "if_image",
-                 "name": "mapa → botón de chat",
+                 "name": "ficha de casilla → X",
                  "condition": {
                   "region": [
-                   800,
-                   1195,
-                   885,
-                   1275
+                   30,
+                   1270,
+                   870,
+                   1335
                   ],
-                  "color": "#f8f8f8,#181818,#586898,#484878",
-                  "tolerance": 24,
-                  "min_fraction": 0.5,
+                  "color": "#e8e8f8,#e8d8f8,#f8e8f8,#d8d8f8,#f8f8f8",
+                  "tolerance": 12,
+                  "min_fraction": 0.6,
                   "anchor_y": 1.0
                  },
                  "delay_before_ms": 0,
                  "also": [
                   {
                    "region": [
-                    15,
-                    1320,
-                    160,
-                    1460
+                    0,
+                    1510,
+                    300,
+                    1540
                    ],
-                   "color": "#585888,#f8f8f8,#080808,#484878",
-                   "tolerance": 24,
-                   "min_fraction": 0.5,
-                   "anchor_y": 1.0
-                  },
-                  {
-                   "region": [
-                    735,
-                    1320,
-                    880,
-                    1460
-                   ],
-                   "color": "#585888,#484878,#f8f8f8,#080808,#6858a8",
-                   "tolerance": 24,
-                   "min_fraction": 0.4,
+                   "color": "#181828,#181818,#080808,#282838",
+                   "tolerance": 12,
+                   "min_fraction": 0.8,
                    "anchor_y": 1.0
                   }
                  ],
                  "unless": [
-                  {
-                   "region": [
-                    170,
-                    80,
-                    860,
-                    160
-                   ],
-                   "color": "#484878",
-                   "tolerance": 16,
-                   "min_fraction": 0.6,
-                   "anchor_y": 0.5
-                  },
                   {
                    "region": [
                     200,
@@ -496,14 +484,26 @@
                   },
                   {
                    "region": [
-                    90,
-                    1060,
-                    370,
-                    1220
+                    0,
+                    320,
+                    18,
+                    1440
                    ],
-                   "color": "#584878,#484878,#585888",
+                   "color": "#484878,#483878",
                    "tolerance": 16,
-                   "min_fraction": 0.7,
+                   "min_fraction": 0.8,
+                   "anchor_y": 1.0
+                  },
+                  {
+                   "region": [
+                    65,
+                    280,
+                    110,
+                    700
+                   ],
+                   "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+                   "tolerance": 24,
+                   "min_fraction": 0.5,
                    "anchor_y": 0.66
                   },
                   {
@@ -517,25 +517,13 @@
                    "tolerance": 10,
                    "min_fraction": 0.9,
                    "anchor_y": 0.66
-                  },
-                  {
-                   "region": [
-                    0,
-                    320,
-                    18,
-                    1440
-                   ],
-                   "color": "#484878,#483878",
-                   "tolerance": 16,
-                   "min_fraction": 0.8,
-                   "anchor_y": 1.0
                   }
                  ],
                  "then_steps": [
                   {
                    "type": "click",
-                   "x": 840,
-                   "y": 1235,
+                   "x": 450,
+                   "y": 1555,
                    "button": "left",
                    "delay_before_ms": 1000,
                    "duration_ms": 80,
@@ -545,11 +533,178 @@
                  ],
                  "else_steps": [
                   {
-                   "type": "subsequence",
-                   "name": "pausa 1000 ms",
-                   "repeats": 1,
-                   "delay_before_ms": 1000,
-                   "steps": []
+                   "type": "if_image",
+                   "name": "mapa → botón de chat",
+                   "condition": {
+                    "region": [
+                     800,
+                     1195,
+                     885,
+                     1275
+                    ],
+                    "color": "#f8f8f8,#181818,#586898,#484878",
+                    "tolerance": 24,
+                    "min_fraction": 0.5,
+                    "anchor_y": 1.0
+                   },
+                   "delay_before_ms": 0,
+                   "also": [
+                    {
+                     "region": [
+                      15,
+                      1320,
+                      160,
+                      1460
+                     ],
+                     "color": "#585888,#f8f8f8,#080808,#484878",
+                     "tolerance": 24,
+                     "min_fraction": 0.5,
+                     "anchor_y": 1.0
+                    },
+                    {
+                     "region": [
+                      735,
+                      1320,
+                      880,
+                      1460
+                     ],
+                     "color": "#585888,#484878,#f8f8f8,#080808,#6858a8",
+                     "tolerance": 24,
+                     "min_fraction": 0.4,
+                     "anchor_y": 1.0
+                    },
+                    {
+                     "region": [
+                      15,
+                      1320,
+                      160,
+                      1460
+                     ],
+                     "color": "#585888,#484878,#6858a8,#586898,#483878",
+                     "tolerance": 16,
+                     "min_fraction": 0.3,
+                     "anchor_y": 1.0
+                    },
+                    {
+                     "region": [
+                      735,
+                      1320,
+                      880,
+                      1460
+                     ],
+                     "color": "#585888,#484878,#6858a8,#586898,#483878",
+                     "tolerance": 16,
+                     "min_fraction": 0.3,
+                     "anchor_y": 1.0
+                    }
+                   ],
+                   "unless": [
+                    {
+                     "region": [
+                      170,
+                      80,
+                      860,
+                      160
+                     ],
+                     "color": "#484878",
+                     "tolerance": 16,
+                     "min_fraction": 0.6,
+                     "anchor_y": 0.5
+                    },
+                    {
+                     "region": [
+                      200,
+                      1470,
+                      840,
+                      1540
+                     ],
+                     "color": "#88d828,#a8e828,#a8e838,#98e828,#78c828,#98d828,#b8f838",
+                     "tolerance": 24,
+                     "min_fraction": 0.6,
+                     "anchor_y": 1.0
+                    },
+                    {
+                     "region": [
+                      200,
+                      1470,
+                      840,
+                      1540
+                     ],
+                     "color": "#888888,#989898,#a8a8a8,#787878",
+                     "tolerance": 16,
+                     "min_fraction": 0.6,
+                     "anchor_y": 1.0
+                    },
+                    {
+                     "region": [
+                      90,
+                      1060,
+                      370,
+                      1220
+                     ],
+                     "color": "#584878,#484878,#585888",
+                     "tolerance": 16,
+                     "min_fraction": 0.7,
+                     "anchor_y": 0.66
+                    },
+                    {
+                     "region": [
+                      30,
+                      600,
+                      870,
+                      680
+                     ],
+                     "color": "#f8f8f8,#f8f8e8",
+                     "tolerance": 10,
+                     "min_fraction": 0.9,
+                     "anchor_y": 0.66
+                    },
+                    {
+                     "region": [
+                      0,
+                      320,
+                      18,
+                      1440
+                     ],
+                     "color": "#484878,#483878",
+                     "tolerance": 16,
+                     "min_fraction": 0.8,
+                     "anchor_y": 1.0
+                    },
+                    {
+                     "region": [
+                      30,
+                      1270,
+                      870,
+                      1335
+                     ],
+                     "color": "#e8e8f8,#e8d8f8,#f8e8f8,#d8d8f8,#f8f8f8",
+                     "tolerance": 12,
+                     "min_fraction": 0.6,
+                     "anchor_y": 1.0
+                    }
+                   ],
+                   "then_steps": [
+                    {
+                     "type": "click",
+                     "x": 840,
+                     "y": 1235,
+                     "button": "left",
+                     "delay_before_ms": 1000,
+                     "duration_ms": 80,
+                     "space": "device",
+                     "anchor_y": 1.0
+                    }
+                   ],
+                   "else_steps": [
+                    {
+                     "type": "subsequence",
+                     "name": "pausa 1000 ms",
+                     "repeats": 1,
+                     "delay_before_ms": 1000,
+                     "steps": []
+                    }
+                   ]
                   }
                  ]
                 }
@@ -3877,14 +4032,14 @@
      "unless": [
       {
        "region": [
-        90,
-        1060,
-        370,
-        1220
+        65,
+        280,
+        110,
+        700
        ],
-       "color": "#584878,#484878,#585888",
-       "tolerance": 16,
-       "min_fraction": 0.7,
+       "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+       "tolerance": 24,
+       "min_fraction": 0.5,
        "anchor_y": 0.66
       },
       {
@@ -3958,14 +4113,14 @@
        "unless": [
         {
          "region": [
-          90,
-          1060,
-          370,
-          1220
+          65,
+          280,
+          110,
+          700
          ],
-         "color": "#584878,#484878,#585888",
-         "tolerance": 16,
-         "min_fraction": 0.7,
+         "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+         "tolerance": 24,
+         "min_fraction": 0.5,
          "anchor_y": 0.66
         },
         {
@@ -4058,14 +4213,14 @@
          "unless": [
           {
            "region": [
-            90,
-            1060,
-            370,
-            1220
+            65,
+            280,
+            110,
+            700
            ],
-           "color": "#584878,#484878,#585888",
-           "tolerance": 16,
-           "min_fraction": 0.7,
+           "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+           "tolerance": 24,
+           "min_fraction": 0.5,
            "anchor_y": 0.66
           },
           {
@@ -4158,14 +4313,14 @@
            "unless": [
             {
              "region": [
-              90,
-              1060,
-              370,
-              1220
+              65,
+              280,
+              110,
+              700
              ],
-             "color": "#584878,#484878,#585888",
-             "tolerance": 16,
-             "min_fraction": 0.7,
+             "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+             "tolerance": 24,
+             "min_fraction": 0.5,
              "anchor_y": 0.66
             },
             {
@@ -4258,14 +4413,14 @@
              "unless": [
               {
                "region": [
-                90,
-                1060,
-                370,
-                1220
+                65,
+                280,
+                110,
+                700
                ],
-               "color": "#584878,#484878,#585888",
-               "tolerance": 16,
-               "min_fraction": 0.7,
+               "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+               "tolerance": 24,
+               "min_fraction": 0.5,
                "anchor_y": 0.66
               },
               {
@@ -4358,14 +4513,14 @@
                "unless": [
                 {
                  "region": [
-                  90,
-                  1060,
-                  370,
-                  1220
+                  65,
+                  280,
+                  110,
+                  700
                  ],
-                 "color": "#584878,#484878,#585888",
-                 "tolerance": 16,
-                 "min_fraction": 0.7,
+                 "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+                 "tolerance": 24,
+                 "min_fraction": 0.5,
                  "anchor_y": 0.66
                 },
                 {
@@ -4458,14 +4613,14 @@
                  "unless": [
                   {
                    "region": [
-                    90,
-                    1060,
-                    370,
-                    1220
+                    65,
+                    280,
+                    110,
+                    700
                    ],
-                   "color": "#584878,#484878,#585888",
-                   "tolerance": 16,
-                   "min_fraction": 0.7,
+                   "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+                   "tolerance": 24,
+                   "min_fraction": 0.5,
                    "anchor_y": 0.66
                   },
                   {
@@ -4558,14 +4713,14 @@
                    "unless": [
                     {
                      "region": [
-                      90,
-                      1060,
-                      370,
-                      1220
+                      65,
+                      280,
+                      110,
+                      700
                      ],
-                     "color": "#584878,#484878,#585888",
-                     "tolerance": 16,
-                     "min_fraction": 0.7,
+                     "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+                     "tolerance": 24,
+                     "min_fraction": 0.5,
                      "anchor_y": 0.66
                     },
                     {
@@ -4658,14 +4813,14 @@
                      "unless": [
                       {
                        "region": [
-                        90,
-                        1060,
-                        370,
-                        1220
+                        65,
+                        280,
+                        110,
+                        700
                        ],
-                       "color": "#584878,#484878,#585888",
-                       "tolerance": 16,
-                       "min_fraction": 0.7,
+                       "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+                       "tolerance": 24,
+                       "min_fraction": 0.5,
                        "anchor_y": 0.66
                       },
                       {
@@ -4758,14 +4913,14 @@
                        "unless": [
                         {
                          "region": [
-                          90,
-                          1060,
-                          370,
-                          1220
+                          65,
+                          280,
+                          110,
+                          700
                          ],
-                         "color": "#584878,#484878,#585888",
-                         "tolerance": 16,
-                         "min_fraction": 0.7,
+                         "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+                         "tolerance": 24,
+                         "min_fraction": 0.5,
                          "anchor_y": 0.66
                         },
                         {
@@ -4858,14 +5013,14 @@
                          "unless": [
                           {
                            "region": [
-                            90,
-                            1060,
-                            370,
-                            1220
+                            65,
+                            280,
+                            110,
+                            700
                            ],
-                           "color": "#584878,#484878,#585888",
-                           "tolerance": 16,
-                           "min_fraction": 0.7,
+                           "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+                           "tolerance": 24,
+                           "min_fraction": 0.5,
                            "anchor_y": 0.66
                           },
                           {
@@ -4958,14 +5113,14 @@
                            "unless": [
                             {
                              "region": [
-                              90,
-                              1060,
-                              370,
-                              1220
+                              65,
+                              280,
+                              110,
+                              700
                              ],
-                             "color": "#584878,#484878,#585888",
-                             "tolerance": 16,
-                             "min_fraction": 0.7,
+                             "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+                             "tolerance": 24,
+                             "min_fraction": 0.5,
                              "anchor_y": 0.66
                             },
                             {
@@ -5058,14 +5213,14 @@
                              "unless": [
                               {
                                "region": [
-                                90,
-                                1060,
-                                370,
-                                1220
+                                65,
+                                280,
+                                110,
+                                700
                                ],
-                               "color": "#584878,#484878,#585888",
-                               "tolerance": 16,
-                               "min_fraction": 0.7,
+                               "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+                               "tolerance": 24,
+                               "min_fraction": 0.5,
                                "anchor_y": 0.66
                               },
                               {
@@ -5158,14 +5313,14 @@
                                "unless": [
                                 {
                                  "region": [
-                                  90,
-                                  1060,
-                                  370,
-                                  1220
+                                  65,
+                                  280,
+                                  110,
+                                  700
                                  ],
-                                 "color": "#584878,#484878,#585888",
-                                 "tolerance": 16,
-                                 "min_fraction": 0.7,
+                                 "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+                                 "tolerance": 24,
+                                 "min_fraction": 0.5,
                                  "anchor_y": 0.66
                                 },
                                 {
@@ -5258,14 +5413,14 @@
                                  "unless": [
                                   {
                                    "region": [
-                                    90,
-                                    1060,
-                                    370,
-                                    1220
+                                    65,
+                                    280,
+                                    110,
+                                    700
                                    ],
-                                   "color": "#584878,#484878,#585888",
-                                   "tolerance": 16,
-                                   "min_fraction": 0.7,
+                                   "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+                                   "tolerance": 24,
+                                   "min_fraction": 0.5,
                                    "anchor_y": 0.66
                                   },
                                   {
@@ -5358,14 +5513,14 @@
                                    "unless": [
                                     {
                                      "region": [
-                                      90,
-                                      1060,
-                                      370,
-                                      1220
+                                      65,
+                                      280,
+                                      110,
+                                      700
                                      ],
-                                     "color": "#584878,#484878,#585888",
-                                     "tolerance": 16,
-                                     "min_fraction": 0.7,
+                                     "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+                                     "tolerance": 24,
+                                     "min_fraction": 0.5,
                                      "anchor_y": 0.66
                                     },
                                     {
@@ -5458,14 +5613,14 @@
                                      "unless": [
                                       {
                                        "region": [
-                                        90,
-                                        1060,
-                                        370,
-                                        1220
+                                        65,
+                                        280,
+                                        110,
+                                        700
                                        ],
-                                       "color": "#584878,#484878,#585888",
-                                       "tolerance": 16,
-                                       "min_fraction": 0.7,
+                                       "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+                                       "tolerance": 24,
+                                       "min_fraction": 0.5,
                                        "anchor_y": 0.66
                                       },
                                       {
@@ -5558,14 +5713,14 @@
                                        "unless": [
                                         {
                                          "region": [
-                                          90,
-                                          1060,
-                                          370,
-                                          1220
+                                          65,
+                                          280,
+                                          110,
+                                          700
                                          ],
-                                         "color": "#584878,#484878,#585888",
-                                         "tolerance": 16,
-                                         "min_fraction": 0.7,
+                                         "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+                                         "tolerance": 24,
+                                         "min_fraction": 0.5,
                                          "anchor_y": 0.66
                                         },
                                         {
@@ -5658,14 +5813,14 @@
                                          "unless": [
                                           {
                                            "region": [
-                                            90,
-                                            1060,
-                                            370,
-                                            1220
+                                            65,
+                                            280,
+                                            110,
+                                            700
                                            ],
-                                           "color": "#584878,#484878,#585888",
-                                           "tolerance": 16,
-                                           "min_fraction": 0.7,
+                                           "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+                                           "tolerance": 24,
+                                           "min_fraction": 0.5,
                                            "anchor_y": 0.66
                                           },
                                           {
@@ -5758,14 +5913,14 @@
                                            "unless": [
                                             {
                                              "region": [
-                                              90,
-                                              1060,
-                                              370,
-                                              1220
+                                              65,
+                                              280,
+                                              110,
+                                              700
                                              ],
-                                             "color": "#584878,#484878,#585888",
-                                             "tolerance": 16,
-                                             "min_fraction": 0.7,
+                                             "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+                                             "tolerance": 24,
+                                             "min_fraction": 0.5,
                                              "anchor_y": 0.66
                                             },
                                             {
@@ -5858,14 +6013,14 @@
                                              "unless": [
                                               {
                                                "region": [
-                                                90,
-                                                1060,
-                                                370,
-                                                1220
+                                                65,
+                                                280,
+                                                110,
+                                                700
                                                ],
-                                               "color": "#584878,#484878,#585888",
-                                               "tolerance": 16,
-                                               "min_fraction": 0.7,
+                                               "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+                                               "tolerance": 24,
+                                               "min_fraction": 0.5,
                                                "anchor_y": 0.66
                                               },
                                               {
@@ -5958,14 +6113,14 @@
                                                "unless": [
                                                 {
                                                  "region": [
-                                                  90,
-                                                  1060,
-                                                  370,
-                                                  1220
+                                                  65,
+                                                  280,
+                                                  110,
+                                                  700
                                                  ],
-                                                 "color": "#584878,#484878,#585888",
-                                                 "tolerance": 16,
-                                                 "min_fraction": 0.7,
+                                                 "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+                                                 "tolerance": 24,
+                                                 "min_fraction": 0.5,
                                                  "anchor_y": 0.66
                                                 },
                                                 {
@@ -6058,14 +6213,14 @@
                                                  "unless": [
                                                   {
                                                    "region": [
-                                                    90,
-                                                    1060,
-                                                    370,
-                                                    1220
+                                                    65,
+                                                    280,
+                                                    110,
+                                                    700
                                                    ],
-                                                   "color": "#584878,#484878,#585888",
-                                                   "tolerance": 16,
-                                                   "min_fraction": 0.7,
+                                                   "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+                                                   "tolerance": 24,
+                                                   "min_fraction": 0.5,
                                                    "anchor_y": 0.66
                                                   },
                                                   {
@@ -6158,14 +6313,14 @@
                                                    "unless": [
                                                     {
                                                      "region": [
-                                                      90,
-                                                      1060,
-                                                      370,
-                                                      1220
+                                                      65,
+                                                      280,
+                                                      110,
+                                                      700
                                                      ],
-                                                     "color": "#584878,#484878,#585888",
-                                                     "tolerance": 16,
-                                                     "min_fraction": 0.7,
+                                                     "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+                                                     "tolerance": 24,
+                                                     "min_fraction": 0.5,
                                                      "anchor_y": 0.66
                                                     },
                                                     {
@@ -6258,14 +6413,14 @@
                                                      "unless": [
                                                       {
                                                        "region": [
-                                                        90,
-                                                        1060,
-                                                        370,
-                                                        1220
+                                                        65,
+                                                        280,
+                                                        110,
+                                                        700
                                                        ],
-                                                       "color": "#584878,#484878,#585888",
-                                                       "tolerance": 16,
-                                                       "min_fraction": 0.7,
+                                                       "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+                                                       "tolerance": 24,
+                                                       "min_fraction": 0.5,
                                                        "anchor_y": 0.66
                                                       },
                                                       {
@@ -6358,14 +6513,14 @@
                                                        "unless": [
                                                         {
                                                          "region": [
-                                                          90,
-                                                          1060,
-                                                          370,
-                                                          1220
+                                                          65,
+                                                          280,
+                                                          110,
+                                                          700
                                                          ],
-                                                         "color": "#584878,#484878,#585888",
-                                                         "tolerance": 16,
-                                                         "min_fraction": 0.7,
+                                                         "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+                                                         "tolerance": 24,
+                                                         "min_fraction": 0.5,
                                                          "anchor_y": 0.66
                                                         },
                                                         {
@@ -6458,14 +6613,14 @@
                                                          "unless": [
                                                           {
                                                            "region": [
-                                                            90,
-                                                            1060,
-                                                            370,
-                                                            1220
+                                                            65,
+                                                            280,
+                                                            110,
+                                                            700
                                                            ],
-                                                           "color": "#584878,#484878,#585888",
-                                                           "tolerance": 16,
-                                                           "min_fraction": 0.7,
+                                                           "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+                                                           "tolerance": 24,
+                                                           "min_fraction": 0.5,
                                                            "anchor_y": 0.66
                                                           },
                                                           {
@@ -6558,14 +6713,14 @@
                                                            "unless": [
                                                             {
                                                              "region": [
-                                                              90,
-                                                              1060,
-                                                              370,
-                                                              1220
+                                                              65,
+                                                              280,
+                                                              110,
+                                                              700
                                                              ],
-                                                             "color": "#584878,#484878,#585888",
-                                                             "tolerance": 16,
-                                                             "min_fraction": 0.7,
+                                                             "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+                                                             "tolerance": 24,
+                                                             "min_fraction": 0.5,
                                                              "anchor_y": 0.66
                                                             },
                                                             {
@@ -6658,14 +6813,14 @@
                                                              "unless": [
                                                               {
                                                                "region": [
-                                                                90,
-                                                                1060,
-                                                                370,
-                                                                1220
+                                                                65,
+                                                                280,
+                                                                110,
+                                                                700
                                                                ],
-                                                               "color": "#584878,#484878,#585888",
-                                                               "tolerance": 16,
-                                                               "min_fraction": 0.7,
+                                                               "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+                                                               "tolerance": 24,
+                                                               "min_fraction": 0.5,
                                                                "anchor_y": 0.66
                                                               },
                                                               {
@@ -6758,14 +6913,14 @@
                                                                "unless": [
                                                                 {
                                                                  "region": [
-                                                                  90,
-                                                                  1060,
-                                                                  370,
-                                                                  1220
+                                                                  65,
+                                                                  280,
+                                                                  110,
+                                                                  700
                                                                  ],
-                                                                 "color": "#584878,#484878,#585888",
-                                                                 "tolerance": 16,
-                                                                 "min_fraction": 0.7,
+                                                                 "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+                                                                 "tolerance": 24,
+                                                                 "min_fraction": 0.5,
                                                                  "anchor_y": 0.66
                                                                 },
                                                                 {
@@ -6858,14 +7013,14 @@
                                                                  "unless": [
                                                                   {
                                                                    "region": [
-                                                                    90,
-                                                                    1060,
-                                                                    370,
-                                                                    1220
+                                                                    65,
+                                                                    280,
+                                                                    110,
+                                                                    700
                                                                    ],
-                                                                   "color": "#584878,#484878,#585888",
-                                                                   "tolerance": 16,
-                                                                   "min_fraction": 0.7,
+                                                                   "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+                                                                   "tolerance": 24,
+                                                                   "min_fraction": 0.5,
                                                                    "anchor_y": 0.66
                                                                   },
                                                                   {
@@ -6958,14 +7113,14 @@
                                                                    "unless": [
                                                                     {
                                                                      "region": [
-                                                                      90,
-                                                                      1060,
-                                                                      370,
-                                                                      1220
+                                                                      65,
+                                                                      280,
+                                                                      110,
+                                                                      700
                                                                      ],
-                                                                     "color": "#584878,#484878,#585888",
-                                                                     "tolerance": 16,
-                                                                     "min_fraction": 0.7,
+                                                                     "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+                                                                     "tolerance": 24,
+                                                                     "min_fraction": 0.5,
                                                                      "anchor_y": 0.66
                                                                     },
                                                                     {
@@ -7058,14 +7213,14 @@
                                                                      "unless": [
                                                                       {
                                                                        "region": [
-                                                                        90,
-                                                                        1060,
-                                                                        370,
-                                                                        1220
+                                                                        65,
+                                                                        280,
+                                                                        110,
+                                                                        700
                                                                        ],
-                                                                       "color": "#584878,#484878,#585888",
-                                                                       "tolerance": 16,
-                                                                       "min_fraction": 0.7,
+                                                                       "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+                                                                       "tolerance": 24,
+                                                                       "min_fraction": 0.5,
                                                                        "anchor_y": 0.66
                                                                       },
                                                                       {
@@ -7158,14 +7313,14 @@
                                                                        "unless": [
                                                                         {
                                                                          "region": [
-                                                                          90,
-                                                                          1060,
-                                                                          370,
-                                                                          1220
+                                                                          65,
+                                                                          280,
+                                                                          110,
+                                                                          700
                                                                          ],
-                                                                         "color": "#584878,#484878,#585888",
-                                                                         "tolerance": 16,
-                                                                         "min_fraction": 0.7,
+                                                                         "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+                                                                         "tolerance": 24,
+                                                                         "min_fraction": 0.5,
                                                                          "anchor_y": 0.66
                                                                         },
                                                                         {
@@ -7258,14 +7413,14 @@
                                                                          "unless": [
                                                                           {
                                                                            "region": [
-                                                                            90,
-                                                                            1060,
-                                                                            370,
-                                                                            1220
+                                                                            65,
+                                                                            280,
+                                                                            110,
+                                                                            700
                                                                            ],
-                                                                           "color": "#584878,#484878,#585888",
-                                                                           "tolerance": 16,
-                                                                           "min_fraction": 0.7,
+                                                                           "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+                                                                           "tolerance": 24,
+                                                                           "min_fraction": 0.5,
                                                                            "anchor_y": 0.66
                                                                           },
                                                                           {
@@ -7358,14 +7513,14 @@
                                                                            "unless": [
                                                                             {
                                                                              "region": [
-                                                                              90,
-                                                                              1060,
-                                                                              370,
-                                                                              1220
+                                                                              65,
+                                                                              280,
+                                                                              110,
+                                                                              700
                                                                              ],
-                                                                             "color": "#584878,#484878,#585888",
-                                                                             "tolerance": 16,
-                                                                             "min_fraction": 0.7,
+                                                                             "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+                                                                             "tolerance": 24,
+                                                                             "min_fraction": 0.5,
                                                                              "anchor_y": 0.66
                                                                             },
                                                                             {
@@ -7458,14 +7613,14 @@
                                                                              "unless": [
                                                                               {
                                                                                "region": [
-                                                                                90,
-                                                                                1060,
-                                                                                370,
-                                                                                1220
+                                                                                65,
+                                                                                280,
+                                                                                110,
+                                                                                700
                                                                                ],
-                                                                               "color": "#584878,#484878,#585888",
-                                                                               "tolerance": 16,
-                                                                               "min_fraction": 0.7,
+                                                                               "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+                                                                               "tolerance": 24,
+                                                                               "min_fraction": 0.5,
                                                                                "anchor_y": 0.66
                                                                               },
                                                                               {
@@ -7558,14 +7713,14 @@
                                                                                "unless": [
                                                                                 {
                                                                                  "region": [
-                                                                                  90,
-                                                                                  1060,
-                                                                                  370,
-                                                                                  1220
+                                                                                  65,
+                                                                                  280,
+                                                                                  110,
+                                                                                  700
                                                                                  ],
-                                                                                 "color": "#584878,#484878,#585888",
-                                                                                 "tolerance": 16,
-                                                                                 "min_fraction": 0.7,
+                                                                                 "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+                                                                                 "tolerance": 24,
+                                                                                 "min_fraction": 0.5,
                                                                                  "anchor_y": 0.66
                                                                                 },
                                                                                 {
@@ -7658,14 +7813,14 @@
                                                                                  "unless": [
                                                                                   {
                                                                                    "region": [
-                                                                                    90,
-                                                                                    1060,
-                                                                                    370,
-                                                                                    1220
+                                                                                    65,
+                                                                                    280,
+                                                                                    110,
+                                                                                    700
                                                                                    ],
-                                                                                   "color": "#584878,#484878,#585888",
-                                                                                   "tolerance": 16,
-                                                                                   "min_fraction": 0.7,
+                                                                                   "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+                                                                                   "tolerance": 24,
+                                                                                   "min_fraction": 0.5,
                                                                                    "anchor_y": 0.66
                                                                                   },
                                                                                   {
@@ -7758,14 +7913,14 @@
                                                                                    "unless": [
                                                                                     {
                                                                                      "region": [
-                                                                                      90,
-                                                                                      1060,
-                                                                                      370,
-                                                                                      1220
+                                                                                      65,
+                                                                                      280,
+                                                                                      110,
+                                                                                      700
                                                                                      ],
-                                                                                     "color": "#584878,#484878,#585888",
-                                                                                     "tolerance": 16,
-                                                                                     "min_fraction": 0.7,
+                                                                                     "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+                                                                                     "tolerance": 24,
+                                                                                     "min_fraction": 0.5,
                                                                                      "anchor_y": 0.66
                                                                                     },
                                                                                     {
@@ -7858,14 +8013,14 @@
                                                                                      "unless": [
                                                                                       {
                                                                                        "region": [
-                                                                                        90,
-                                                                                        1060,
-                                                                                        370,
-                                                                                        1220
+                                                                                        65,
+                                                                                        280,
+                                                                                        110,
+                                                                                        700
                                                                                        ],
-                                                                                       "color": "#584878,#484878,#585888",
-                                                                                       "tolerance": 16,
-                                                                                       "min_fraction": 0.7,
+                                                                                       "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+                                                                                       "tolerance": 24,
+                                                                                       "min_fraction": 0.5,
                                                                                        "anchor_y": 0.66
                                                                                       },
                                                                                       {
@@ -7958,14 +8113,14 @@
                                                                                        "unless": [
                                                                                         {
                                                                                          "region": [
-                                                                                          90,
-                                                                                          1060,
-                                                                                          370,
-                                                                                          1220
+                                                                                          65,
+                                                                                          280,
+                                                                                          110,
+                                                                                          700
                                                                                          ],
-                                                                                         "color": "#584878,#484878,#585888",
-                                                                                         "tolerance": 16,
-                                                                                         "min_fraction": 0.7,
+                                                                                         "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+                                                                                         "tolerance": 24,
+                                                                                         "min_fraction": 0.5,
                                                                                          "anchor_y": 0.66
                                                                                         },
                                                                                         {
@@ -8058,14 +8213,14 @@
                                                                                          "unless": [
                                                                                           {
                                                                                            "region": [
-                                                                                            90,
-                                                                                            1060,
-                                                                                            370,
-                                                                                            1220
+                                                                                            65,
+                                                                                            280,
+                                                                                            110,
+                                                                                            700
                                                                                            ],
-                                                                                           "color": "#584878,#484878,#585888",
-                                                                                           "tolerance": 16,
-                                                                                           "min_fraction": 0.7,
+                                                                                           "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+                                                                                           "tolerance": 24,
+                                                                                           "min_fraction": 0.5,
                                                                                            "anchor_y": 0.66
                                                                                           },
                                                                                           {
@@ -8158,14 +8313,14 @@
                                                                                            "unless": [
                                                                                             {
                                                                                              "region": [
-                                                                                              90,
-                                                                                              1060,
-                                                                                              370,
-                                                                                              1220
+                                                                                              65,
+                                                                                              280,
+                                                                                              110,
+                                                                                              700
                                                                                              ],
-                                                                                             "color": "#584878,#484878,#585888",
-                                                                                             "tolerance": 16,
-                                                                                             "min_fraction": 0.7,
+                                                                                             "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+                                                                                             "tolerance": 24,
+                                                                                             "min_fraction": 0.5,
                                                                                              "anchor_y": 0.66
                                                                                             },
                                                                                             {
@@ -8258,14 +8413,14 @@
                                                                                              "unless": [
                                                                                               {
                                                                                                "region": [
-                                                                                                90,
-                                                                                                1060,
-                                                                                                370,
-                                                                                                1220
+                                                                                                65,
+                                                                                                280,
+                                                                                                110,
+                                                                                                700
                                                                                                ],
-                                                                                               "color": "#584878,#484878,#585888",
-                                                                                               "tolerance": 16,
-                                                                                               "min_fraction": 0.7,
+                                                                                               "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+                                                                                               "tolerance": 24,
+                                                                                               "min_fraction": 0.5,
                                                                                                "anchor_y": 0.66
                                                                                               },
                                                                                               {
@@ -8358,14 +8513,14 @@
                                                                                                "unless": [
                                                                                                 {
                                                                                                  "region": [
-                                                                                                  90,
-                                                                                                  1060,
-                                                                                                  370,
-                                                                                                  1220
+                                                                                                  65,
+                                                                                                  280,
+                                                                                                  110,
+                                                                                                  700
                                                                                                  ],
-                                                                                                 "color": "#584878,#484878,#585888",
-                                                                                                 "tolerance": 16,
-                                                                                                 "min_fraction": 0.7,
+                                                                                                 "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+                                                                                                 "tolerance": 24,
+                                                                                                 "min_fraction": 0.5,
                                                                                                  "anchor_y": 0.66
                                                                                                 },
                                                                                                 {
@@ -8505,6 +8660,83 @@
      "else_steps": []
     },
     {
+     "type": "if_image",
+     "name": "la lista sigue → X",
+     "condition": {
+      "region": [
+       0,
+       320,
+       18,
+       1440
+      ],
+      "color": "#484878,#483878",
+      "tolerance": 16,
+      "min_fraction": 0.8,
+      "anchor_y": 1.0
+     },
+     "delay_before_ms": 0,
+     "also": [
+      {
+       "region": [
+        882,
+        320,
+        900,
+        1440
+       ],
+       "color": "#484878,#483878",
+       "tolerance": 16,
+       "min_fraction": 0.8,
+       "anchor_y": 1.0
+      }
+     ],
+     "unless": [
+      {
+       "region": [
+        65,
+        280,
+        110,
+        700
+       ],
+       "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
+       "tolerance": 24,
+       "min_fraction": 0.5,
+       "anchor_y": 0.66
+      },
+      {
+       "region": [
+        30,
+        600,
+        870,
+        680
+       ],
+       "color": "#f8f8f8,#f8f8e8",
+       "tolerance": 10,
+       "min_fraction": 0.9,
+       "anchor_y": 0.66
+      }
+     ],
+     "then_steps": [
+      {
+       "type": "click",
+       "x": 450,
+       "y": 1560,
+       "button": "left",
+       "delay_before_ms": 1000,
+       "duration_ms": 80,
+       "space": "device",
+       "anchor_y": 1.0
+      },
+      {
+       "type": "subsequence",
+       "name": "pausa 1500 ms",
+       "repeats": 1,
+       "delay_before_ms": 1500,
+       "steps": []
+      }
+     ],
+     "else_steps": []
+    },
+    {
      "type": "wait_image",
      "name": "overview de la raid",
      "condition": {
@@ -8534,6 +8766,18 @@
        "color": "#585888,#484878,#f8f8f8,#080808",
        "tolerance": 20,
        "min_fraction": 0.45,
+       "anchor_y": 1.0
+      },
+      {
+       "region": [
+        20,
+        1455,
+        125,
+        1555
+       ],
+       "color": "#585888,#484878,#6858a8,#586898,#483878",
+       "tolerance": 16,
+       "min_fraction": 0.4,
        "anchor_y": 1.0
       }
      ],
@@ -8859,6 +9103,18 @@
        "tolerance": 20,
        "min_fraction": 0.45,
        "anchor_y": 1.0
+      },
+      {
+       "region": [
+        20,
+        1455,
+        125,
+        1555
+       ],
+       "color": "#585888,#484878,#6858a8,#586898,#483878",
+       "tolerance": 16,
+       "min_fraction": 0.4,
+       "anchor_y": 1.0
       }
      ],
      "unless": [
@@ -9135,6 +9391,30 @@
        "tolerance": 24,
        "min_fraction": 0.4,
        "anchor_y": 1.0
+      },
+      {
+       "region": [
+        15,
+        1320,
+        160,
+        1460
+       ],
+       "color": "#585888,#484878,#6858a8,#586898,#483878",
+       "tolerance": 16,
+       "min_fraction": 0.3,
+       "anchor_y": 1.0
+      },
+      {
+       "region": [
+        735,
+        1320,
+        880,
+        1460
+       ],
+       "color": "#585888,#484878,#6858a8,#586898,#483878",
+       "tolerance": 16,
+       "min_fraction": 0.3,
+       "anchor_y": 1.0
       }
      ],
      "unless": [
@@ -9208,6 +9488,18 @@
        "color": "#484878,#483878",
        "tolerance": 16,
        "min_fraction": 0.8,
+       "anchor_y": 1.0
+      },
+      {
+       "region": [
+        30,
+        1270,
+        870,
+        1335
+       ],
+       "color": "#e8e8f8,#e8d8f8,#f8e8f8,#d8d8f8,#f8f8f8",
+       "tolerance": 12,
+       "min_fraction": 0.6,
        "anchor_y": 1.0
       }
      ]
@@ -9431,6 +9723,30 @@
        "tolerance": 24,
        "min_fraction": 0.4,
        "anchor_y": 1.0
+      },
+      {
+       "region": [
+        15,
+        1320,
+        160,
+        1460
+       ],
+       "color": "#585888,#484878,#6858a8,#586898,#483878",
+       "tolerance": 16,
+       "min_fraction": 0.3,
+       "anchor_y": 1.0
+      },
+      {
+       "region": [
+        735,
+        1320,
+        880,
+        1460
+       ],
+       "color": "#585888,#484878,#6858a8,#586898,#483878",
+       "tolerance": 16,
+       "min_fraction": 0.3,
+       "anchor_y": 1.0
       }
      ],
      "unless": [
@@ -9504,6 +9820,18 @@
        "color": "#484878,#483878",
        "tolerance": 16,
        "min_fraction": 0.8,
+       "anchor_y": 1.0
+      },
+      {
+       "region": [
+        30,
+        1270,
+        870,
+        1335
+       ],
+       "color": "#e8e8f8,#e8d8f8,#f8e8f8,#d8d8f8,#f8f8f8",
+       "tolerance": 12,
+       "min_fraction": 0.6,
        "anchor_y": 1.0
       }
      ],

@@ -46,6 +46,8 @@ PHONE_SRC = {
     "phone_rally_list": "Screenshot_2026-11-01-01-18-26-690_com.farlightgames.pgame.gp.jpg",
     # Captura reducida (590 px) reescalada a 1280×2772 sin suavizado.
     "phone_rally_list_join": "rally_list_join_upscaled.png",
+    "phone_rally_list_short": "rally_list_short_upscaled.png",
+    "phone_map_tile": "map_tile_upscaled.png",
 }
 
 

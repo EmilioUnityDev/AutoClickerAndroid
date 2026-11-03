@@ -276,6 +276,29 @@ class RaidJoinPhoneTest {
     }
 
     @Test
+    fun shortRallyListIsRecognised() = runTest {
+        // Con pocas tarjetas el fondo de la lista se parecía al del resumen y no se reconocía.
+        val tl = t + mapOf(
+            "phone_chat_join" to listOf(intArrayOf(480, 1850, 1070, 1960) to "phone_rally_list_short"),
+            "phone_rally_list_short" to listOf(intArrayOf(830, 1215, 1160, 1330) to "phone_overview_join"),
+        )
+        val dev = FakeDevice("phone_chat_join", tl, w, h)
+        Player(oneCycle(), dev, object : PlayerListener {}, clock = { testScheduler.currentTime }).run()
+        assertEquals(996 to 1300, dev.taps[1])
+        assertEquals("phone_chat_pending", dev.screen)
+    }
+
+    @Test
+    fun mapTileInfoIsClosed() = runTest {
+        // Ficha de casilla del mapa (un toque cayó en el mapa): cerrar con la X.
+        val tl = t + mapOf("phone_map_tile" to listOf(intArrayOf(540, 2650, 740, 2772) to "phone_map"))
+        val dev = FakeDevice("phone_map_tile", tl, w, h)
+        Player(oneCycle(), dev, object : PlayerListener {}, clock = { testScheduler.currentTime }).run()
+        assertEquals(640 to 2708, dev.taps.first())
+        assertEquals("phone_chat_pending", dev.screen)
+    }
+
+    @Test
     fun remappedCopyBehavesTheSame() = runTest {
         val seq = oneCycle()
         Mapping.remap(seq, Screen(w, h), Mapping.Mode.ANCHOR, "android", "test")

@@ -270,10 +270,12 @@ class RaidJoinPhoneTest {
     @Test
     fun rallyListWithoutJoinIsClosed() = runTest {
         // Lista sin «Join» visible: la desplaza 6 veces buscando más abajo y la cierra con la X.
-        val dev = FakeDevice("phone_rally_list", t, w, h)
+        val tl = t + mapOf("phone_chat_join" to listOf(intArrayOf(480, 1850, 1070, 1960) to "phone_rally_list"))
+        val dev = FakeDevice("phone_chat_join", tl, w, h)
         Player(oneCycle(), dev, object : PlayerListener {}, clock = { testScheduler.currentTime }).run()
-        assertEquals(List(6) { 640 to 2345 }, dev.taps.take(6))
-        assertEquals(640 to 2715, dev.taps[6])
+        assertEquals(775 to 1905, dev.taps[0])
+        assertEquals(List(6) { 640 to 2345 }, dev.taps.subList(1, 7))
+        assertEquals(640 to 2715, dev.taps[7])
     }
 
     @Test

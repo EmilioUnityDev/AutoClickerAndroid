@@ -4014,62 +4014,31 @@
      ]
     },
     {
-     "type": "if_image",
-     "name": "lista de raids",
-     "condition": {
-      "region": [
-       0,
-       320,
-       18,
-       1440
-      ],
-      "color": "#484878,#483878",
-      "tolerance": 16,
-      "min_fraction": 0.8,
-      "anchor_y": 1.0
-     },
+     "type": "subsequence",
+     "name": "lista de raids: buscar «Join»",
+     "repeats": 6,
      "delay_before_ms": 0,
-     "also": [
+     "steps": [
       {
-       "region": [
-        882,
-        320,
-        900,
-        1440
-       ],
-       "color": "#484878,#483878",
-       "tolerance": 16,
-       "min_fraction": 0.8,
-       "anchor_y": 1.0
-      }
-     ],
-     "unless": [
-      {
-       "region": [
-        65,
-        280,
-        110,
-        700
-       ],
-       "color": "#9848d8,#c868e8,#b858e8,#8838d8,#a848d8,#9838d8",
-       "tolerance": 24,
-       "min_fraction": 0.5,
-       "anchor_y": 0.66
+       "type": "wait_image",
+       "name": "¿sin lista? → salir del bucle",
+       "condition": {
+        "region": [
+         0,
+         320,
+         18,
+         1440
+        ],
+        "color": "#484878,#483878",
+        "tolerance": 16,
+        "min_fraction": 0.8,
+        "anchor_y": 1.0
+       },
+       "timeout_ms": 0,
+       "poll_ms": 10,
+       "on_timeout": "break",
+       "delay_before_ms": 0
       },
-      {
-       "region": [
-        30,
-        600,
-        870,
-        680
-       ],
-       "color": "#f8f8f8,#f8f8e8",
-       "tolerance": 10,
-       "min_fraction": 0.9,
-       "anchor_y": 0.66
-      }
-     ],
-     "then_steps": [
       {
        "type": "if_image",
        "name": "lista → «Join» (y=1440)",
@@ -4167,6 +4136,25 @@
          "repeats": 1,
          "delay_before_ms": 3000,
          "steps": []
+        },
+        {
+         "type": "wait_image",
+         "name": "→ salir del bucle",
+         "condition": {
+          "region": [
+           0,
+           0,
+           1,
+           1
+          ],
+          "color": "#010203",
+          "tolerance": 0,
+          "min_fraction": 1.0
+         },
+         "timeout_ms": 0,
+         "poll_ms": 10,
+         "on_timeout": "break",
+         "delay_before_ms": 0
         }
        ],
        "else_steps": [
@@ -4267,6 +4255,25 @@
            "repeats": 1,
            "delay_before_ms": 3000,
            "steps": []
+          },
+          {
+           "type": "wait_image",
+           "name": "→ salir del bucle",
+           "condition": {
+            "region": [
+             0,
+             0,
+             1,
+             1
+            ],
+            "color": "#010203",
+            "tolerance": 0,
+            "min_fraction": 1.0
+           },
+           "timeout_ms": 0,
+           "poll_ms": 10,
+           "on_timeout": "break",
+           "delay_before_ms": 0
           }
          ],
          "else_steps": [
@@ -4367,6 +4374,25 @@
              "repeats": 1,
              "delay_before_ms": 3000,
              "steps": []
+            },
+            {
+             "type": "wait_image",
+             "name": "→ salir del bucle",
+             "condition": {
+              "region": [
+               0,
+               0,
+               1,
+               1
+              ],
+              "color": "#010203",
+              "tolerance": 0,
+              "min_fraction": 1.0
+             },
+             "timeout_ms": 0,
+             "poll_ms": 10,
+             "on_timeout": "break",
+             "delay_before_ms": 0
             }
            ],
            "else_steps": [
@@ -4467,6 +4493,25 @@
                "repeats": 1,
                "delay_before_ms": 3000,
                "steps": []
+              },
+              {
+               "type": "wait_image",
+               "name": "→ salir del bucle",
+               "condition": {
+                "region": [
+                 0,
+                 0,
+                 1,
+                 1
+                ],
+                "color": "#010203",
+                "tolerance": 0,
+                "min_fraction": 1.0
+               },
+               "timeout_ms": 0,
+               "poll_ms": 10,
+               "on_timeout": "break",
+               "delay_before_ms": 0
               }
              ],
              "else_steps": [
@@ -4567,6 +4612,25 @@
                  "repeats": 1,
                  "delay_before_ms": 3000,
                  "steps": []
+                },
+                {
+                 "type": "wait_image",
+                 "name": "→ salir del bucle",
+                 "condition": {
+                  "region": [
+                   0,
+                   0,
+                   1,
+                   1
+                  ],
+                  "color": "#010203",
+                  "tolerance": 0,
+                  "min_fraction": 1.0
+                 },
+                 "timeout_ms": 0,
+                 "poll_ms": 10,
+                 "on_timeout": "break",
+                 "delay_before_ms": 0
                 }
                ],
                "else_steps": [
@@ -4667,6 +4731,25 @@
                    "repeats": 1,
                    "delay_before_ms": 3000,
                    "steps": []
+                  },
+                  {
+                   "type": "wait_image",
+                   "name": "→ salir del bucle",
+                   "condition": {
+                    "region": [
+                     0,
+                     0,
+                     1,
+                     1
+                    ],
+                    "color": "#010203",
+                    "tolerance": 0,
+                    "min_fraction": 1.0
+                   },
+                   "timeout_ms": 0,
+                   "poll_ms": 10,
+                   "on_timeout": "break",
+                   "delay_before_ms": 0
                   }
                  ],
                  "else_steps": [
@@ -4767,6 +4850,25 @@
                      "repeats": 1,
                      "delay_before_ms": 3000,
                      "steps": []
+                    },
+                    {
+                     "type": "wait_image",
+                     "name": "→ salir del bucle",
+                     "condition": {
+                      "region": [
+                       0,
+                       0,
+                       1,
+                       1
+                      ],
+                      "color": "#010203",
+                      "tolerance": 0,
+                      "min_fraction": 1.0
+                     },
+                     "timeout_ms": 0,
+                     "poll_ms": 10,
+                     "on_timeout": "break",
+                     "delay_before_ms": 0
                     }
                    ],
                    "else_steps": [
@@ -4867,6 +4969,25 @@
                        "repeats": 1,
                        "delay_before_ms": 3000,
                        "steps": []
+                      },
+                      {
+                       "type": "wait_image",
+                       "name": "→ salir del bucle",
+                       "condition": {
+                        "region": [
+                         0,
+                         0,
+                         1,
+                         1
+                        ],
+                        "color": "#010203",
+                        "tolerance": 0,
+                        "min_fraction": 1.0
+                       },
+                       "timeout_ms": 0,
+                       "poll_ms": 10,
+                       "on_timeout": "break",
+                       "delay_before_ms": 0
                       }
                      ],
                      "else_steps": [
@@ -4967,6 +5088,25 @@
                          "repeats": 1,
                          "delay_before_ms": 3000,
                          "steps": []
+                        },
+                        {
+                         "type": "wait_image",
+                         "name": "→ salir del bucle",
+                         "condition": {
+                          "region": [
+                           0,
+                           0,
+                           1,
+                           1
+                          ],
+                          "color": "#010203",
+                          "tolerance": 0,
+                          "min_fraction": 1.0
+                         },
+                         "timeout_ms": 0,
+                         "poll_ms": 10,
+                         "on_timeout": "break",
+                         "delay_before_ms": 0
                         }
                        ],
                        "else_steps": [
@@ -5067,6 +5207,25 @@
                            "repeats": 1,
                            "delay_before_ms": 3000,
                            "steps": []
+                          },
+                          {
+                           "type": "wait_image",
+                           "name": "→ salir del bucle",
+                           "condition": {
+                            "region": [
+                             0,
+                             0,
+                             1,
+                             1
+                            ],
+                            "color": "#010203",
+                            "tolerance": 0,
+                            "min_fraction": 1.0
+                           },
+                           "timeout_ms": 0,
+                           "poll_ms": 10,
+                           "on_timeout": "break",
+                           "delay_before_ms": 0
                           }
                          ],
                          "else_steps": [
@@ -5167,6 +5326,25 @@
                              "repeats": 1,
                              "delay_before_ms": 3000,
                              "steps": []
+                            },
+                            {
+                             "type": "wait_image",
+                             "name": "→ salir del bucle",
+                             "condition": {
+                              "region": [
+                               0,
+                               0,
+                               1,
+                               1
+                              ],
+                              "color": "#010203",
+                              "tolerance": 0,
+                              "min_fraction": 1.0
+                             },
+                             "timeout_ms": 0,
+                             "poll_ms": 10,
+                             "on_timeout": "break",
+                             "delay_before_ms": 0
                             }
                            ],
                            "else_steps": [
@@ -5267,6 +5445,25 @@
                                "repeats": 1,
                                "delay_before_ms": 3000,
                                "steps": []
+                              },
+                              {
+                               "type": "wait_image",
+                               "name": "→ salir del bucle",
+                               "condition": {
+                                "region": [
+                                 0,
+                                 0,
+                                 1,
+                                 1
+                                ],
+                                "color": "#010203",
+                                "tolerance": 0,
+                                "min_fraction": 1.0
+                               },
+                               "timeout_ms": 0,
+                               "poll_ms": 10,
+                               "on_timeout": "break",
+                               "delay_before_ms": 0
                               }
                              ],
                              "else_steps": [
@@ -5367,6 +5564,25 @@
                                  "repeats": 1,
                                  "delay_before_ms": 3000,
                                  "steps": []
+                                },
+                                {
+                                 "type": "wait_image",
+                                 "name": "→ salir del bucle",
+                                 "condition": {
+                                  "region": [
+                                   0,
+                                   0,
+                                   1,
+                                   1
+                                  ],
+                                  "color": "#010203",
+                                  "tolerance": 0,
+                                  "min_fraction": 1.0
+                                 },
+                                 "timeout_ms": 0,
+                                 "poll_ms": 10,
+                                 "on_timeout": "break",
+                                 "delay_before_ms": 0
                                 }
                                ],
                                "else_steps": [
@@ -5467,6 +5683,25 @@
                                    "repeats": 1,
                                    "delay_before_ms": 3000,
                                    "steps": []
+                                  },
+                                  {
+                                   "type": "wait_image",
+                                   "name": "→ salir del bucle",
+                                   "condition": {
+                                    "region": [
+                                     0,
+                                     0,
+                                     1,
+                                     1
+                                    ],
+                                    "color": "#010203",
+                                    "tolerance": 0,
+                                    "min_fraction": 1.0
+                                   },
+                                   "timeout_ms": 0,
+                                   "poll_ms": 10,
+                                   "on_timeout": "break",
+                                   "delay_before_ms": 0
                                   }
                                  ],
                                  "else_steps": [
@@ -5567,6 +5802,25 @@
                                      "repeats": 1,
                                      "delay_before_ms": 3000,
                                      "steps": []
+                                    },
+                                    {
+                                     "type": "wait_image",
+                                     "name": "→ salir del bucle",
+                                     "condition": {
+                                      "region": [
+                                       0,
+                                       0,
+                                       1,
+                                       1
+                                      ],
+                                      "color": "#010203",
+                                      "tolerance": 0,
+                                      "min_fraction": 1.0
+                                     },
+                                     "timeout_ms": 0,
+                                     "poll_ms": 10,
+                                     "on_timeout": "break",
+                                     "delay_before_ms": 0
                                     }
                                    ],
                                    "else_steps": [
@@ -5667,6 +5921,25 @@
                                        "repeats": 1,
                                        "delay_before_ms": 3000,
                                        "steps": []
+                                      },
+                                      {
+                                       "type": "wait_image",
+                                       "name": "→ salir del bucle",
+                                       "condition": {
+                                        "region": [
+                                         0,
+                                         0,
+                                         1,
+                                         1
+                                        ],
+                                        "color": "#010203",
+                                        "tolerance": 0,
+                                        "min_fraction": 1.0
+                                       },
+                                       "timeout_ms": 0,
+                                       "poll_ms": 10,
+                                       "on_timeout": "break",
+                                       "delay_before_ms": 0
                                       }
                                      ],
                                      "else_steps": [
@@ -5767,6 +6040,25 @@
                                          "repeats": 1,
                                          "delay_before_ms": 3000,
                                          "steps": []
+                                        },
+                                        {
+                                         "type": "wait_image",
+                                         "name": "→ salir del bucle",
+                                         "condition": {
+                                          "region": [
+                                           0,
+                                           0,
+                                           1,
+                                           1
+                                          ],
+                                          "color": "#010203",
+                                          "tolerance": 0,
+                                          "min_fraction": 1.0
+                                         },
+                                         "timeout_ms": 0,
+                                         "poll_ms": 10,
+                                         "on_timeout": "break",
+                                         "delay_before_ms": 0
                                         }
                                        ],
                                        "else_steps": [
@@ -5867,6 +6159,25 @@
                                            "repeats": 1,
                                            "delay_before_ms": 3000,
                                            "steps": []
+                                          },
+                                          {
+                                           "type": "wait_image",
+                                           "name": "→ salir del bucle",
+                                           "condition": {
+                                            "region": [
+                                             0,
+                                             0,
+                                             1,
+                                             1
+                                            ],
+                                            "color": "#010203",
+                                            "tolerance": 0,
+                                            "min_fraction": 1.0
+                                           },
+                                           "timeout_ms": 0,
+                                           "poll_ms": 10,
+                                           "on_timeout": "break",
+                                           "delay_before_ms": 0
                                           }
                                          ],
                                          "else_steps": [
@@ -5967,6 +6278,25 @@
                                              "repeats": 1,
                                              "delay_before_ms": 3000,
                                              "steps": []
+                                            },
+                                            {
+                                             "type": "wait_image",
+                                             "name": "→ salir del bucle",
+                                             "condition": {
+                                              "region": [
+                                               0,
+                                               0,
+                                               1,
+                                               1
+                                              ],
+                                              "color": "#010203",
+                                              "tolerance": 0,
+                                              "min_fraction": 1.0
+                                             },
+                                             "timeout_ms": 0,
+                                             "poll_ms": 10,
+                                             "on_timeout": "break",
+                                             "delay_before_ms": 0
                                             }
                                            ],
                                            "else_steps": [
@@ -6067,6 +6397,25 @@
                                                "repeats": 1,
                                                "delay_before_ms": 3000,
                                                "steps": []
+                                              },
+                                              {
+                                               "type": "wait_image",
+                                               "name": "→ salir del bucle",
+                                               "condition": {
+                                                "region": [
+                                                 0,
+                                                 0,
+                                                 1,
+                                                 1
+                                                ],
+                                                "color": "#010203",
+                                                "tolerance": 0,
+                                                "min_fraction": 1.0
+                                               },
+                                               "timeout_ms": 0,
+                                               "poll_ms": 10,
+                                               "on_timeout": "break",
+                                               "delay_before_ms": 0
                                               }
                                              ],
                                              "else_steps": [
@@ -6167,6 +6516,25 @@
                                                  "repeats": 1,
                                                  "delay_before_ms": 3000,
                                                  "steps": []
+                                                },
+                                                {
+                                                 "type": "wait_image",
+                                                 "name": "→ salir del bucle",
+                                                 "condition": {
+                                                  "region": [
+                                                   0,
+                                                   0,
+                                                   1,
+                                                   1
+                                                  ],
+                                                  "color": "#010203",
+                                                  "tolerance": 0,
+                                                  "min_fraction": 1.0
+                                                 },
+                                                 "timeout_ms": 0,
+                                                 "poll_ms": 10,
+                                                 "on_timeout": "break",
+                                                 "delay_before_ms": 0
                                                 }
                                                ],
                                                "else_steps": [
@@ -6267,6 +6635,25 @@
                                                    "repeats": 1,
                                                    "delay_before_ms": 3000,
                                                    "steps": []
+                                                  },
+                                                  {
+                                                   "type": "wait_image",
+                                                   "name": "→ salir del bucle",
+                                                   "condition": {
+                                                    "region": [
+                                                     0,
+                                                     0,
+                                                     1,
+                                                     1
+                                                    ],
+                                                    "color": "#010203",
+                                                    "tolerance": 0,
+                                                    "min_fraction": 1.0
+                                                   },
+                                                   "timeout_ms": 0,
+                                                   "poll_ms": 10,
+                                                   "on_timeout": "break",
+                                                   "delay_before_ms": 0
                                                   }
                                                  ],
                                                  "else_steps": [
@@ -6367,6 +6754,25 @@
                                                      "repeats": 1,
                                                      "delay_before_ms": 3000,
                                                      "steps": []
+                                                    },
+                                                    {
+                                                     "type": "wait_image",
+                                                     "name": "→ salir del bucle",
+                                                     "condition": {
+                                                      "region": [
+                                                       0,
+                                                       0,
+                                                       1,
+                                                       1
+                                                      ],
+                                                      "color": "#010203",
+                                                      "tolerance": 0,
+                                                      "min_fraction": 1.0
+                                                     },
+                                                     "timeout_ms": 0,
+                                                     "poll_ms": 10,
+                                                     "on_timeout": "break",
+                                                     "delay_before_ms": 0
                                                     }
                                                    ],
                                                    "else_steps": [
@@ -6467,6 +6873,25 @@
                                                        "repeats": 1,
                                                        "delay_before_ms": 3000,
                                                        "steps": []
+                                                      },
+                                                      {
+                                                       "type": "wait_image",
+                                                       "name": "→ salir del bucle",
+                                                       "condition": {
+                                                        "region": [
+                                                         0,
+                                                         0,
+                                                         1,
+                                                         1
+                                                        ],
+                                                        "color": "#010203",
+                                                        "tolerance": 0,
+                                                        "min_fraction": 1.0
+                                                       },
+                                                       "timeout_ms": 0,
+                                                       "poll_ms": 10,
+                                                       "on_timeout": "break",
+                                                       "delay_before_ms": 0
                                                       }
                                                      ],
                                                      "else_steps": [
@@ -6567,6 +6992,25 @@
                                                          "repeats": 1,
                                                          "delay_before_ms": 3000,
                                                          "steps": []
+                                                        },
+                                                        {
+                                                         "type": "wait_image",
+                                                         "name": "→ salir del bucle",
+                                                         "condition": {
+                                                          "region": [
+                                                           0,
+                                                           0,
+                                                           1,
+                                                           1
+                                                          ],
+                                                          "color": "#010203",
+                                                          "tolerance": 0,
+                                                          "min_fraction": 1.0
+                                                         },
+                                                         "timeout_ms": 0,
+                                                         "poll_ms": 10,
+                                                         "on_timeout": "break",
+                                                         "delay_before_ms": 0
                                                         }
                                                        ],
                                                        "else_steps": [
@@ -6667,6 +7111,25 @@
                                                            "repeats": 1,
                                                            "delay_before_ms": 3000,
                                                            "steps": []
+                                                          },
+                                                          {
+                                                           "type": "wait_image",
+                                                           "name": "→ salir del bucle",
+                                                           "condition": {
+                                                            "region": [
+                                                             0,
+                                                             0,
+                                                             1,
+                                                             1
+                                                            ],
+                                                            "color": "#010203",
+                                                            "tolerance": 0,
+                                                            "min_fraction": 1.0
+                                                           },
+                                                           "timeout_ms": 0,
+                                                           "poll_ms": 10,
+                                                           "on_timeout": "break",
+                                                           "delay_before_ms": 0
                                                           }
                                                          ],
                                                          "else_steps": [
@@ -6767,6 +7230,25 @@
                                                              "repeats": 1,
                                                              "delay_before_ms": 3000,
                                                              "steps": []
+                                                            },
+                                                            {
+                                                             "type": "wait_image",
+                                                             "name": "→ salir del bucle",
+                                                             "condition": {
+                                                              "region": [
+                                                               0,
+                                                               0,
+                                                               1,
+                                                               1
+                                                              ],
+                                                              "color": "#010203",
+                                                              "tolerance": 0,
+                                                              "min_fraction": 1.0
+                                                             },
+                                                             "timeout_ms": 0,
+                                                             "poll_ms": 10,
+                                                             "on_timeout": "break",
+                                                             "delay_before_ms": 0
                                                             }
                                                            ],
                                                            "else_steps": [
@@ -6867,6 +7349,25 @@
                                                                "repeats": 1,
                                                                "delay_before_ms": 3000,
                                                                "steps": []
+                                                              },
+                                                              {
+                                                               "type": "wait_image",
+                                                               "name": "→ salir del bucle",
+                                                               "condition": {
+                                                                "region": [
+                                                                 0,
+                                                                 0,
+                                                                 1,
+                                                                 1
+                                                                ],
+                                                                "color": "#010203",
+                                                                "tolerance": 0,
+                                                                "min_fraction": 1.0
+                                                               },
+                                                               "timeout_ms": 0,
+                                                               "poll_ms": 10,
+                                                               "on_timeout": "break",
+                                                               "delay_before_ms": 0
                                                               }
                                                              ],
                                                              "else_steps": [
@@ -6967,6 +7468,25 @@
                                                                  "repeats": 1,
                                                                  "delay_before_ms": 3000,
                                                                  "steps": []
+                                                                },
+                                                                {
+                                                                 "type": "wait_image",
+                                                                 "name": "→ salir del bucle",
+                                                                 "condition": {
+                                                                  "region": [
+                                                                   0,
+                                                                   0,
+                                                                   1,
+                                                                   1
+                                                                  ],
+                                                                  "color": "#010203",
+                                                                  "tolerance": 0,
+                                                                  "min_fraction": 1.0
+                                                                 },
+                                                                 "timeout_ms": 0,
+                                                                 "poll_ms": 10,
+                                                                 "on_timeout": "break",
+                                                                 "delay_before_ms": 0
                                                                 }
                                                                ],
                                                                "else_steps": [
@@ -7067,6 +7587,25 @@
                                                                    "repeats": 1,
                                                                    "delay_before_ms": 3000,
                                                                    "steps": []
+                                                                  },
+                                                                  {
+                                                                   "type": "wait_image",
+                                                                   "name": "→ salir del bucle",
+                                                                   "condition": {
+                                                                    "region": [
+                                                                     0,
+                                                                     0,
+                                                                     1,
+                                                                     1
+                                                                    ],
+                                                                    "color": "#010203",
+                                                                    "tolerance": 0,
+                                                                    "min_fraction": 1.0
+                                                                   },
+                                                                   "timeout_ms": 0,
+                                                                   "poll_ms": 10,
+                                                                   "on_timeout": "break",
+                                                                   "delay_before_ms": 0
                                                                   }
                                                                  ],
                                                                  "else_steps": [
@@ -7167,6 +7706,25 @@
                                                                      "repeats": 1,
                                                                      "delay_before_ms": 3000,
                                                                      "steps": []
+                                                                    },
+                                                                    {
+                                                                     "type": "wait_image",
+                                                                     "name": "→ salir del bucle",
+                                                                     "condition": {
+                                                                      "region": [
+                                                                       0,
+                                                                       0,
+                                                                       1,
+                                                                       1
+                                                                      ],
+                                                                      "color": "#010203",
+                                                                      "tolerance": 0,
+                                                                      "min_fraction": 1.0
+                                                                     },
+                                                                     "timeout_ms": 0,
+                                                                     "poll_ms": 10,
+                                                                     "on_timeout": "break",
+                                                                     "delay_before_ms": 0
                                                                     }
                                                                    ],
                                                                    "else_steps": [
@@ -7267,6 +7825,25 @@
                                                                        "repeats": 1,
                                                                        "delay_before_ms": 3000,
                                                                        "steps": []
+                                                                      },
+                                                                      {
+                                                                       "type": "wait_image",
+                                                                       "name": "→ salir del bucle",
+                                                                       "condition": {
+                                                                        "region": [
+                                                                         0,
+                                                                         0,
+                                                                         1,
+                                                                         1
+                                                                        ],
+                                                                        "color": "#010203",
+                                                                        "tolerance": 0,
+                                                                        "min_fraction": 1.0
+                                                                       },
+                                                                       "timeout_ms": 0,
+                                                                       "poll_ms": 10,
+                                                                       "on_timeout": "break",
+                                                                       "delay_before_ms": 0
                                                                       }
                                                                      ],
                                                                      "else_steps": [
@@ -7367,6 +7944,25 @@
                                                                          "repeats": 1,
                                                                          "delay_before_ms": 3000,
                                                                          "steps": []
+                                                                        },
+                                                                        {
+                                                                         "type": "wait_image",
+                                                                         "name": "→ salir del bucle",
+                                                                         "condition": {
+                                                                          "region": [
+                                                                           0,
+                                                                           0,
+                                                                           1,
+                                                                           1
+                                                                          ],
+                                                                          "color": "#010203",
+                                                                          "tolerance": 0,
+                                                                          "min_fraction": 1.0
+                                                                         },
+                                                                         "timeout_ms": 0,
+                                                                         "poll_ms": 10,
+                                                                         "on_timeout": "break",
+                                                                         "delay_before_ms": 0
                                                                         }
                                                                        ],
                                                                        "else_steps": [
@@ -7467,6 +8063,25 @@
                                                                            "repeats": 1,
                                                                            "delay_before_ms": 3000,
                                                                            "steps": []
+                                                                          },
+                                                                          {
+                                                                           "type": "wait_image",
+                                                                           "name": "→ salir del bucle",
+                                                                           "condition": {
+                                                                            "region": [
+                                                                             0,
+                                                                             0,
+                                                                             1,
+                                                                             1
+                                                                            ],
+                                                                            "color": "#010203",
+                                                                            "tolerance": 0,
+                                                                            "min_fraction": 1.0
+                                                                           },
+                                                                           "timeout_ms": 0,
+                                                                           "poll_ms": 10,
+                                                                           "on_timeout": "break",
+                                                                           "delay_before_ms": 0
                                                                           }
                                                                          ],
                                                                          "else_steps": [
@@ -7567,6 +8182,25 @@
                                                                              "repeats": 1,
                                                                              "delay_before_ms": 3000,
                                                                              "steps": []
+                                                                            },
+                                                                            {
+                                                                             "type": "wait_image",
+                                                                             "name": "→ salir del bucle",
+                                                                             "condition": {
+                                                                              "region": [
+                                                                               0,
+                                                                               0,
+                                                                               1,
+                                                                               1
+                                                                              ],
+                                                                              "color": "#010203",
+                                                                              "tolerance": 0,
+                                                                              "min_fraction": 1.0
+                                                                             },
+                                                                             "timeout_ms": 0,
+                                                                             "poll_ms": 10,
+                                                                             "on_timeout": "break",
+                                                                             "delay_before_ms": 0
                                                                             }
                                                                            ],
                                                                            "else_steps": [
@@ -7667,6 +8301,25 @@
                                                                                "repeats": 1,
                                                                                "delay_before_ms": 3000,
                                                                                "steps": []
+                                                                              },
+                                                                              {
+                                                                               "type": "wait_image",
+                                                                               "name": "→ salir del bucle",
+                                                                               "condition": {
+                                                                                "region": [
+                                                                                 0,
+                                                                                 0,
+                                                                                 1,
+                                                                                 1
+                                                                                ],
+                                                                                "color": "#010203",
+                                                                                "tolerance": 0,
+                                                                                "min_fraction": 1.0
+                                                                               },
+                                                                               "timeout_ms": 0,
+                                                                               "poll_ms": 10,
+                                                                               "on_timeout": "break",
+                                                                               "delay_before_ms": 0
                                                                               }
                                                                              ],
                                                                              "else_steps": [
@@ -7767,6 +8420,25 @@
                                                                                  "repeats": 1,
                                                                                  "delay_before_ms": 3000,
                                                                                  "steps": []
+                                                                                },
+                                                                                {
+                                                                                 "type": "wait_image",
+                                                                                 "name": "→ salir del bucle",
+                                                                                 "condition": {
+                                                                                  "region": [
+                                                                                   0,
+                                                                                   0,
+                                                                                   1,
+                                                                                   1
+                                                                                  ],
+                                                                                  "color": "#010203",
+                                                                                  "tolerance": 0,
+                                                                                  "min_fraction": 1.0
+                                                                                 },
+                                                                                 "timeout_ms": 0,
+                                                                                 "poll_ms": 10,
+                                                                                 "on_timeout": "break",
+                                                                                 "delay_before_ms": 0
                                                                                 }
                                                                                ],
                                                                                "else_steps": [
@@ -7867,6 +8539,25 @@
                                                                                    "repeats": 1,
                                                                                    "delay_before_ms": 3000,
                                                                                    "steps": []
+                                                                                  },
+                                                                                  {
+                                                                                   "type": "wait_image",
+                                                                                   "name": "→ salir del bucle",
+                                                                                   "condition": {
+                                                                                    "region": [
+                                                                                     0,
+                                                                                     0,
+                                                                                     1,
+                                                                                     1
+                                                                                    ],
+                                                                                    "color": "#010203",
+                                                                                    "tolerance": 0,
+                                                                                    "min_fraction": 1.0
+                                                                                   },
+                                                                                   "timeout_ms": 0,
+                                                                                   "poll_ms": 10,
+                                                                                   "on_timeout": "break",
+                                                                                   "delay_before_ms": 0
                                                                                   }
                                                                                  ],
                                                                                  "else_steps": [
@@ -7967,6 +8658,25 @@
                                                                                      "repeats": 1,
                                                                                      "delay_before_ms": 3000,
                                                                                      "steps": []
+                                                                                    },
+                                                                                    {
+                                                                                     "type": "wait_image",
+                                                                                     "name": "→ salir del bucle",
+                                                                                     "condition": {
+                                                                                      "region": [
+                                                                                       0,
+                                                                                       0,
+                                                                                       1,
+                                                                                       1
+                                                                                      ],
+                                                                                      "color": "#010203",
+                                                                                      "tolerance": 0,
+                                                                                      "min_fraction": 1.0
+                                                                                     },
+                                                                                     "timeout_ms": 0,
+                                                                                     "poll_ms": 10,
+                                                                                     "on_timeout": "break",
+                                                                                     "delay_before_ms": 0
                                                                                     }
                                                                                    ],
                                                                                    "else_steps": [
@@ -8067,6 +8777,25 @@
                                                                                        "repeats": 1,
                                                                                        "delay_before_ms": 3000,
                                                                                        "steps": []
+                                                                                      },
+                                                                                      {
+                                                                                       "type": "wait_image",
+                                                                                       "name": "→ salir del bucle",
+                                                                                       "condition": {
+                                                                                        "region": [
+                                                                                         0,
+                                                                                         0,
+                                                                                         1,
+                                                                                         1
+                                                                                        ],
+                                                                                        "color": "#010203",
+                                                                                        "tolerance": 0,
+                                                                                        "min_fraction": 1.0
+                                                                                       },
+                                                                                       "timeout_ms": 0,
+                                                                                       "poll_ms": 10,
+                                                                                       "on_timeout": "break",
+                                                                                       "delay_before_ms": 0
                                                                                       }
                                                                                      ],
                                                                                      "else_steps": [
@@ -8167,6 +8896,25 @@
                                                                                          "repeats": 1,
                                                                                          "delay_before_ms": 3000,
                                                                                          "steps": []
+                                                                                        },
+                                                                                        {
+                                                                                         "type": "wait_image",
+                                                                                         "name": "→ salir del bucle",
+                                                                                         "condition": {
+                                                                                          "region": [
+                                                                                           0,
+                                                                                           0,
+                                                                                           1,
+                                                                                           1
+                                                                                          ],
+                                                                                          "color": "#010203",
+                                                                                          "tolerance": 0,
+                                                                                          "min_fraction": 1.0
+                                                                                         },
+                                                                                         "timeout_ms": 0,
+                                                                                         "poll_ms": 10,
+                                                                                         "on_timeout": "break",
+                                                                                         "delay_before_ms": 0
                                                                                         }
                                                                                        ],
                                                                                        "else_steps": [
@@ -8267,6 +9015,25 @@
                                                                                            "repeats": 1,
                                                                                            "delay_before_ms": 3000,
                                                                                            "steps": []
+                                                                                          },
+                                                                                          {
+                                                                                           "type": "wait_image",
+                                                                                           "name": "→ salir del bucle",
+                                                                                           "condition": {
+                                                                                            "region": [
+                                                                                             0,
+                                                                                             0,
+                                                                                             1,
+                                                                                             1
+                                                                                            ],
+                                                                                            "color": "#010203",
+                                                                                            "tolerance": 0,
+                                                                                            "min_fraction": 1.0
+                                                                                           },
+                                                                                           "timeout_ms": 0,
+                                                                                           "poll_ms": 10,
+                                                                                           "on_timeout": "break",
+                                                                                           "delay_before_ms": 0
                                                                                           }
                                                                                          ],
                                                                                          "else_steps": [
@@ -8367,6 +9134,25 @@
                                                                                              "repeats": 1,
                                                                                              "delay_before_ms": 3000,
                                                                                              "steps": []
+                                                                                            },
+                                                                                            {
+                                                                                             "type": "wait_image",
+                                                                                             "name": "→ salir del bucle",
+                                                                                             "condition": {
+                                                                                              "region": [
+                                                                                               0,
+                                                                                               0,
+                                                                                               1,
+                                                                                               1
+                                                                                              ],
+                                                                                              "color": "#010203",
+                                                                                              "tolerance": 0,
+                                                                                              "min_fraction": 1.0
+                                                                                             },
+                                                                                             "timeout_ms": 0,
+                                                                                             "poll_ms": 10,
+                                                                                             "on_timeout": "break",
+                                                                                             "delay_before_ms": 0
                                                                                             }
                                                                                            ],
                                                                                            "else_steps": [
@@ -8467,6 +9253,25 @@
                                                                                                "repeats": 1,
                                                                                                "delay_before_ms": 3000,
                                                                                                "steps": []
+                                                                                              },
+                                                                                              {
+                                                                                               "type": "wait_image",
+                                                                                               "name": "→ salir del bucle",
+                                                                                               "condition": {
+                                                                                                "region": [
+                                                                                                 0,
+                                                                                                 0,
+                                                                                                 1,
+                                                                                                 1
+                                                                                                ],
+                                                                                                "color": "#010203",
+                                                                                                "tolerance": 0,
+                                                                                                "min_fraction": 1.0
+                                                                                               },
+                                                                                               "timeout_ms": 0,
+                                                                                               "poll_ms": 10,
+                                                                                               "on_timeout": "break",
+                                                                                               "delay_before_ms": 0
                                                                                               }
                                                                                              ],
                                                                                              "else_steps": [
@@ -8567,24 +9372,46 @@
                                                                                                  "repeats": 1,
                                                                                                  "delay_before_ms": 3000,
                                                                                                  "steps": []
+                                                                                                },
+                                                                                                {
+                                                                                                 "type": "wait_image",
+                                                                                                 "name": "→ salir del bucle",
+                                                                                                 "condition": {
+                                                                                                  "region": [
+                                                                                                   0,
+                                                                                                   0,
+                                                                                                   1,
+                                                                                                   1
+                                                                                                  ],
+                                                                                                  "color": "#010203",
+                                                                                                  "tolerance": 0,
+                                                                                                  "min_fraction": 1.0
+                                                                                                 },
+                                                                                                 "timeout_ms": 0,
+                                                                                                 "poll_ms": 10,
+                                                                                                 "on_timeout": "break",
+                                                                                                 "delay_before_ms": 0
                                                                                                 }
                                                                                                ],
                                                                                                "else_steps": [
                                                                                                 {
-                                                                                                 "type": "click",
-                                                                                                 "x": 450,
-                                                                                                 "y": 1560,
+                                                                                                 "type": "drag",
+                                                                                                 "x1": 450,
+                                                                                                 "y1": 1300,
+                                                                                                 "x2": 450,
+                                                                                                 "y2": 600,
+                                                                                                 "duration_ms": 800,
+                                                                                                 "hold_ms": 0,
                                                                                                  "button": "left",
                                                                                                  "delay_before_ms": 0,
-                                                                                                 "duration_ms": 80,
                                                                                                  "space": "device",
                                                                                                  "anchor_y": 1.0
                                                                                                 },
                                                                                                 {
                                                                                                  "type": "subsequence",
-                                                                                                 "name": "pausa 1500 ms",
+                                                                                                 "name": "pausa 1200 ms",
                                                                                                  "repeats": 1,
-                                                                                                 "delay_before_ms": 1500,
+                                                                                                 "delay_before_ms": 1200,
                                                                                                  "steps": []
                                                                                                 }
                                                                                                ]
@@ -8677,8 +9504,7 @@
         }
        ]
       }
-     ],
-     "else_steps": []
+     ]
     },
     {
      "type": "subsequence",

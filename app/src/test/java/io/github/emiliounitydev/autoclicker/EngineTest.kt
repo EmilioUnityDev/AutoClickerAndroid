@@ -269,10 +269,11 @@ class RaidJoinPhoneTest {
 
     @Test
     fun rallyListWithoutJoinIsClosed() = runTest {
-        // Lista sin «Join» (todas Pending/Battle): se cierra con la X de abajo.
+        // Lista sin «Join» visible: la desplaza 6 veces buscando más abajo y la cierra con la X.
         val dev = FakeDevice("phone_rally_list", t, w, h)
         Player(oneCycle(), dev, object : PlayerListener {}, clock = { testScheduler.currentTime }).run()
-        assertEquals(640 to 2715, dev.taps.first())
+        assertEquals(List(6) { 640 to 2345 }, dev.taps.take(6))
+        assertEquals(640 to 2715, dev.taps[6])
     }
 
     @Test

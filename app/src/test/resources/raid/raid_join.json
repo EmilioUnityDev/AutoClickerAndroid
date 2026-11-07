@@ -327,10 +327,17 @@
                "x": 450,
                "y": 1560,
                "button": "left",
-               "delay_before_ms": 1000,
+               "delay_before_ms": 0,
                "duration_ms": 80,
                "space": "device",
                "anchor_y": 1.0
+              },
+              {
+               "type": "subsequence",
+               "name": "pausa 1500 ms",
+               "repeats": 1,
+               "delay_before_ms": 1500,
+               "steps": []
               }
              ],
              "else_steps": [
@@ -525,10 +532,17 @@
                    "x": 450,
                    "y": 1555,
                    "button": "left",
-                   "delay_before_ms": 1000,
+                   "delay_before_ms": 0,
                    "duration_ms": 80,
                    "space": "device",
                    "anchor_y": 1.0
+                  },
+                  {
+                   "type": "subsequence",
+                   "name": "pausa 1500 ms",
+                   "repeats": 1,
+                   "delay_before_ms": 1500,
+                   "steps": []
                   }
                  ],
                  "else_steps": [
@@ -8561,10 +8575,17 @@
                                                                                                  "x": 450,
                                                                                                  "y": 1560,
                                                                                                  "button": "left",
-                                                                                                 "delay_before_ms": 1000,
+                                                                                                 "delay_before_ms": 0,
                                                                                                  "duration_ms": 80,
                                                                                                  "space": "device",
                                                                                                  "anchor_y": 1.0
+                                                                                                },
+                                                                                                {
+                                                                                                 "type": "subsequence",
+                                                                                                 "name": "pausa 1500 ms",
+                                                                                                 "repeats": 1,
+                                                                                                 "delay_before_ms": 1500,
+                                                                                                 "steps": []
                                                                                                 }
                                                                                                ]
                                                                                               }
@@ -8660,6 +8681,13 @@
      "else_steps": []
     },
     {
+     "type": "subsequence",
+     "name": "pausa 1200 ms",
+     "repeats": 1,
+     "delay_before_ms": 1200,
+     "steps": []
+    },
+    {
      "type": "if_image",
      "name": "la lista sigue → X",
      "condition": {
@@ -8721,7 +8749,7 @@
        "x": 450,
        "y": 1560,
        "button": "left",
-       "delay_before_ms": 1000,
+       "delay_before_ms": 0,
        "duration_ms": 80,
        "space": "device",
        "anchor_y": 1.0

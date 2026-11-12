@@ -6,6 +6,7 @@ import io.github.emiliounitydev.autoclicker.model.DragStep
 import io.github.emiliounitydev.autoclicker.model.IfImageStep
 import io.github.emiliounitydev.autoclicker.model.Mapping
 import io.github.emiliounitydev.autoclicker.model.PluginStep
+import io.github.emiliounitydev.autoclicker.model.Plugins
 import io.github.emiliounitydev.autoclicker.model.Screen
 import io.github.emiliounitydev.autoclicker.model.Sequence
 import io.github.emiliounitydev.autoclicker.model.Step
@@ -77,7 +78,14 @@ class Player(
                 is SubsequenceStep -> doSub(s)
                 is WaitImageStep -> doWait(s)
                 is IfImageStep -> doIf(s)
-                is PluginStep -> listener.status("Saltado: complemento «${s.pluginId}» no disponible.")
+                is PluginStep -> {
+                    // Saltar un paso que espera algo (p. ej. «wait_number») haría
+                    // que lo siguiente se ejecutase antes de tiempo: se para.
+                    if (Plugins.blocksIfMissing(s.type)) {
+                        throw StopSequence("El paso «${s.type}» aún no existe en Android: secuencia detenida sin tocar.")
+                    }
+                    listener.status("Saltado: complemento «${s.pluginId}» no disponible.")
+                }
             }
         }
     }

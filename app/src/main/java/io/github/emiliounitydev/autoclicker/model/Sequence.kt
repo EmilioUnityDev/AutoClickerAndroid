@@ -192,6 +192,13 @@ object Plugins {
     val INSTALLED: Set<String> = emptySet()
 
     fun pluginFor(type: String): String? = KNOWN[type]
+
+    /**
+     * Pasos que no se pueden saltar sin riesgo: sin ellos se tocaría antes de
+     * tiempo. Todo tipo desconocido cuenta como tal salvo los complementos
+     * conocidos que son acciones autónomas (pesca).
+     */
+    fun blocksIfMissing(type: String): Boolean = type !in setOf("fishing_pull")
 }
 
 class Screen(var width: Int, var height: Int, var density: Int = 0) {

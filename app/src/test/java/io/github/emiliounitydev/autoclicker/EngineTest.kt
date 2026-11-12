@@ -194,6 +194,21 @@ class RaidJoinPlayerTest {
     }
 
     @Test
+    fun unknownWaitStepStopsBeforeTapping() = runTest {
+        // «wait_number» (PC) aún no existe en Android: no debe saltarse y tocar.
+        val seq = Sequence.parse("""{"version":3,"name":"x","steps":[
+            {"type":"wait_number","region":[100,1045,875,1108],"min_value":1,"max_value":24},
+            {"type":"click","x":705,"y":1505}]}""")
+        val dev = FakeDevice("overview_join", t)
+        try {
+            Player(seq, dev, object : PlayerListener {}, clock = { testScheduler.currentTime }).run()
+            fail("debía parar")
+        } catch (_: StopSequence) {
+        }
+        assertTrue(dev.taps.isEmpty())
+    }
+
+    @Test
     fun guardStopsWithoutTapping() = runTest {
         val seq = Sequence("g", null, mutableListOf(ClickStep(515, 1505)))
         // «Pantalla prohibida» = botón verde grande del overview (como si fuera de pago).

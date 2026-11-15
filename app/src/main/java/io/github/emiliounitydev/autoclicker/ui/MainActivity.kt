@@ -17,7 +17,9 @@ import android.widget.ScrollView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import io.github.emiliounitydev.autoclicker.App
 import io.github.emiliounitydev.autoclicker.BuildConfig
+import io.github.emiliounitydev.autoclicker.Diag
 import io.github.emiliounitydev.autoclicker.model.Mapping
 import io.github.emiliounitydev.autoclicker.model.Origin
 import io.github.emiliounitydev.autoclicker.model.Screen
@@ -82,6 +84,14 @@ class MainActivity : AppCompatActivity() {
         return Screen(w, h, ScreenInfo.density(this))
     }
 
+    private fun shareDiag() {
+        val text = "AutoClicker ${BuildConfig.VERSION_NAME} · ${Build.MANUFACTURER} ${Build.MODEL} · Android ${Build.VERSION.RELEASE}\n" +
+            (App.lastExit ?: "") + "\n\n" + Diag.dump(this)
+        startActivity(Intent.createChooser(Intent(Intent.ACTION_SEND).setType("text/plain")
+            .putExtra(Intent.EXTRA_SUBJECT, "AutoClicker diagnóstico")
+            .putExtra(Intent.EXTRA_TEXT, text), "Compartir registro"))
+    }
+
     // ------------------------------------------------------------- permisos
     private fun accessibilityEnabled(): Boolean {
         val want = ComponentName(this, ClickerAccessibilityService::class.java).flattenToString()
@@ -103,6 +113,7 @@ class MainActivity : AppCompatActivity() {
         root.addView(Ui.title(this, "Permisos"))
         val accOn = accessibilityEnabled()
         if (accOn && !ClickerAccessibilityService.isRunning) {
+            Diag.log("app", "pantalla principal: accesibilidad activada pero DETENIDA")
             // Activada en Ajustes pero el sistema no la ha arrancado (pasa en
             // Xiaomi/HyperOS tras actualizar la app o al cerrarla desde recientes).
             permRow("Accesibilidad activada pero DETENIDA por el sistema: desactívala y vuelve a activarla", false) {
@@ -139,6 +150,17 @@ class MainActivity : AppCompatActivity() {
                 root.postDelayed({ render() }, 400)
             })
         }
+
+        root.addView(Ui.title(this, "Diagnóstico"))
+        App.lastExit?.let { root.addView(Ui.text(this, it, 13f)) }
+        val dbar = Ui.hbox(this)
+        dbar.addView(Ui.button(this, "Compartir registro") { shareDiag() })
+        dbar.addView(Ui.button(this, "Borrar registro") {
+            Diag.clear(this); Diag.log("app", "registro borrado"); Toast.makeText(this, "Registro borrado", Toast.LENGTH_SHORT).show()
+        })
+        root.addView(dbar)
+        root.addView(Ui.text(this, "Si la secuencia se para sola, pulsa «Compartir registro» y envíalo: indica " +
+            "si la app se cerró, por qué la cerró Android y cuándo cayó la accesibilidad.", 12f))
 
         root.addView(Ui.title(this, "Secuencias"))
         val bar = Ui.hbox(this)

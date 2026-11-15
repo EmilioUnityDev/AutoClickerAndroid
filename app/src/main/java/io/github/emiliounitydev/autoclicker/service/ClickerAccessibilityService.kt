@@ -8,6 +8,7 @@ import android.os.Build
 import android.util.DisplayMetrics
 import android.view.WindowManager
 import android.view.accessibility.AccessibilityEvent
+import io.github.emiliounitydev.autoclicker.Diag
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resume
@@ -20,15 +21,29 @@ class ClickerAccessibilityService : AccessibilityService() {
 
     override fun onServiceConnected() {
         instance = this
+        Diag.log("accesibilidad", "conectada · ${Diag.memory()}")
+    }
+
+    override fun onUnbind(intent: android.content.Intent?): Boolean {
+        Diag.log("accesibilidad", "DESVINCULADA por el sistema (onUnbind) · ${Diag.memory()}")
+        return super.onUnbind(intent)
     }
 
     override fun onDestroy() {
+        Diag.log("accesibilidad", "DESTRUIDA (onDestroy) · ${Diag.memory()}")
         if (instance === this) instance = null
         super.onDestroy()
     }
 
+    override fun onLowMemory() {
+        Diag.log("accesibilidad", "aviso de POCA MEMORIA del sistema · ${Diag.memory()}")
+        super.onLowMemory()
+    }
+
     override fun onAccessibilityEvent(event: AccessibilityEvent?) {}
-    override fun onInterrupt() {}
+    override fun onInterrupt() {
+        Diag.log("accesibilidad", "interrumpida (onInterrupt)")
+    }
 
     suspend fun tap(x: Int, y: Int, durationMs: Int) {
         val path = Path().apply { moveTo(x.toFloat(), y.toFloat()) }

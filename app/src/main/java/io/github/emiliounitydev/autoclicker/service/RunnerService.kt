@@ -31,6 +31,7 @@ import android.view.WindowManager
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
+import io.github.emiliounitydev.autoclicker.Diag
 import io.github.emiliounitydev.autoclicker.R
 import io.github.emiliounitydev.autoclicker.engine.DeviceIO
 import io.github.emiliounitydev.autoclicker.engine.Frame
@@ -64,6 +65,23 @@ class RunnerService : Service(), DeviceIO {
     private var reader: ImageReader? = null
     private var thread: HandlerThread? = null
     @Volatile private var lastFrame: Frame? = null
+    // Fotogramas: el juego redibuja a 60–120 fps; convertir cada uno generaba
+    // cientos de MB/s de basura durante horas. Se convierte como mucho uno cada
+    // FRAME_MIN_MS (el reproductor mira cada 80–300 ms) y se reutiliza el búfer.
+    private var lastConvert = 0L
+    private var byteBuf = ByteArray(0)
+    @Volatile private var framesConverted = 0L
+    @Volatile private var framesSeen = 0L
+    private var startedAt = 0L
+    private val heartbeat = object : Runnable {
+        override fun run() {
+            Diag.log("latido", "en marcha ${(System.currentTimeMillis() - startedAt) / 60000} min · " +
+                "secuencia ${if (job?.isActive == true) "activa" else "parada"} · accesibilidad " +
+                "${if (ClickerAccessibilityService.isRunning) "OK" else "CAÍDA"} · captura " +
+                "${if (projection != null) "OK" else "parada"} · fotogramas ${framesConverted}/${framesSeen} · ${Diag.memory()}")
+            main.postDelayed(this, 10 * 60_000L)
+        }
+    }
 
     private lateinit var wm: WindowManager
     private var panel: View? = null
@@ -84,6 +102,19 @@ class RunnerService : Service(), DeviceIO {
         val (w, h) = ScreenInfo.size(this)
         screenWidth = w; screenHeight = h
         instance = this
+        startedAt = System.currentTimeMillis()
+        Diag.log("panel", "servicio creado · pantalla ${w}×${h}")
+        main.postDelayed(heartbeat, 10 * 60_000L)
+    }
+
+    override fun onLowMemory() {
+        Diag.log("panel", "aviso de POCA MEMORIA del sistema · ${Diag.memory()}")
+        super.onLowMemory()
+    }
+
+    override fun onTrimMemory(level: Int) {
+        if (level >= TRIM_MEMORY_RUNNING_LOW) Diag.log("panel", "onTrimMemory($level) · ${Diag.memory()}")
+        super.onTrimMemory(level)
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -114,6 +145,8 @@ class RunnerService : Service(), DeviceIO {
         else intent.getParcelableExtra(EXTRA_RESULT_DATA)
 
     override fun onDestroy() {
+        Diag.log("panel", "servicio destruido tras ${(System.currentTimeMillis() - startedAt) / 60000} min")
+        main.removeCallbacks(heartbeat)
         job?.cancel()
         scope.cancel()
         panel?.let { runCatching { wm.removeView(it) } }
@@ -181,6 +214,7 @@ class RunnerService : Service(), DeviceIO {
         mp.registerCallback(object : MediaProjection.Callback() {
             override fun onStop() {
                 lastFrame = null
+                Diag.log("captura", "MediaProjection detenida por el sistema")
                 main.post { stopCapture(); setStatus("Captura detenida por el sistema: vuelve a iniciar el panel desde la app") }
             }
         }, handler)
@@ -192,13 +226,21 @@ class RunnerService : Service(), DeviceIO {
         r.setOnImageAvailableListener({ ir ->
             if (reader !== ir) return@setOnImageAvailableListener  // captura ya parada
             val img = runCatching { ir.acquireLatestImage() }.getOrNull() ?: return@setOnImageAvailableListener
+            framesSeen++
+            val now = android.os.SystemClock.uptimeMillis()
+            if (now - lastConvert < FRAME_MIN_MS) {
+                runCatching { img.close() }
+                return@setOnImageAvailableListener
+            }
+            lastConvert = now
             val w = img.width
             val h = img.height
             // 1) Copiar los bytes de golpe (rápido) y soltar la imagen.
             val copy = try {
                 val plane = img.planes[0]
                 val buf = plane.buffer.duplicate().apply { rewind() }
-                val bytes = ByteArray(buf.remaining()).also { buf.get(it) }
+                if (byteBuf.size != buf.remaining()) byteBuf = ByteArray(buf.remaining())
+                val bytes = byteBuf.also { buf.get(it) }
                 Triple(bytes, plane.pixelStride, plane.rowStride)
             } catch (e: Exception) {
                 // Buffer inaccesible (captura parada a medias): se ignora este fotograma.
@@ -222,7 +264,9 @@ class RunnerService : Service(), DeviceIO {
                 }
             }
             lastFrame = Frame(w, h, out)
+            framesConverted++
         }, handler)
+        Diag.log("captura", "iniciada ${cw}×${ch}")
         display = mp.createVirtualDisplay("autoclicker", cw, ch, ScreenInfo.density(this) / 2,
             DisplayManager.VIRTUAL_DISPLAY_FLAG_AUTO_MIRROR, r.surface, null, handler)
     }
@@ -261,6 +305,8 @@ class RunnerService : Service(), DeviceIO {
             override fun status(text: String) { main.post { setStatus(text) } }
         }
         main.post { playButton?.text = "■" }
+        Diag.log("secuencia", "inicio «$name» · ${Diag.memory()}")
+        val t0 = System.currentTimeMillis()
         job = scope.launch {
             val msg = try {
                 Player(seq, this@RunnerService, listener).run(steps)
@@ -270,8 +316,11 @@ class RunnerService : Service(), DeviceIO {
             } catch (e: CancellationException) {
                 "Detenida"
             } catch (e: Exception) {
+                Diag.log("secuencia", "EXCEPCIÓN: ${android.util.Log.getStackTraceString(e)}")
                 "Error: ${e.message}"
             }
+            Diag.log("secuencia", "fin «$name» tras ${(System.currentTimeMillis() - t0) / 60000} min: $msg · " +
+                "accesibilidad ${if (ClickerAccessibilityService.isRunning) "OK" else "CAÍDA"} · ${Diag.memory()}")
             main.post {
                 playButton?.text = "▶"
                 setStatus(msg)
@@ -345,6 +394,7 @@ class RunnerService : Service(), DeviceIO {
         const val EXTRA_SEQUENCE = "sequence"
         const val EXTRA_STEP_PATH = "step_path"
         const val EXTRA_AUTOPLAY = "autoplay"
+        private const val FRAME_MIN_MS = 120L
         const val ACC_STOPPED = "Accesibilidad detenida por el sistema: en Ajustes → Accesibilidad, " +
             "desactiva AutoClicker y vuelve a activarlo"
         private const val CHANNEL = "runner"

@@ -45,22 +45,22 @@ class ClickerAccessibilityService : AccessibilityService() {
         Diag.log("accesibilidad", "interrumpida (onInterrupt)")
     }
 
-    suspend fun tap(x: Int, y: Int, durationMs: Int) {
+    suspend fun tap(x: Int, y: Int, durationMs: Int): Boolean {
         val path = Path().apply { moveTo(x.toFloat(), y.toFloat()) }
-        dispatch(GestureDescription.StrokeDescription(path, 0, durationMs.coerceAtLeast(1).toLong()))
+        return dispatch(GestureDescription.StrokeDescription(path, 0, durationMs.coerceAtLeast(1).toLong()))
     }
 
-    suspend fun drag(x1: Int, y1: Int, x2: Int, y2: Int, durationMs: Int, holdMs: Int) {
+    suspend fun drag(x1: Int, y1: Int, x2: Int, y2: Int, durationMs: Int, holdMs: Int): Boolean {
         if (holdMs > 0 && Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             // Mantener pulsado y luego desplazarse: dos trazos encadenados.
             val p1 = Path().apply { moveTo(x1.toFloat(), y1.toFloat()) }
             val hold = GestureDescription.StrokeDescription(p1, 0, holdMs.toLong(), true)
-            dispatch(hold)
+            if (!dispatch(hold)) return false
             val p2 = Path().apply { moveTo(x1.toFloat(), y1.toFloat()); lineTo(x2.toFloat(), y2.toFloat()) }
-            dispatch(hold.continueStroke(p2, 0, durationMs.coerceAtLeast(1).toLong(), false))
+            return dispatch(hold.continueStroke(p2, 0, durationMs.coerceAtLeast(1).toLong(), false))
         } else {
             val p = Path().apply { moveTo(x1.toFloat(), y1.toFloat()); lineTo(x2.toFloat(), y2.toFloat()) }
-            dispatch(GestureDescription.StrokeDescription(p, 0, durationMs.coerceAtLeast(1).toLong()))
+            return dispatch(GestureDescription.StrokeDescription(p, 0, durationMs.coerceAtLeast(1).toLong()))
         }
     }
 

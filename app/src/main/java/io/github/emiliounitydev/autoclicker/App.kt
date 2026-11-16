@@ -117,7 +117,7 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         Diag.init(this)
-        Diag.log("app", "proceso iniciado · ${BuildConfig.VERSION_NAME} · Android ${Build.VERSION.RELEASE} · ${Build.MANUFACTURER} ${Build.MODEL}")
+        if (Build.VERSION.SDK_INT < 28 || Application.getProcessName() == packageName) Diag.log("app", "proceso iniciado · ${BuildConfig.VERSION_NAME} · Android ${Build.VERSION.RELEASE} · ${Build.MANUFACTURER} ${Build.MODEL}")
         val previous = Thread.getDefaultUncaughtExceptionHandler()
         Thread.setDefaultUncaughtExceptionHandler { t, e ->
             val sw = StringWriter()
@@ -125,7 +125,10 @@ class App : Application() {
             Diag.log("CRASH", "hilo «${t.name}» · ${Diag.memory()}\n$sw")
             previous?.uncaughtException(t, e)
         }
-        lastExit = Diag.recordExitReasons(this)
+        // Solo en el proceso principal (el de gestos «:gestures» no lo repite).
+        val proc = if (Build.VERSION.SDK_INT >= 28) Application.getProcessName() else packageName
+        if (proc == packageName) lastExit = Diag.recordExitReasons(this)
+        else Diag.log("app", "proceso $proc iniciado")
     }
 
     companion object {

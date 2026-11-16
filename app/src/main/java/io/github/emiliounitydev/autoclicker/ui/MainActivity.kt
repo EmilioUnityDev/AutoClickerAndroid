@@ -25,6 +25,7 @@ import io.github.emiliounitydev.autoclicker.model.Origin
 import io.github.emiliounitydev.autoclicker.model.Screen
 import io.github.emiliounitydev.autoclicker.model.Sequence
 import io.github.emiliounitydev.autoclicker.service.ClickerAccessibilityService
+import io.github.emiliounitydev.autoclicker.service.GestureClient
 import io.github.emiliounitydev.autoclicker.service.RunnerService
 import io.github.emiliounitydev.autoclicker.service.ScreenInfo
 
@@ -75,6 +76,9 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         render()
+        // El servicio de accesibilidad vive en otro proceso: preguntarle.
+        val before = GestureClient.lastKnownRunning
+        GestureClient.ping(this) { if (it != before && !isFinishing) render() }
     }
 
     private fun prefs() = getSharedPreferences("main", MODE_PRIVATE)
@@ -112,7 +116,7 @@ class MainActivity : AppCompatActivity() {
 
         root.addView(Ui.title(this, "Permisos"))
         val accOn = accessibilityEnabled()
-        if (accOn && !ClickerAccessibilityService.isRunning) {
+        if (accOn && GestureClient.lastKnownRunning == false) {
             Diag.log("app", "pantalla principal: accesibilidad activada pero DETENIDA")
             // Activada en Ajustes pero el sistema no la ha arrancado (pasa en
             // Xiaomi/HyperOS tras actualizar la app o al cerrarla desde recientes).

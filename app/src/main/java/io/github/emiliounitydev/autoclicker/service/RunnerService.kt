@@ -75,9 +75,13 @@ class RunnerService : Service(), DeviceIO {
     private var startedAt = 0L
     private val heartbeat = object : Runnable {
         override fun run() {
+            GestureClient.ping(this@RunnerService) { beat() }
+        }
+
+        fun beat() {
             Diag.log("latido", "en marcha ${(System.currentTimeMillis() - startedAt) / 60000} min · " +
                 "secuencia ${if (job?.isActive == true) "activa" else "parada"} · accesibilidad " +
-                "${if (ClickerAccessibilityService.isRunning) "OK" else "CAÍDA"} · captura " +
+                "${accText()} · captura " +
                 "${if (projection != null) "OK" else "parada"} · fotogramas ${framesConverted}/${framesSeen} · ${Diag.memory()}")
             main.postDelayed(this, 10 * 60_000L)
         }
@@ -103,8 +107,13 @@ class RunnerService : Service(), DeviceIO {
         screenWidth = w; screenHeight = h
         instance = this
         startedAt = System.currentTimeMillis()
+        GestureClient.bind(this)
         Diag.log("panel", "servicio creado · pantalla ${w}×${h}")
         main.postDelayed(heartbeat, 10 * 60_000L)
+    }
+
+    private fun accText() = when (GestureClient.lastKnownRunning) {
+        true -> "OK"; false -> "CAÍDA"; null -> "?"
     }
 
     override fun onLowMemory() {
@@ -272,18 +281,21 @@ class RunnerService : Service(), DeviceIO {
     }
 
     // ------------------------------------------------------------ DeviceIO
+    // Los gestos los hace el servicio de accesibilidad en su propio proceso.
+    private fun checkGesture(res: Int?) {
+        if (res == null || res == GestureBridge.NOT_RUNNING) throw StopSequence(ACC_STOPPED)
+    }
+
     override suspend fun tap(x: Int, y: Int, durationMs: Int) {
-        val svc = ClickerAccessibilityService.instance ?: throw StopSequence(ACC_STOPPED)
-        svc.tap(x, y, durationMs)
+        checkGesture(GestureClient.tap(this, x, y, durationMs))
     }
 
     override suspend fun drag(x1: Int, y1: Int, x2: Int, y2: Int, durationMs: Int, holdMs: Int) {
-        val svc = ClickerAccessibilityService.instance ?: throw StopSequence(ACC_STOPPED)
-        svc.drag(x1, y1, x2, y2, durationMs, holdMs)
+        checkGesture(GestureClient.drag(this, x1, y1, x2, y2, durationMs, holdMs))
     }
 
     override suspend fun back() {
-        ClickerAccessibilityService.instance?.back()
+        GestureClient.back(this)
     }
 
     override fun frame(): Frame? = lastFrame
@@ -320,7 +332,7 @@ class RunnerService : Service(), DeviceIO {
                 "Error: ${e.message}"
             }
             Diag.log("secuencia", "fin «$name» tras ${(System.currentTimeMillis() - t0) / 60000} min: $msg · " +
-                "accesibilidad ${if (ClickerAccessibilityService.isRunning) "OK" else "CAÍDA"} · ${Diag.memory()}")
+                "accesibilidad ${accText()} · ${Diag.memory()}")
             main.post {
                 playButton?.text = "▶"
                 setStatus(msg)

@@ -24,6 +24,7 @@ import io.github.emiliounitydev.autoclicker.model.Mapping
 import io.github.emiliounitydev.autoclicker.model.Origin
 import io.github.emiliounitydev.autoclicker.model.Screen
 import io.github.emiliounitydev.autoclicker.model.Sequence
+import io.github.emiliounitydev.autoclicker.service.AccRepair
 import io.github.emiliounitydev.autoclicker.service.ClickerAccessibilityService
 import io.github.emiliounitydev.autoclicker.service.GestureClient
 import io.github.emiliounitydev.autoclicker.service.RunnerService

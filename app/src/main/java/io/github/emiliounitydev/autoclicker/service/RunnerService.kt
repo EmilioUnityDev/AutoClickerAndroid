@@ -79,6 +79,7 @@ class RunnerService : Service(), DeviceIO {
         }
 
         fun beat() {
+            if (GestureClient.lastKnownRunning == false) Diag.log("gestos", "latido: el proceso de accesibilidad NO responde")
             Diag.log("latido", "en marcha ${(System.currentTimeMillis() - startedAt) / 60000} min · " +
                 "secuencia ${if (job?.isActive == true) "activa" else "parada"} · accesibilidad " +
                 "${accText()} · captura " +

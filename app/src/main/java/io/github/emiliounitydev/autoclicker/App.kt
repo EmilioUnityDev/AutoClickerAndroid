@@ -56,11 +56,36 @@ object Diag {
         return "memoria Java ${used}/${max} MB, nativa ${nativeMb} MB"
     }
 
-    /** Texto para compartir: registro anterior (si lo hay) + actual, recortado. */
-    fun dump(ctx: Context, maxChars: Int = 90_000): String {
+    /**
+     * Texto para compartir, LO MÁS RECIENTE PRIMERO (al pegarlo en otro sitio
+     * suele cortarse el final): primero un resumen de los eventos importantes
+     * (cierres, accesibilidad, gestos, secuencias, errores) y después el
+     * registro completo de las últimas 36 h, también del más nuevo al más viejo.
+     */
+    fun dump(ctx: Context, maxChars: Int = 60_000): String {
         val old = File(ctx.filesDir, "diag.old.log")
         val text = (if (old.exists()) old.readText() else "") + (file(ctx).takeIf { it.exists() }?.readText() ?: "")
-        return if (text.length > maxChars) "…\n" + text.takeLast(maxChars) else text
+        val cutoff = fmt.format(Date(System.currentTimeMillis() - 36L * 3600_000))
+        // Entradas (una entrada puede ocupar varias líneas: trazas).
+        val entries = mutableListOf<String>()
+        for (line in text.lines()) {
+            if (line.length > 20 && line[4] == '-' && line[13] == ':') entries.add(line)
+            else if (entries.isNotEmpty() && line.isNotEmpty()) entries[entries.size - 1] += "\n" + line
+        }
+        val recent = entries.filter { it.take(19) >= cutoff }.reversed()
+        val important = recent.filter { e ->
+            listOf("[cierre]", "[accesibilidad]", "[gestos]", "[secuencia]", "[CRASH]", "[panel]", "[captura]", "[app]")
+                .any { e.contains(it) }
+        }.take(60)
+        val sb = StringBuilder()
+        sb.append("=== RESUMEN (más reciente primero) ===\n")
+        important.forEach { sb.append(it.take(600)).append('\n') }
+        sb.append("\n=== REGISTRO COMPLETO 36 h (más reciente primero) ===\n")
+        for (e in recent) {
+            if (sb.length > maxChars) { sb.append("…\n"); break }
+            sb.append(e).append('\n')
+        }
+        return sb.toString()
     }
 
     fun clear(ctx: Context) {

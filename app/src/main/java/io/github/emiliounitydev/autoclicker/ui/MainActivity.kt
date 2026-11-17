@@ -125,6 +125,15 @@ class MainActivity : AppCompatActivity() {
 
         root.addView(Ui.title(this, "Permisos"))
         val accOn = accessibilityEnabled()
+        // Con permiso de reparación: si está desactivada (HyperOS la quita de la
+        // lista al forzar el cierre de la app) o activada pero detenida, se
+        // reactiva sola una vez por apertura.
+        if (!accOn && AccRepair.allowed(this) && !repairTried) {
+            repairTried = true
+            Diag.log("app", "pantalla principal: accesibilidad DESACTIVADA (permiso de reparación: se reactiva)")
+            root.addView(Ui.text(this, "⏳ Reactivando la accesibilidad…", 14f))
+            repairAccessibility()
+        }
         if (accOn && GestureClient.lastKnownRunning == false) {
             Diag.log("app", "pantalla principal: accesibilidad activada pero DETENIDA")
             if (canWriteSecure() && !repairTried) {

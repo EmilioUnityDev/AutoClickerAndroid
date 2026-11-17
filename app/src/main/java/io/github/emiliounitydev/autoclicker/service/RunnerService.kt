@@ -283,16 +283,24 @@ class RunnerService : Service(), DeviceIO {
 
     // ------------------------------------------------------------ DeviceIO
     // Los gestos los hace el servicio de accesibilidad en su propio proceso.
-    private fun checkGesture(res: Int?) {
-        if (res == null || res == GestureBridge.NOT_RUNNING) throw StopSequence(ACC_STOPPED)
+    // Si la accesibilidad ha caído y la app puede reactivarla (permiso dado
+    // por adb), se repara y se repite el gesto una vez antes de detenerse.
+    private suspend fun gesture(send: suspend () -> Int?) {
+        val res = send()
+        if (res != null && res != GestureBridge.NOT_RUNNING) return
+        if (AccRepair.repairAndWait(this)) {
+            val again = send()
+            if (again != null && again != GestureBridge.NOT_RUNNING) return
+        }
+        throw StopSequence(ACC_STOPPED)
     }
 
     override suspend fun tap(x: Int, y: Int, durationMs: Int) {
-        checkGesture(GestureClient.tap(this, x, y, durationMs))
+        gesture { GestureClient.tap(this, x, y, durationMs) }
     }
 
     override suspend fun drag(x1: Int, y1: Int, x2: Int, y2: Int, durationMs: Int, holdMs: Int) {
-        checkGesture(GestureClient.drag(this, x1, y1, x2, y2, durationMs, holdMs))
+        gesture { GestureClient.drag(this, x1, y1, x2, y2, durationMs, holdMs) }
     }
 
     override suspend fun back() {

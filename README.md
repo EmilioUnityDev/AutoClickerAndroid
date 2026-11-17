@@ -29,6 +29,20 @@ Las APK firmadas se publican en **[Releases](../../releases)**.
 
 Las actualizaciones se instalan encima (misma firma); no hay que desinstalar.
 
+### Reparación automática de la accesibilidad (Xiaomi/HyperOS, opcional)
+
+Cuando HyperOS cierra la app por falta de memoria, la accesibilidad queda
+«activada pero detenida» y hay que desactivarla y activarla a mano. Con este
+permiso (una sola vez, desde el PC con depuración USB) la app lo hace sola, al
+abrirla y también en mitad de una secuencia:
+
+```
+adb shell pm grant io.github.emiliounitydev.autoclicker.dev android.permission.WRITE_SECURE_SETTINGS
+```
+
+En Xiaomi hay que activar antes en Opciones de desarrollador «Depuración USB»
+y «Depuración USB (ajustes de seguridad)».
+
 ## Hoja de ruta
 
 - [x] 0. Repositorio, permisos y flujo de trabajo

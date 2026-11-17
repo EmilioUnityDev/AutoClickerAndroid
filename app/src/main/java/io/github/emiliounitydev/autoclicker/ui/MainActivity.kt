@@ -103,6 +103,14 @@ class MainActivity : AppCompatActivity() {
         return TextUtils.SimpleStringSplitter(':').apply { setString(enabled) }.any { it.equals(want, true) }
     }
 
+    private fun canWriteSecure() = AccRepair.allowed(this)
+
+    private fun repairAccessibility() {
+        AccRepair.repair(this) { if (!isFinishing) render() }
+    }
+
+    private var repairTried = false
+
     private fun overlayAllowed() = Settings.canDrawOverlays(this)
 
     private fun notifAllowed() = Build.VERSION.SDK_INT < 33 ||
@@ -118,10 +126,17 @@ class MainActivity : AppCompatActivity() {
         val accOn = accessibilityEnabled()
         if (accOn && GestureClient.lastKnownRunning == false) {
             Diag.log("app", "pantalla principal: accesibilidad activada pero DETENIDA")
+            if (canWriteSecure() && !repairTried) {
+                repairTried = true
+                root.addView(Ui.text(this, "⏳ Accesibilidad detenida por el sistema: reactivándola…", 14f))
+                repairAccessibility()
+            }
             // Activada en Ajustes pero el sistema no la ha arrancado (pasa en
             // Xiaomi/HyperOS tras actualizar la app o al cerrarla desde recientes).
-            permRow("Accesibilidad activada pero DETENIDA por el sistema: desactívala y vuelve a activarla", false) {
-                startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
+            permRow("Accesibilidad activada pero DETENIDA por el sistema: " + if (canWriteSecure())
+                "pulsa para reactivarla" else "desactívala y vuelve a activarla (o concede la reparación automática, ver README)", false) {
+                if (canWriteSecure()) repairAccessibility()
+                else startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
             }
         } else permRow("Accesibilidad (tocar en otras apps)", accOn) {
             AlertDialog.Builder(this).setTitle("Activar accesibilidad")

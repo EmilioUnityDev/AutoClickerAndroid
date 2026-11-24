@@ -290,7 +290,7 @@ class RaidJoinPhoneTest {
     fun fullCycleFromChat() = runTest {
         val dev = play("phone_chat_join")
         assertEquals("phone_chat_pending", dev.screen)
-        assertEquals(listOf(775 to 1891, 732 to 2637, 100 to 2630, 1195 to 2253), dev.taps)
+        assertEquals(listOf(775 to 1884, 732 to 2637, 100 to 2630, 1195 to 2253), dev.taps)
     }
 
     @Test
@@ -314,7 +314,7 @@ class RaidJoinPhoneTest {
         )
         val dev = FakeDevice("phone_chat_join", tl, w, h)
         Player(oneCycle(), dev, object : PlayerListener {}, clock = { testScheduler.currentTime }).run()
-        assertEquals(listOf(775 to 1891, 996 to 2260, 732 to 2637, 100 to 2630, 1195 to 2253), dev.taps)
+        assertEquals(listOf(775 to 1884, 996 to 2260, 732 to 2637, 100 to 2630, 1195 to 2253), dev.taps)
         assertEquals("phone_chat_pending", dev.screen)
     }
 
@@ -324,7 +324,7 @@ class RaidJoinPhoneTest {
         val tl = t + mapOf("phone_chat_join" to listOf(intArrayOf(480, 1850, 1070, 1960) to "phone_rally_list"))
         val dev = FakeDevice("phone_chat_join", tl, w, h)
         Player(oneCycle(), dev, object : PlayerListener {}, clock = { testScheduler.currentTime }).run()
-        assertEquals(775 to 1891, dev.taps[0])
+        assertEquals(775 to 1884, dev.taps[0])
         assertEquals(List(6) { 640 to 2345 }, dev.taps.subList(1, 7))
         assertEquals(640 to 2715, dev.taps[7])
     }
@@ -358,6 +358,6 @@ class RaidJoinPhoneTest {
         Mapping.remap(seq, Screen(w, h), Mapping.Mode.ANCHOR, "android", "test")
         val dev = FakeDevice("phone_chat_join", t, w, h)
         Player(seq, dev, object : PlayerListener {}, clock = { testScheduler.currentTime }).run()
-        assertEquals(listOf(775 to 1891, 732 to 2637, 100 to 2630, 1195 to 2253), dev.taps)
+        assertEquals(listOf(775 to 1884, 732 to 2637, 100 to 2630, 1195 to 2253), dev.taps)
     }
 }

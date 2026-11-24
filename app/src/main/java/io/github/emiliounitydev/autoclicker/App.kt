@@ -57,6 +57,42 @@ object Diag {
     }
 
     /**
+     * Memoria de TODO el sistema (no solo la de la app): para ver cómo se va
+     * llenando durante la noche antes de que Android mate procesos.
+     * /proc/meminfo (disponible, libre, caché, swap libre), el umbral de
+     * «poca memoria» de ActivityManager, la presión de memoria del kernel
+     * (PSI, si se puede leer) y el PSS de este proceso.
+     */
+    fun system(ctx: Context): String {
+        val sb = StringBuilder("sistema:")
+        runCatching {
+            val kv = File("/proc/meminfo").readLines().associate { l ->
+                val p = l.split(Regex(":\\s+")); p[0] to (p.getOrNull(1)?.substringBefore(' ')?.toLongOrNull() ?: 0L)
+            }
+            fun mb(k: String) = (kv[k] ?: 0L) / 1024
+            sb.append(" disponible ${mb("MemAvailable")} MB · libre ${mb("MemFree")} · caché ${mb("Cached")}" +
+                " · swap libre ${mb("SwapFree")}/${mb("SwapTotal")} · anónima ${mb("AnonPages")}")
+        }
+        runCatching {
+            val am = ctx.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+            val mi = ActivityManager.MemoryInfo().also { am.getMemoryInfo(it) }
+            sb.append(" · AM libre ${mi.availMem / 1_048_576} MB, umbral ${mi.threshold / 1_048_576}" +
+                (if (mi.lowMemory) " · POCA MEMORIA" else ""))
+        }
+        runCatching {
+            val psi = File("/proc/pressure/memory").readLines()
+            sb.append(" · PSI ").append(psi.joinToString(" | ") { it.substringBefore(" total") })
+        }
+        sb.append(" · PSS propio ${Debug.getPss() / 1024} MB")
+        return sb.toString()
+    }
+
+    fun trimName(level: Int) = when (level) {
+        5 -> "RUNNING_MODERATE"; 10 -> "RUNNING_LOW"; 15 -> "RUNNING_CRITICAL"; 20 -> "UI_HIDDEN"
+        40 -> "BACKGROUND"; 60 -> "MODERATE"; 80 -> "COMPLETE"; else -> "nivel $level"
+    }
+
+    /**
      * Texto para compartir, LO MÁS RECIENTE PRIMERO (al pegarlo en otro sitio
      * suele cortarse el final): primero un resumen de los eventos importantes
      * (cierres, accesibilidad, gestos, secuencias, errores) y después el

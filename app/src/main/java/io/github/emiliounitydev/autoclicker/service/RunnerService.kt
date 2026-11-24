@@ -84,7 +84,10 @@ class RunnerService : Service(), DeviceIO {
                 "secuencia ${if (job?.isActive == true) "activa" else "parada"} · accesibilidad " +
                 "${accText()} · captura " +
                 "${if (projection != null) "OK" else "parada"} · fotogramas ${framesConverted}/${framesSeen} · ${Diag.memory()}")
-            main.postDelayed(this, 10 * 60_000L)
+            Diag.log("memoria", Diag.system(this@RunnerService))
+            // Cada 2 min: para ver la curva de memoria del sistema antes del
+            // cierre de madrugada (con 10 min el último dato quedaba lejos).
+            main.postDelayed(this, 2 * 60_000L)
         }
     }
 
@@ -110,7 +113,8 @@ class RunnerService : Service(), DeviceIO {
         startedAt = System.currentTimeMillis()
         GestureClient.bind(this)
         Diag.log("panel", "servicio creado · pantalla ${w}×${h}")
-        main.postDelayed(heartbeat, 10 * 60_000L)
+        Diag.log("memoria", Diag.system(this))
+        main.postDelayed(heartbeat, 2 * 60_000L)
     }
 
     private fun accText() = when (GestureClient.lastKnownRunning) {
@@ -123,7 +127,7 @@ class RunnerService : Service(), DeviceIO {
     }
 
     override fun onTrimMemory(level: Int) {
-        if (level >= TRIM_MEMORY_RUNNING_LOW) Diag.log("panel", "onTrimMemory($level) · ${Diag.memory()}")
+        Diag.log("panel", "onTrimMemory ${Diag.trimName(level)} · ${Diag.memory()} · ${Diag.system(this)}")
         super.onTrimMemory(level)
     }
 

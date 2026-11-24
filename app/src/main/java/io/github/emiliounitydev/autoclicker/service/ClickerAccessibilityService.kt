@@ -40,6 +40,11 @@ class ClickerAccessibilityService : AccessibilityService() {
         super.onLowMemory()
     }
 
+    override fun onTrimMemory(level: Int) {
+        Diag.log("accesibilidad", "onTrimMemory ${Diag.trimName(level)} · ${Diag.memory()} · ${Diag.system(this)}")
+        super.onTrimMemory(level)
+    }
+
     override fun onAccessibilityEvent(event: AccessibilityEvent?) {}
     override fun onInterrupt() {
         Diag.log("accesibilidad", "interrumpida (onInterrupt)")

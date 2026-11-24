@@ -11,6 +11,7 @@ import io.github.emiliounitydev.autoclicker.model.ColorCondition
 import io.github.emiliounitydev.autoclicker.model.Guard
 import io.github.emiliounitydev.autoclicker.model.Mapping
 import io.github.emiliounitydev.autoclicker.model.PluginStep
+import io.github.emiliounitydev.autoclicker.model.RestartAppStep
 import io.github.emiliounitydev.autoclicker.model.Screen
 import io.github.emiliounitydev.autoclicker.model.Sequence
 import io.github.emiliounitydev.autoclicker.model.SubsequenceStep
@@ -138,6 +139,41 @@ private class FakeDevice(
     override suspend fun drag(x1: Int, y1: Int, x2: Int, y2: Int, durationMs: Int, holdMs: Int) { taps += x1 to y1 }
     override suspend fun back() {}
     override fun frame(): Frame = frames.getOrPut(screen) { shot(screen) }
+}
+
+class RestartAppTest {
+    private class Dev : DeviceIO {
+        val restarts = mutableListOf<String>()
+        val taps = mutableListOf<Pair<Int, Int>>()
+        override val screenWidth = 900
+        override val screenHeight = 1600
+        override suspend fun tap(x: Int, y: Int, durationMs: Int) { taps += x to y }
+        override suspend fun drag(x1: Int, y1: Int, x2: Int, y2: Int, durationMs: Int, holdMs: Int) {}
+        override suspend fun back() {}
+        override suspend fun restartApp(pkg: String): Boolean { restarts += pkg; return true }
+        override fun frame(): Frame? = null
+    }
+
+    @Test
+    fun restartsOnlyAfterTheInterval() = runTest {
+        val seq = Sequence.parse("""{"version":3,"name":"x","steps":[
+            {"type":"restart_app","name":"r","package":"com.game","every_min":150,
+             "steps":[{"type":"click","x":450,"y":1556}]}]}""")
+        val dev = Dev()
+        var now = 0L
+        val p = Player(seq, dev, object : PlayerListener {}, clock = { now })
+        p.run()                       // primera vez: solo arranca el reloj
+        now = 149 * 60_000L; p.run()  // aún no
+        assertTrue(dev.restarts.isEmpty())
+        now = 151 * 60_000L; p.run()  // toca: reinicia y ejecuta sus pasos
+        assertEquals(listOf("com.game"), dev.restarts)
+        assertEquals(listOf(450 to 1556), dev.taps)
+        now = 200 * 60_000L; p.run()  // el intervalo cuenta desde el último reinicio
+        assertEquals(1, dev.restarts.size)
+        // ida y vuelta JSON sin perder campos
+        val again = Sequence.parse(seq.toJson().toString()).steps[0] as RestartAppStep
+        assertEquals("com.game", again.pkg); assertEquals(150, again.everyMin); assertEquals(1, again.steps.size)
+    }
 }
 
 class RaidJoinPlayerTest {

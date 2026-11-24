@@ -169,6 +169,27 @@ class IfImageStep(
 }
 
 /**
+ * Reinicia la app del juego (cerrar + abrir) si han pasado `everyMin` minutos
+ * desde el inicio de la secuencia o desde el último reinicio, y entonces
+ * ejecuta `steps` (esperar a que cargue…). Si no toca, no hace nada. El juego
+ * acumula memoria durante horas y Android acaba matando esta app.
+ */
+class RestartAppStep(
+    var name: String = "Reiniciar el juego",
+    var pkg: String = "",
+    var everyMin: Int = 150,
+    val steps: MutableList<Step> = mutableListOf(),
+) : Step() {
+    override val type = "restart_app"
+    override fun toJson() = base(JSONObject()).put("name", name).put("package", pkg)
+        .put("every_min", everyMin).put("steps", stepsJson(steps))
+    override fun deepCopy() = RestartAppStep(name, pkg, everyMin, steps.map { it.deepCopy() }.toMutableList())
+        .also { it.delayBeforeMs = delayBeforeMs }
+    override fun childLists() = listOf("tras reiniciar" to steps)
+    override fun label() = "♻ $name: cada $everyMin min"
+}
+
+/**
  * Paso de un complemento que esta app no tiene (p. ej. `fishing_pull` de PC).
  * Se conserva tal cual (para no perderlo al guardar) y se salta al ejecutar.
  */
@@ -183,7 +204,7 @@ class PluginStep(val raw: JSONObject) : Step() {
 
 object Plugins {
     /** Tipos de paso del núcleo (los implementa esta app). */
-    val CORE = setOf("click", "drag", "subsequence", "wait_image", "if_image")
+    val CORE = setOf("click", "drag", "subsequence", "wait_image", "if_image", "restart_app")
 
     /** type → complemento conocido. */
     private val KNOWN = mapOf("fishing_pull" to "fishing")
@@ -308,6 +329,8 @@ fun stepFrom(o: JSONObject): Step {
             ColorCondition.fromJson(o.optJSONObject("condition")),
             stepsFrom(o.optJSONArray("then_steps")), stepsFrom(o.optJSONArray("else_steps")),
             conds(o.optJSONArray("also")), conds(o.optJSONArray("unless")))
+        "restart_app" -> RestartAppStep(o.optString("name", "Reiniciar el juego"), o.optString("package", ""),
+            o.optInt("every_min", 150), stepsFrom(o.optJSONArray("steps")))
         else -> return PluginStep(o)
     }
     s.delayBeforeMs = o.optInt("delay_before_ms", 0)

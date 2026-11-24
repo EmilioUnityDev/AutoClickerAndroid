@@ -6,6 +6,13 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!-- Reiniciar el juego cada pocas horas (paso «restart_app»): cerrarlo en
+         segundo plano y volver a abrirlo. -->
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+
+    <queries>
+        <package android:name="com.farlightgames.pgame.gp" />
+    </queries>
     <!-- Opcional, concedido una vez por adb: permite reactivar la accesibilidad
          cuando HyperOS la deja «activada pero detenida». -->
     <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS"

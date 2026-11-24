@@ -2,6 +2,7 @@ package io.github.emiliounitydev.autoclicker.service
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.ActivityManager
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -48,6 +49,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 /**
@@ -309,6 +311,33 @@ class RunnerService : Service(), DeviceIO {
 
     override suspend fun back() {
         GestureClient.back(this)
+    }
+
+    /**
+     * Cierra y vuelve a abrir el juego (libera la memoria que acumula durante
+     * horas): inicio del móvil → el juego queda en segundo plano y se puede
+     * cerrar con killBackgroundProcesses → se abre de nuevo. Abrir una
+     * actividad desde un servicio está permitido porque la app tiene permiso
+     * para mostrarse encima (el panel).
+     */
+    override suspend fun restartApp(pkg: String): Boolean {
+        val launch = packageManager.getLaunchIntentForPackage(pkg)
+        if (launch == null) {
+            Diag.log("juego", "no se encuentra cómo abrir $pkg")
+            return false
+        }
+        Diag.log("juego", "reinicio de $pkg · ${Diag.system(this)}")
+        GestureClient.home(this)
+        delay(2500)
+        runCatching { (getSystemService(ACTIVITY_SERVICE) as ActivityManager).killBackgroundProcesses(pkg) }
+            .onFailure { Diag.log("juego", "no se pudo cerrar: $it") }
+        delay(3000)
+        Diag.log("juego", "cerrado · ${Diag.system(this)}")
+        launch.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        val ok = runCatching { startActivity(launch) }
+            .onFailure { Diag.log("juego", "no se pudo abrir: $it") }.isSuccess
+        if (ok) Diag.log("juego", "abierto de nuevo")
+        return ok
     }
 
     override fun frame(): Frame? = lastFrame

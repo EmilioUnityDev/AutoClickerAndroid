@@ -74,6 +74,11 @@ class ClickerAccessibilityService : AccessibilityService() {
         delay(150)
     }
 
+    suspend fun home() {
+        performGlobalAction(GLOBAL_ACTION_HOME)
+        delay(150)
+    }
+
     private suspend fun dispatch(stroke: GestureDescription.StrokeDescription): Boolean =
         suspendCancellableCoroutine { cont ->
             val g = GestureDescription.Builder().addStroke(stroke).build()

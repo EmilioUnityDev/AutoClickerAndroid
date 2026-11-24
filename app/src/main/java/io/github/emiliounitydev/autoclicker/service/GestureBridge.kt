@@ -49,6 +49,7 @@ class GestureBridge : Service() {
             when (msg.what) {
                 PING -> send(reply, id, OK)
                 BACK -> scope.launch { svc.back(); send(reply, id, OK) }
+                HOME -> scope.launch { svc.home(); send(reply, id, OK) }
                 TAP -> scope.launch {
                     val ok = svc.tap(d.getInt("x"), d.getInt("y"), d.getInt("ms"))
                     send(reply, id, if (ok) OK else CANCELLED)
@@ -83,6 +84,7 @@ class GestureBridge : Service() {
         const val TAP = 2
         const val DRAG = 3
         const val BACK = 4
+        const val HOME = 5
         const val REPLY = 100
         const val OK = 1
         const val CANCELLED = 2
@@ -161,6 +163,7 @@ object GestureClient {
         }, ms + hold + 3000L)
 
     suspend fun back(ctx: Context) = request(ctx, GestureBridge.BACK)
+    suspend fun home(ctx: Context) = request(ctx, GestureBridge.HOME)
 
     /** Comprobación sin bloquear (para la interfaz): llama a `cb` en el hilo principal. */
     fun ping(ctx: Context, cb: (Boolean) -> Unit) {

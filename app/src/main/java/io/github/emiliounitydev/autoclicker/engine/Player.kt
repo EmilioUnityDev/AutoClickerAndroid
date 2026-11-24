@@ -7,6 +7,7 @@ import io.github.emiliounitydev.autoclicker.model.IfImageStep
 import io.github.emiliounitydev.autoclicker.model.Mapping
 import io.github.emiliounitydev.autoclicker.model.PluginStep
 import io.github.emiliounitydev.autoclicker.model.Plugins
+import io.github.emiliounitydev.autoclicker.model.RestartAppStep
 import io.github.emiliounitydev.autoclicker.model.Screen
 import io.github.emiliounitydev.autoclicker.model.Sequence
 import io.github.emiliounitydev.autoclicker.model.Step
@@ -22,6 +23,8 @@ interface DeviceIO {
     suspend fun tap(x: Int, y: Int, durationMs: Int)
     suspend fun drag(x1: Int, y1: Int, x2: Int, y2: Int, durationMs: Int, holdMs: Int)
     suspend fun back()
+    /** Cierra y vuelve a abrir la app `pkg`. false si no se pudo. */
+    suspend fun restartApp(pkg: String): Boolean = false
     /** Último fotograma (null si no hay captura activa). */
     fun frame(): Frame?
     val screenWidth: Int
@@ -76,6 +79,7 @@ class Player(
                 is ClickStep -> doClick(s)
                 is DragStep -> doDrag(s)
                 is SubsequenceStep -> doSub(s)
+                is RestartAppStep -> doRestart(s)
                 is WaitImageStep -> doWait(s)
                 is IfImageStep -> doIf(s)
                 is PluginStep -> {
@@ -109,6 +113,25 @@ class Player(
         checkGuards(x1 to y1)
         listener.tapped(x1, y1)
         io.drag(x1, y1, mapper.x(s.x2), mapper.y(s.y2, s.anchorY), s.durationMs, s.holdMs)
+    }
+
+    private var lastRestart: Long? = null
+
+    private suspend fun doRestart(s: RestartAppStep) {
+        val now = clock()
+        val last = lastRestart ?: now.also { lastRestart = it }
+        if (s.pkg.isEmpty() || now - last < s.everyMin * 60_000L) return
+        lastRestart = now
+        listener.status("♻ Reiniciando el juego (llevaba ${(now - last) / 60_000} min)…")
+        if (!io.restartApp(s.pkg)) {
+            listener.status("♻ No se pudo reiniciar el juego; se sigue.")
+            return
+        }
+        try {
+            runSteps(s.steps)
+        } catch (_: SkipIteration) {
+        } catch (_: BreakLoop) {
+        }
     }
 
     private suspend fun doSub(s: SubsequenceStep) {

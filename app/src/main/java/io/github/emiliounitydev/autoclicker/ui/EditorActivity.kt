@@ -20,6 +20,7 @@ import io.github.emiliounitydev.autoclicker.engine.Frame
 import io.github.emiliounitydev.autoclicker.model.ClickStep
 import io.github.emiliounitydev.autoclicker.model.ColorCondition
 import io.github.emiliounitydev.autoclicker.model.DragStep
+import io.github.emiliounitydev.autoclicker.model.RestartAppStep
 import io.github.emiliounitydev.autoclicker.model.IfImageStep
 import io.github.emiliounitydev.autoclicker.model.Mapping
 import io.github.emiliounitydev.autoclicker.model.PluginStep
@@ -279,6 +280,12 @@ class EditorActivity : AppCompatActivity() {
                     s.x1 = f[0].edit.int(s.x1); s.y1 = f[1].edit.int(s.y1); s.x2 = f[2].edit.int(s.x2); s.y2 = f[3].edit.int(s.y2)
                     s.durationMs = fd.edit.int(400).coerceAtLeast(1); s.holdMs = fh.edit.int(0).coerceAtLeast(0)
                 }
+            }
+            is RestartAppStep -> {
+                val fn = Ui.field(this, box, "Nombre", s.name, numeric = false)
+                val fp = Ui.field(this, box, "App (paquete)", s.pkg, numeric = false)
+                val fe = Ui.field(this, box, "Cada (minutos)", s.everyMin.toString())
+                apply = { s.name = fn.edit.text.toString(); s.pkg = fp.edit.text.toString().trim(); s.everyMin = fe.edit.int(150).coerceAtLeast(1) }
             }
             is SubsequenceStep -> {
                 val fn = Ui.field(this, box, "Nombre", s.name, numeric = false)

@@ -88,6 +88,7 @@ object Mapping {
                 is IfImageStep -> { remapConds(m, s.condition, s.also, s.unless); n++ }
                 is PluginStep -> warnings += "Paso de complemento «${s.pluginId}» sin mapear."
                 is SubsequenceStep -> Unit
+                is RestartAppStep -> Unit
             }
         }
         for (g in seq.guards) {

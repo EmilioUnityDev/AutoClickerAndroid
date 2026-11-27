@@ -47,19 +47,41 @@ class ClickerAccessibilityService : AccessibilityService() {
         super.onTrimMemory(level)
     }
 
+    private var lastDump = 0L
+
     override fun onAccessibilityEvent(event: AccessibilityEvent?) {
-        val pkg = event?.packageName?.toString() ?: return
-        if (pkg != "com.android.systemui" || !Consent.armed(this)) return
-        val root = rootInActiveWindow ?: return
-        for (t in Consent.ACCEPT) {
-            val node = root.findAccessibilityNodeInfosByText(t).firstOrNull { it.text?.toString() == t } ?: continue
+        if (event == null || !Consent.armed(this)) return
+        // El diálogo de captura es de SystemUI en AOSP, pero HyperOS puede
+        // mostrarlo desde otro paquete y no siempre es la ventana activa:
+        // se miran todas las ventanas mientras la marca esté puesta.
+        val roots = buildList {
+            rootInActiveWindow?.let { add(it) }
+            runCatching { windows }.getOrNull()?.forEach { w -> w.root?.let { add(it) } }
+        }
+        for (root in roots) for (t in Consent.ACCEPT) {
+            val node = root.findAccessibilityNodeInfosByText(t)
+                .firstOrNull { it.text?.toString()?.trim().equals(t, ignoreCase = true) } ?: continue
             var n: android.view.accessibility.AccessibilityNodeInfo? = node
             while (n != null && !n.isClickable) n = n.parent
             if (n?.performAction(android.view.accessibility.AccessibilityNodeInfo.ACTION_CLICK) == true) {
                 Consent.disarm(this)
-                Diag.log("captura", "diálogo de captura aceptado automáticamente («$t»)")
+                Diag.log("captura", "diálogo de captura aceptado automáticamente («$t», ${root.packageName})")
                 return
             }
+        }
+        // Sin botón conocido: anotar los textos visibles (una vez cada 3 s)
+        // para poder añadir el de esta versión del sistema.
+        val now = System.currentTimeMillis()
+        if (now - lastDump > 3000) {
+            lastDump = now
+            val texts = mutableListOf<String>()
+            fun walk(n: android.view.accessibility.AccessibilityNodeInfo?, d: Int) {
+                if (n == null || d > 25 || texts.size > 40) return
+                n.text?.toString()?.takeIf { it.isNotBlank() && it.length < 40 }?.let { texts += it }
+                for (i in 0 until n.childCount) walk(n.getChild(i), d + 1)
+            }
+            roots.forEach { walk(it, 0) }
+            Diag.log("captura", "esperando el diálogo de captura (${event.packageName}): ${texts.distinct().take(20)}")
         }
     }
     override fun onInterrupt() {

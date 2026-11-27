@@ -51,5 +51,7 @@ object Consent {
     }
 
     /** Textos del botón que acepta el diálogo del sistema (ES/EN). */
-    val ACCEPT = listOf("Compartir pantalla", "Empezar ahora", "Iniciar ahora", "Share screen", "Start now", "Start")
+    val ACCEPT = listOf("Compartir pantalla", "Compartir toda la pantalla", "Empezar ahora", "Iniciar ahora",
+        "Empezar", "Iniciar", "Comenzar", "Aceptar", "Permitir",
+        "Share screen", "Share entire screen", "Start now", "Start", "Allow")
 }

@@ -14,8 +14,10 @@ import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resume
 
 /**
- * Servicio de accesibilidad: solo se usa para inyectar gestos (toques y
- * arrastres) y la tecla Atrás. No lee el contenido de otras apps.
+ * Servicio de accesibilidad: inyecta gestos (toques y arrastres) y la tecla
+ * Atrás. Solo lee una pantalla: el diálogo del sistema que pide permiso de
+ * captura, y solo justo después de pedirlo la propia app (ver Consent), para
+ * pulsar «Compartir pantalla».
  */
 class ClickerAccessibilityService : AccessibilityService() {
 
@@ -45,7 +47,21 @@ class ClickerAccessibilityService : AccessibilityService() {
         super.onTrimMemory(level)
     }
 
-    override fun onAccessibilityEvent(event: AccessibilityEvent?) {}
+    override fun onAccessibilityEvent(event: AccessibilityEvent?) {
+        val pkg = event?.packageName?.toString() ?: return
+        if (pkg != "com.android.systemui" || !Consent.armed(this)) return
+        val root = rootInActiveWindow ?: return
+        for (t in Consent.ACCEPT) {
+            val node = root.findAccessibilityNodeInfosByText(t).firstOrNull { it.text?.toString() == t } ?: continue
+            var n: android.view.accessibility.AccessibilityNodeInfo? = node
+            while (n != null && !n.isClickable) n = n.parent
+            if (n?.performAction(android.view.accessibility.AccessibilityNodeInfo.ACTION_CLICK) == true) {
+                Consent.disarm(this)
+                Diag.log("captura", "diálogo de captura aceptado automáticamente («$t»)")
+                return
+            }
+        }
+    }
     override fun onInterrupt() {
         Diag.log("accesibilidad", "interrumpida (onInterrupt)")
     }

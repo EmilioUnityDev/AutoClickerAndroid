@@ -150,6 +150,14 @@ class RunnerService : Service(), DeviceIO {
                 setStatus("Listo: $sequenceName" + if (singleStepPath != null) " (solo un paso)" else "")
                 if (intent.getBooleanExtra(EXTRA_AUTOPLAY, false)) startPlayer()
             }
+            ACTION_RECAPTURE -> {
+                val code = intent.getIntExtra(EXTRA_RESULT_CODE, Activity.RESULT_CANCELED)
+                val data: Intent? = resultData(intent)
+                if (projection == null && data != null && code == Activity.RESULT_OK) {
+                    startCapture(code, data)
+                    setStatus("Captura restablecida")
+                }
+            }
             ACTION_STOP_ALL -> stopSelf()
         }
         return START_NOT_STICKY
@@ -231,7 +239,15 @@ class RunnerService : Service(), DeviceIO {
             override fun onStop() {
                 lastFrame = null
                 Diag.log("captura", "MediaProjection detenida por el sistema")
-                main.post { stopCapture(); setStatus("Captura detenida por el sistema: vuelve a iniciar el panel desde la app") }
+                main.post {
+                    stopCapture()
+                    // Con una secuencia en marcha (p. ej. tras reiniciar el juego):
+                    // pedir el permiso otra vez; la accesibilidad lo acepta sola.
+                    if (job?.isActive == true) {
+                        setStatus("Captura detenida: pidiéndola de nuevo…")
+                        Consent.request(this@RunnerService)
+                    } else setStatus("Captura detenida por el sistema: vuelve a iniciar el panel desde la app")
+                }
             }
         }, handler)
         // Media resolución: suficiente para condiciones de color y más ligero.
@@ -443,6 +459,7 @@ class RunnerService : Service(), DeviceIO {
         const val ACTION_START = "start"
         const val ACTION_SELECT = "select"
         const val ACTION_STOP_ALL = "stop_all"
+        const val ACTION_RECAPTURE = "recapture"
         const val EXTRA_RESULT_CODE = "code"
         const val EXTRA_RESULT_DATA = "data"
         const val EXTRA_SEQUENCE = "sequence"

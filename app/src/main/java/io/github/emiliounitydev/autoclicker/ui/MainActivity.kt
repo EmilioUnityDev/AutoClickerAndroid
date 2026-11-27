@@ -242,8 +242,7 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "Faltan permisos (arriba).", Toast.LENGTH_LONG).show(); return
         }
         pendingSequence = name
-        val mpm = getSystemService(MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
-        projectionLauncher.launch(mpm.createScreenCaptureIntent())
+        projectionLauncher.launch(io.github.emiliounitydev.autoclicker.service.Consent.captureIntent(this))
     }
 
     private fun setActive(name: String) {

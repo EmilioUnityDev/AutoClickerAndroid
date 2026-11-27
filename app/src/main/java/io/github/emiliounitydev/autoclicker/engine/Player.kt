@@ -184,7 +184,9 @@ class Player(
 
     // -------------------------------------------------------------- visión
     private suspend fun frameOrWait(): Frame {
-        repeat(50) {
+        // Hasta 60 s: si Android corta la captura (reinicio del juego), la app
+        // la pide de nuevo sola y tarda unos segundos en volver.
+        repeat(600) {
             io.frame()?.let { return it }
             delay(100)
         }

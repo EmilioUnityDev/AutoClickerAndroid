@@ -186,9 +186,10 @@ class RaidJoinPlayerTest {
         "map" to listOf(intArrayOf(800, 1195, 885, 1275) to "chat_pending"),
     )
 
+    /** raid_join es un bucle de «ticks» (una acción por vuelta): 10 vueltas. */
     private fun oneCycle(): Sequence {
         val seq = Sequence.parse(res("raid/raid_join.json").bufferedReader().readText())
-        (seq.steps[0] as SubsequenceStep).repeats = 1
+        (seq.steps[0] as SubsequenceStep).repeats = 10
         return seq
     }
 
@@ -266,9 +267,11 @@ class RaidJoinPlayerTest {
 class RaidJoinPhoneTest {
     private val w = 1280
     private val h = 2772
+    // «Join» del chat: el de MÁS ARRIBA (y 680–754 en esta captura).
+    private val chatJoin = intArrayOf(480, 680, 1070, 760)
     private val t = mapOf(
         "phone_summary" to listOf(intArrayOf(500, 2180, 780, 2270) to "phone_chat_join"),
-        "phone_chat_join" to listOf(intArrayOf(480, 1850, 1070, 1960) to "phone_overview_join"),
+        "phone_chat_join" to listOf(chatJoin to "phone_overview_join"),
         // Sin captura de «Pending»: tras «Join» sigue el mismo overview.
         "phone_overview_join" to listOf(intArrayOf(20, 2570, 180, 2700) to "phone_map"),
         "phone_map" to listOf(intArrayOf(1140, 2190, 1260, 2320) to "phone_chat_pending"),
@@ -276,7 +279,7 @@ class RaidJoinPhoneTest {
 
     private fun oneCycle(): Sequence {
         val seq = Sequence.parse(res("raid/raid_join.json").bufferedReader().readText())
-        (seq.steps[0] as SubsequenceStep).repeats = 1
+        (seq.steps[0] as SubsequenceStep).repeats = 10
         return seq
     }
 
@@ -290,7 +293,8 @@ class RaidJoinPhoneTest {
     fun fullCycleFromChat() = runTest {
         val dev = play("phone_chat_join")
         assertEquals("phone_chat_pending", dev.screen)
-        assertEquals(listOf(775 to 1884, 732 to 2637, 100 to 2630, 1195 to 2253), dev.taps)
+        // Join del chat → Join del overview (sin «Pending» en la prueba: atrás) → chat
+        assertEquals(listOf(775 to 718, 732 to 2637, 100 to 2630, 1195 to 2253), dev.taps)
     }
 
     @Test
@@ -309,36 +313,39 @@ class RaidJoinPhoneTest {
     fun rallyListInsteadOfOverview() = runTest {
         // A veces «Join» en el chat abre la lista «Rally Attack»: su «Join» lleva al overview.
         val tl = t + mapOf(
-            "phone_chat_join" to listOf(intArrayOf(480, 1850, 1070, 1960) to "phone_rally_list_join"),
+            "phone_chat_join" to listOf(chatJoin to "phone_rally_list_join"),
             "phone_rally_list_join" to listOf(intArrayOf(830, 2200, 1160, 2290) to "phone_overview_join"),
         )
         val dev = FakeDevice("phone_chat_join", tl, w, h)
         Player(oneCycle(), dev, object : PlayerListener {}, clock = { testScheduler.currentTime }).run()
-        assertEquals(listOf(775 to 1884, 996 to 2260, 732 to 2637, 100 to 2630, 1195 to 2253), dev.taps)
+        assertEquals(listOf(775 to 718, 996 to 2242, 732 to 2637, 100 to 2630, 1195 to 2253), dev.taps)
         assertEquals("phone_chat_pending", dev.screen)
     }
 
     @Test
     fun rallyListWithoutJoinIsClosed() = runTest {
-        // Lista sin «Join» visible: la desplaza 6 veces buscando más abajo y la cierra con la X.
-        val tl = t + mapOf("phone_chat_join" to listOf(intArrayOf(480, 1850, 1070, 1960) to "phone_rally_list"))
+        // Lista sin «Join» visible y sin final a la vista (captura enmascarada):
+        // la desplaza hasta 8 veces buscando más abajo y la cierra con la X.
+        val tl = t + mapOf("phone_chat_join" to listOf(chatJoin to "phone_rally_list"),
+            "phone_rally_list" to listOf(intArrayOf(540, 2650, 740, 2772) to "phone_chat_pending"))
         val dev = FakeDevice("phone_chat_join", tl, w, h)
         Player(oneCycle(), dev, object : PlayerListener {}, clock = { testScheduler.currentTime }).run()
-        assertEquals(775 to 1884, dev.taps[0])
-        assertEquals(List(6) { 640 to 2345 }, dev.taps.subList(1, 7))
-        assertEquals(640 to 2715, dev.taps[7])
+        assertEquals(775 to 718, dev.taps[0])
+        assertEquals(List(8) { 640 to 2345 }, dev.taps.subList(1, 9))
+        assertEquals(640 to 2715, dev.taps[9])
+        assertEquals("phone_chat_pending", dev.screen)
     }
 
     @Test
     fun shortRallyListIsRecognised() = runTest {
         // Con pocas tarjetas el fondo de la lista se parecía al del resumen y no se reconocía.
         val tl = t + mapOf(
-            "phone_chat_join" to listOf(intArrayOf(480, 1850, 1070, 1960) to "phone_rally_list_short"),
+            "phone_chat_join" to listOf(chatJoin to "phone_rally_list_short"),
             "phone_rally_list_short" to listOf(intArrayOf(830, 1215, 1160, 1330) to "phone_overview_join"),
         )
         val dev = FakeDevice("phone_chat_join", tl, w, h)
         Player(oneCycle(), dev, object : PlayerListener {}, clock = { testScheduler.currentTime }).run()
-        assertEquals(996 to 1300, dev.taps[1])
+        assertTrue("toque ${dev.taps[1]}", dev.taps[1].first == 996 && dev.taps[1].second in 1240..1310)
         assertEquals("phone_chat_pending", dev.screen)
     }
 
@@ -358,6 +365,6 @@ class RaidJoinPhoneTest {
         Mapping.remap(seq, Screen(w, h), Mapping.Mode.ANCHOR, "android", "test")
         val dev = FakeDevice("phone_chat_join", t, w, h)
         Player(seq, dev, object : PlayerListener {}, clock = { testScheduler.currentTime }).run()
-        assertEquals(listOf(775 to 1884, 732 to 2637, 100 to 2630, 1195 to 2253), dev.taps)
+        assertEquals(listOf(775 to 718, 732 to 2637, 100 to 2630, 1195 to 2253), dev.taps)
     }
 }

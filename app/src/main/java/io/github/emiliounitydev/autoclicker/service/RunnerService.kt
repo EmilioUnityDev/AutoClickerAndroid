@@ -358,6 +358,12 @@ class RunnerService : Service(), DeviceIO {
 
     override fun frame(): Frame? = lastFrame
 
+    override fun availableMemMb(): Long? = runCatching {
+        val mi = ActivityManager.MemoryInfo()
+        (getSystemService(ACTIVITY_SERVICE) as ActivityManager).getMemoryInfo(mi)
+        mi.availMem / 1_048_576
+    }.getOrNull()
+
     /** Fotograma actual (para el selector de color del editor). */
     fun currentFrame(): Frame? = lastFrame
 

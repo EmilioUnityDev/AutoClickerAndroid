@@ -179,14 +179,25 @@ class RestartAppStep(
     var pkg: String = "",
     var everyMin: Int = 150,
     val steps: MutableList<Step> = mutableListOf(),
+    /** También reinicia si la memoria disponible del sistema baja de esto
+     * (MB; 0 = no mirar). El juego llega a consumir 1 GB en 20 min y el
+     * temporizador solo no basta. */
+    var belowMb: Int = 0,
+    /** Campos de PC que no usamos (p. ej. "platform"): se conservan. */
+    var extra: JSONObject? = null,
 ) : Step() {
     override val type = "restart_app"
-    override fun toJson() = base(JSONObject()).put("name", name).put("package", pkg)
-        .put("every_min", everyMin).put("steps", stepsJson(steps))
-    override fun deepCopy() = RestartAppStep(name, pkg, everyMin, steps.map { it.deepCopy() }.toMutableList())
+    override fun toJson(): JSONObject {
+        val o = base(JSONObject())
+        extra?.let { e -> e.keys().forEach { o.put(it, e.get(it)) } }
+        o.put("name", name).put("package", pkg).put("every_min", everyMin).put("steps", stepsJson(steps))
+        if (belowMb > 0) o.put("restart_below_mb", belowMb)
+        return o
+    }
+    override fun deepCopy() = RestartAppStep(name, pkg, everyMin, steps.map { it.deepCopy() }.toMutableList(), belowMb, extra)
         .also { it.delayBeforeMs = delayBeforeMs }
     override fun childLists() = listOf("tras reiniciar" to steps)
-    override fun label() = "♻ $name: cada $everyMin min"
+    override fun label() = "♻ $name: cada $everyMin min" + if (belowMb > 0) " o con < $belowMb MB libres" else ""
 }
 
 /**
@@ -330,7 +341,13 @@ fun stepFrom(o: JSONObject): Step {
             stepsFrom(o.optJSONArray("then_steps")), stepsFrom(o.optJSONArray("else_steps")),
             conds(o.optJSONArray("also")), conds(o.optJSONArray("unless")))
         "restart_app" -> RestartAppStep(o.optString("name", "Reiniciar el juego"), o.optString("package", ""),
-            o.optInt("every_min", 150), stepsFrom(o.optJSONArray("steps")))
+            o.optInt("every_min", 150), stepsFrom(o.optJSONArray("steps")), o.optInt("restart_below_mb", 0),
+            JSONObject().also { e ->
+                o.keys().forEach { k ->
+                    if (k !in setOf("type", "name", "package", "every_min", "steps", "restart_below_mb", "delay_before_ms"))
+                        e.put(k, o.get(k))
+                }
+            }.takeIf { it.length() > 0 })
         else -> return PluginStep(o)
     }
     s.delayBeforeMs = o.optInt("delay_before_ms", 0)

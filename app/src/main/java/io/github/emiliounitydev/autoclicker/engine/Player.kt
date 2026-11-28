@@ -25,6 +25,8 @@ interface DeviceIO {
     suspend fun back()
     /** Cierra y vuelve a abrir la app `pkg`. false si no se pudo. */
     suspend fun restartApp(pkg: String): Boolean = false
+    /** Memoria disponible del sistema en MB (null = no se sabe). */
+    fun availableMemMb(): Long? = null
     /** Último fotograma (null si no hay captura activa). */
     fun frame(): Frame?
     val screenWidth: Int
@@ -120,9 +122,15 @@ class Player(
     private suspend fun doRestart(s: RestartAppStep) {
         val now = clock()
         val last = lastRestart ?: now.also { lastRestart = it }
-        if (s.pkg.isEmpty() || now - last < s.everyMin * 60_000L) return
+        if (s.pkg.isEmpty()) return
+        val byTime = now - last >= s.everyMin * 60_000L
+        // Por memoria: como mucho uno cada 5 min (tras reiniciar tarda en liberarse).
+        val avail = if (s.belowMb > 0) io.availableMemMb() else null
+        val byMem = avail != null && avail < s.belowMb && now - last >= 5 * 60_000L
+        if (!byTime && !byMem) return
         lastRestart = now
-        listener.status("♻ Reiniciando el juego (llevaba ${(now - last) / 60_000} min)…")
+        listener.status("♻ Reiniciando el juego (llevaba ${(now - last) / 60_000} min" +
+            (if (byMem) ", memoria libre $avail MB" else "") + ")…")
         if (!io.restartApp(s.pkg)) {
             listener.status("♻ No se pudo reiniciar el juego; se sigue.")
             return

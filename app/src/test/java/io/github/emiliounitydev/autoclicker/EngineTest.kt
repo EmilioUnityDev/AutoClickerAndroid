@@ -174,6 +174,33 @@ class RestartAppTest {
         val again = Sequence.parse(seq.toJson().toString()).steps[0] as RestartAppStep
         assertEquals("com.game", again.pkg); assertEquals(150, again.everyMin); assertEquals(1, again.steps.size)
     }
+
+    @Test
+    fun restartsWhenMemoryIsLow() = runTest {
+        val seq = Sequence.parse("""{"version":3,"name":"x","steps":[
+            {"type":"restart_app","name":"r","package":"com.game","every_min":60,"restart_below_mb":1000,
+             "platform":"android","steps":[]}]}""")
+        var mem = 2000L
+        val dev = object : DeviceIO by Dev() {
+            val restarts = mutableListOf<String>()
+            override suspend fun restartApp(pkg: String): Boolean { restarts += pkg; return true }
+            override fun availableMemMb(): Long = mem
+        }
+        var now = 0L
+        val p = Player(seq, dev, object : PlayerListener {}, clock = { now })
+        p.run()
+        now = 10 * 60_000L; p.run()             // 10 min, 2000 MB: no
+        assertTrue(dev.restarts.isEmpty())
+        mem = 800; now = 3 * 60_000L + 10 * 60_000L; p.run()   // poca memoria: sí
+        assertEquals(1, dev.restarts.size)
+        now += 2 * 60_000L; p.run()             // sigue baja, pero hace < 5 min: no
+        assertEquals(1, dev.restarts.size)
+        now += 4 * 60_000L; p.run()             // > 5 min y sigue baja: sí
+        assertEquals(2, dev.restarts.size)
+        // «platform» (de PC) se conserva al guardar
+        assertEquals("android", Sequence.parse(seq.toJson().toString()).toJson()
+            .getJSONArray("steps").getJSONObject(0).getString("platform"))
+    }
 }
 
 class RaidJoinPlayerTest {
